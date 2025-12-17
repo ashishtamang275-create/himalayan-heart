@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Clock, TrendingUp, MapPin, ChevronRight, Search, Filter, Mountain } from "lucide-react";
+import { Clock, TrendingUp, MapPin, ChevronRight, Search, Filter, Mountain, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ContactDialog from "@/components/ContactDialog";
 import trekEverest from "@/assets/trek-everest.jpg";
 import trekAnnapurna from "@/assets/trek-annapurna.jpg";
 import trekLangtang from "@/assets/trek-langtang.jpg";
@@ -19,7 +19,6 @@ const allTreks = [
     duration: "14 Days",
     difficulty: "Challenging",
     altitude: "5,364m",
-    price: "$1,299",
     region: "Everest",
     description: "Stand at the foot of the world's highest peak and experience the legendary Sherpa culture.",
   },
@@ -30,7 +29,6 @@ const allTreks = [
     duration: "12 Days",
     difficulty: "Moderate",
     altitude: "4,130m",
-    price: "$999",
     region: "Annapurna",
     description: "Trek through diverse landscapes from lush forests to the dramatic Annapurna Sanctuary.",
   },
@@ -41,7 +39,6 @@ const allTreks = [
     duration: "10 Days",
     difficulty: "Moderate",
     altitude: "4,984m",
-    price: "$899",
     region: "Langtang",
     description: "Discover the 'Valley of Glaciers' with stunning mountain views and rich Tamang heritage.",
   },
@@ -52,7 +49,6 @@ const allTreks = [
     duration: "16 Days",
     difficulty: "Challenging",
     altitude: "5,106m",
-    price: "$1,499",
     region: "Manaslu",
     description: "A remote and less-crowded alternative to Annapurna, circling the world's 8th highest peak.",
   },
@@ -63,7 +59,6 @@ const allTreks = [
     duration: "14 Days",
     difficulty: "Moderate",
     altitude: "3,840m",
-    price: "$1,699",
     region: "Mustang",
     description: "Explore the forbidden kingdom with its ancient Buddhist monasteries and desert-like landscape.",
   },
@@ -74,7 +69,6 @@ const allTreks = [
     duration: "7 Days",
     difficulty: "Easy",
     altitude: "3,210m",
-    price: "$599",
     region: "Annapurna",
     description: "Perfect short trek with spectacular sunrise views over the Annapurna and Dhaulagiri ranges.",
   },
@@ -85,7 +79,6 @@ const allTreks = [
     duration: "8 Days",
     difficulty: "Moderate",
     altitude: "4,500m",
-    price: "$749",
     region: "Annapurna",
     description: "An off-the-beaten-path adventure with stunning views of Machhapuchhre (Fishtail) mountain.",
   },
@@ -96,7 +89,6 @@ const allTreks = [
     duration: "21 Days",
     difficulty: "Strenuous",
     altitude: "5,143m",
-    price: "$1,899",
     region: "Kanchenjunga",
     description: "Journey to the base of the world's third highest peak through pristine wilderness.",
   },
@@ -107,7 +99,6 @@ const allTreks = [
     duration: "12 Days",
     difficulty: "Challenging",
     altitude: "5,357m",
-    price: "$1,199",
     region: "Everest",
     description: "Witness the stunning turquoise Gokyo Lakes and climb Gokyo Ri for panoramic Himalayan views.",
   },
@@ -120,6 +111,8 @@ const TreksPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
+  const [contactOpen, setContactOpen] = useState(false);
+  const [selectedTrek, setSelectedTrek] = useState<string>("");
 
   const filteredTreks = allTreks.filter((trek) => {
     const matchesSearch = trek.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -127,6 +120,11 @@ const TreksPage = () => {
     const matchesDifficulty = selectedDifficulty === "All" || trek.difficulty === selectedDifficulty;
     return matchesSearch && matchesRegion && matchesDifficulty;
   });
+
+  const handleContactClick = (trekName: string) => {
+    setSelectedTrek(trekName);
+    setContactOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -229,8 +227,8 @@ const TreksPage = () => {
                     alt={trek.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm">
-                    {trek.price}
+                  <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
+                    Contact for pricing
                   </div>
                   <div className="absolute top-4 left-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                     {trek.region}
@@ -263,11 +261,14 @@ const TreksPage = () => {
                     </div>
                   </div>
 
-                  <Button variant="mountain" className="w-full group/btn" asChild>
-                    <Link to={`/treks/${trek.id}`}>
-                      View Details
-                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
+                  <Button 
+                    variant="mountain" 
+                    className="w-full group/btn"
+                    onClick={() => handleContactClick(trek.name)}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Contact Us
+                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </div>
@@ -290,6 +291,12 @@ const TreksPage = () => {
 
       <Footer />
       <WhatsAppButton />
+      
+      <ContactDialog 
+        open={contactOpen} 
+        onOpenChange={setContactOpen}
+        trekName={selectedTrek}
+      />
     </div>
   );
 };

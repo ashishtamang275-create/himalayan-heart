@@ -35,7 +35,8 @@ const ContactPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const whatsappNumber = "9779851234567";
+  const whatsappNumber = "9779818800584";
+  const email = "ashishtamang12340@gmail.com";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,9 +132,9 @@ const ContactPage = () => {
                     <Phone className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                    <a href="tel:+9779851234567" className="text-muted-foreground hover:text-accent transition-colors">
-                      +977 985 1234567
+                    <h4 className="font-semibold text-foreground mb-1">Phone / WhatsApp</h4>
+                    <a href="tel:+9779818800584" className="text-muted-foreground hover:text-accent transition-colors">
+                      +977 9818800584
                     </a>
                   </div>
                 </div>
@@ -144,8 +145,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <a href="mailto:info@gonepaltreks.com" className="text-muted-foreground hover:text-accent transition-colors">
-                      info@gonepaltreks.com
+                    <a href={`mailto:${email}`} className="text-muted-foreground hover:text-accent transition-colors">
+                      {email}
                     </a>
                   </div>
                 </div>

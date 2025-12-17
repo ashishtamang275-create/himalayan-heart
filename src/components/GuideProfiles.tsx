@@ -1,137 +1,134 @@
-import { Link } from "react-router-dom";
-import { Award, Languages, Mountain } from "lucide-react";
+import { Award, Languages, Mountain, CheckCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import guide1 from "@/assets/guide-1.jpg";
-import guide2 from "@/assets/guide-2.jpg";
-import guide3 from "@/assets/guide-3.jpg";
+import guideIndra from "@/assets/guide-indra.jpg";
 
-const guides = [
-  {
-    id: 1,
-    name: "Pemba Sherpa",
-    image: guide1,
-    title: "Senior Trek Leader",
-    experience: "20+ years",
-    languages: ["English", "Nepali", "Tibetan"],
-    specialties: ["Everest Region", "High Altitude"],
-    certifications: ["IFMGA Certified", "Wilderness First Responder"],
-    bio: "Born in Namche Bazaar, Pemba has summited Everest 8 times and has been leading treks since 2004.",
-  },
-  {
-    id: 2,
-    name: "Laxmi Tamang",
-    image: guide2,
-    title: "Trek Leader",
-    experience: "12+ years",
-    languages: ["English", "Nepali", "Hindi"],
-    specialties: ["Annapurna Circuit", "Cultural Tours"],
-    certifications: ["NMA Certified", "First Aid Certified"],
-    bio: "Passionate about sharing Nepal's rich culture and biodiversity with trekkers from around the world.",
-  },
-  {
-    id: 3,
-    name: "Karma Gurung",
-    image: guide3,
-    title: "Adventure Guide",
-    experience: "8+ years",
-    languages: ["English", "Nepali", "German"],
-    specialties: ["Off-the-beaten-path", "Photography Tours"],
-    certifications: ["NMA Certified", "Eco-Tourism Specialist"],
-    bio: "Specializes in remote treks and hidden gems, bringing fresh perspectives to classic routes.",
-  },
-];
+const WHATSAPP_NUMBER = "+977 9818800584";
+const EMAIL = "ashishtamang12340@gmail.com";
 
 const GuideProfiles = () => {
+  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER.replace(/\s+/g, "")}?text=${encodeURIComponent("Hi! I'd like to learn more about trekking with Indra Tamang.")}`;
+  const emailLink = `mailto:${EMAIL}?subject=${encodeURIComponent("Inquiry about Trekking with Indra Tamang")}`;
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-accent font-semibold tracking-wider uppercase text-sm">
-            Meet Your Guides
+            Meet Your Guide
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mt-3 mb-6">
-            Expert Local Guides
+            Expert Local Guide
           </h2>
           <p className="text-muted-foreground text-lg">
-            Our certified guides bring decades of experience, local knowledge, 
-            and a passion for the mountains that makes every trek unforgettable.
+            Trek with confidence alongside one of Nepal's most experienced guides, 
+            bringing decades of expertise and a passion for the mountains.
           </p>
         </div>
 
-        {/* Guide Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {guides.map((guide, index) => (
-            <div
-              key={guide.id}
-              className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-500 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Image */}
-              <div className="relative h-72 overflow-hidden">
+        {/* Guide Profile - Featured Layout */}
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-card rounded-2xl overflow-hidden shadow-elevated animate-fade-in-up">
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Image Section */}
+              <div className="relative h-80 lg:h-full min-h-[400px]">
                 <img
-                  src={guide.image}
-                  alt={guide.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src={guideIndra}
+                  alt="Indra Tamang - Senior Trek Leader"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-peak/80 via-peak/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="font-display text-2xl font-bold text-snow">
-                    {guide.name}
+                <div className="absolute inset-0 bg-gradient-to-t from-peak/80 via-peak/20 to-transparent lg:bg-gradient-to-r" />
+                <div className="absolute bottom-6 left-6 lg:hidden">
+                  <h3 className="font-display text-3xl font-bold text-snow">
+                    Indra Tamang
                   </h3>
-                  <p className="text-snow/80">{guide.title}</p>
+                  <p className="text-snow/80 text-lg">Senior Trek Leader</p>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-muted-foreground mb-4 text-sm">
-                  {guide.bio}
+              {/* Content Section */}
+              <div className="p-8 lg:p-10">
+                <div className="hidden lg:block mb-6">
+                  <h3 className="font-display text-3xl font-bold text-foreground">
+                    Indra Tamang
+                  </h3>
+                  <p className="text-accent text-lg font-medium">Senior Trek Leader</p>
+                </div>
+
+                <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
+                  With over two decades of experience guiding trekkers through Nepal's most 
+                  breathtaking trails, Indra Tamang brings unparalleled expertise, local 
+                  knowledge, and a deep passion for sharing the beauty of the Himalayas. 
+                  His commitment to safety, cultural immersion, and creating unforgettable 
+                  experiences has earned him the trust of thousands of adventurers from 
+                  around the world.
                 </p>
 
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-secondary/50 rounded-xl p-4 text-center">
+                    <div className="font-display text-3xl font-bold text-accent">20+</div>
+                    <div className="text-muted-foreground text-sm">Years Experience</div>
+                  </div>
+                  <div className="bg-secondary/50 rounded-xl p-4 text-center">
+                    <div className="font-display text-3xl font-bold text-accent">1000+</div>
+                    <div className="text-muted-foreground text-sm">Treks Completed</div>
+                  </div>
+                </div>
+
                 {/* Details */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mountain className="w-4 h-4 text-accent" />
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3">
+                    <Languages className="w-5 h-5 text-accent" />
                     <span className="text-muted-foreground">
-                      {guide.experience} experience
+                      English, Nepali, Hindi, Tibetan
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Languages className="w-4 h-4 text-accent" />
+                  <div className="flex items-center gap-3">
+                    <Mountain className="w-5 h-5 text-accent" />
                     <span className="text-muted-foreground">
-                      {guide.languages.join(", ")}
+                      Everest, Annapurna, Langtang & all major regions
                     </span>
                   </div>
-                  <div className="flex items-start gap-2 text-sm">
-                    <Award className="w-4 h-4 text-accent mt-0.5" />
+                  <div className="flex items-center gap-3">
+                    <Award className="w-5 h-5 text-accent" />
                     <span className="text-muted-foreground">
-                      {guide.certifications.join(", ")}
+                      NMA Certified, Wilderness First Responder
                     </span>
                   </div>
                 </div>
 
-                {/* Specialties */}
-                <div className="flex flex-wrap gap-2">
-                  {guide.specialties.map((specialty) => (
+                {/* Trust Badges */}
+                <div className="flex flex-wrap gap-3 mb-8">
+                  {["Licensed Guide", "Safety Expert", "Cultural Knowledge", "High Altitude Specialist"].map((badge) => (
                     <span
-                      key={specialty}
-                      className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-xs font-medium"
+                      key={badge}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium"
                     >
-                      {specialty}
+                      <CheckCircle className="w-4 h-4" />
+                      {badge}
                     </span>
                   ))}
                 </div>
+
+                {/* Contact Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button variant="whatsapp" className="w-full">
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      WhatsApp
+                    </Button>
+                  </a>
+                  <a href={emailLink} className="flex-1">
+                    <Button variant="mountain" className="w-full">
+                      <Mail className="w-5 h-5 mr-2" />
+                      Email
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg" asChild>
-            <Link to="/guides">Meet All Guides</Link>
-          </Button>
+          </div>
         </div>
       </div>
     </section>
