@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Clock, TrendingUp, MapPin, ChevronRight } from "lucide-react";
+import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactDialog from "@/components/ContactDialog";
 import trekEverest from "@/assets/trek-everest.jpg";
 import trekAnnapurna from "@/assets/trek-annapurna.jpg";
 import trekLangtang from "@/assets/trek-langtang.jpg";
@@ -13,7 +15,6 @@ const treks = [
     duration: "14 Days",
     difficulty: "Challenging",
     altitude: "5,364m",
-    price: "$1,299",
     description: "Stand at the foot of the world's highest peak and experience the legendary Sherpa culture.",
   },
   {
@@ -23,7 +24,6 @@ const treks = [
     duration: "12 Days",
     difficulty: "Moderate",
     altitude: "4,130m",
-    price: "$999",
     description: "Trek through diverse landscapes from lush forests to the dramatic Annapurna Sanctuary.",
   },
   {
@@ -33,12 +33,19 @@ const treks = [
     duration: "10 Days",
     difficulty: "Moderate",
     altitude: "4,984m",
-    price: "$899",
     description: "Discover the 'Valley of Glaciers' with stunning mountain views and rich Tamang heritage.",
   },
 ];
 
 const FeaturedTreks = () => {
+  const [contactOpen, setContactOpen] = useState(false);
+  const [selectedTrek, setSelectedTrek] = useState<string>("");
+
+  const handleContactClick = (trekName: string) => {
+    setSelectedTrek(trekName);
+    setContactOpen(true);
+  };
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -71,8 +78,8 @@ const FeaturedTreks = () => {
                   alt={trek.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm">
-                  {trek.price}
+                <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
+                  Contact for pricing
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-peak/60 to-transparent" />
               </div>
@@ -102,11 +109,14 @@ const FeaturedTreks = () => {
                   </div>
                 </div>
 
-                <Button variant="mountain" className="w-full group/btn" asChild>
-                  <Link to={`/treks/${trek.id}`}>
-                    View Details
-                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
+                <Button 
+                  variant="mountain" 
+                  className="w-full group/btn"
+                  onClick={() => handleContactClick(trek.name)}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Contact Us
+                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
@@ -123,6 +133,12 @@ const FeaturedTreks = () => {
           </Button>
         </div>
       </div>
+
+      <ContactDialog 
+        open={contactOpen} 
+        onOpenChange={setContactOpen}
+        trekName={selectedTrek}
+      />
     </section>
   );
 };
