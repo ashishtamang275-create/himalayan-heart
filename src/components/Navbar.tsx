@@ -79,6 +79,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className={`lg:hidden p-2 transition-colors ${
               scrolled ? "text-foreground" : "text-snow"
             }`}
