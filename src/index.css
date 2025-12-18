@@ -26,11 +26,11 @@
 
     /* Muted sage */
     --muted: 150 10% 92%;
-    --muted-foreground: 215 15% 45%;
+    --muted-foreground: 215 20% 35%;
 
-    /* Sunrise/sunset accent - warm terracotta */
-    --accent: 18 75% 55%;
-    --accent-foreground: 40 20% 98%;
+    /* Sunrise/sunset accent - warm terracotta (darkened for accessibility) */
+    --accent: 18 80% 38%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;

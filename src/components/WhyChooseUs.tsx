@@ -82,13 +82,13 @@ const WhyChooseUs = () => {
               <div className="space-y-4">
                 <div className="bg-primary rounded-2xl p-8 text-primary-foreground">
                   <div className="font-display text-5xl font-bold mb-2">98%</div>
-                  <p className="text-primary-foreground/80">
+                  <p className="text-primary-foreground">
                     Client Satisfaction Rate
                   </p>
                 </div>
                 <div className="bg-accent rounded-2xl p-8 text-accent-foreground">
                   <div className="font-display text-5xl font-bold mb-2">50+</div>
-                  <p className="text-accent-foreground/80">
+                  <p className="text-accent-foreground">
                     Trekking Routes
                   </p>
                 </div>
@@ -96,13 +96,13 @@ const WhyChooseUs = () => {
               <div className="space-y-4 mt-8">
                 <div className="bg-forest rounded-2xl p-8 text-snow">
                   <div className="font-display text-5xl font-bold mb-2">15+</div>
-                  <p className="text-snow/80">
+                  <p className="text-snow">
                     Years of Experience
                   </p>
                 </div>
                 <div className="bg-mountain-slate rounded-2xl p-8 text-snow">
                   <div className="font-display text-5xl font-bold mb-2">5K+</div>
-                  <p className="text-snow/80">
+                  <p className="text-snow">
                     Happy Trekkers
                   </p>
                 </div>

@@ -62,13 +62,13 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-accent font-semibold tracking-wider uppercase text-sm">
+          <span className="text-snow font-semibold tracking-wider uppercase text-sm">
             Testimonials
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground mt-3 mb-6">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-snow mt-3 mb-6">
             What Our Trekkers Say
           </h2>
-          <p className="text-primary-foreground/70 text-lg">
+          <p className="text-snow/90 text-lg">
             Don't just take our word for it - hear from adventurers who've 
             experienced the magic of the Himalayas with us.
           </p>
@@ -102,19 +102,19 @@ const Testimonials = () => {
                   </div>
 
                   {/* Text */}
-                  <p className="text-primary-foreground text-lg md:text-xl leading-relaxed mb-6 italic">
+                  <p className="text-snow text-lg md:text-xl leading-relaxed mb-6 italic">
                     "{testimonials[currentIndex].text}"
                   </p>
 
                   {/* Author */}
                   <div>
-                    <h4 className="font-display text-xl font-bold text-primary-foreground">
+                    <h4 className="font-display text-xl font-bold text-snow">
                       {testimonials[currentIndex].name}
                     </h4>
-                    <p className="text-primary-foreground/70">
+                    <p className="text-snow/90">
                       {testimonials[currentIndex].location}
                     </p>
-                    <p className="text-accent text-sm mt-1">
+                    <p className="text-accent text-sm mt-1 font-semibold">
                       {testimonials[currentIndex].trek}
                     </p>
                   </div>
@@ -126,21 +126,23 @@ const Testimonials = () => {
             <div className="flex justify-center gap-4 mt-8">
               <button
                 onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center text-primary-foreground transition-colors"
+                aria-label="Previous testimonial"
+                className="w-12 h-12 rounded-full bg-snow/20 hover:bg-snow/30 flex items-center justify-center text-snow transition-colors"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               
               {/* Dots */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${
+                    aria-label={`Go to testimonial ${index + 1}`}
+                    className={`h-3 rounded-full transition-all ${
                       index === currentIndex
                         ? "bg-accent w-8"
-                        : "bg-primary-foreground/30 hover:bg-primary-foreground/50"
+                        : "bg-snow/50 hover:bg-snow/70 w-3"
                     }`}
                   />
                 ))}
@@ -148,7 +150,8 @@ const Testimonials = () => {
 
               <button
                 onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center text-primary-foreground transition-colors"
+                aria-label="Next testimonial"
+                className="w-12 h-12 rounded-full bg-snow/20 hover:bg-snow/30 flex items-center justify-center text-snow transition-colors"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
