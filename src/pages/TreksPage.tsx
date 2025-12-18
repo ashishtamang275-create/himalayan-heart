@@ -9,6 +9,12 @@ import ContactDialog from "@/components/ContactDialog";
 import trekEverest from "@/assets/trek-everest.jpg";
 import trekAnnapurna from "@/assets/trek-annapurna.jpg";
 import trekLangtang from "@/assets/trek-langtang.jpg";
+import trekManaslu from "@/assets/trek-manaslu.jpg";
+import trekUpperMustang from "@/assets/trek-upper-mustang.jpg";
+import trekPoonHill from "@/assets/trek-poon-hill.jpg";
+import trekMardiHimal from "@/assets/trek-mardi-himal.jpg";
+import trekKanchenjunga from "@/assets/trek-kanchenjunga.jpg";
+import trekGokyo from "@/assets/trek-gokyo.jpg";
 import heroImage from "@/assets/hero-mountains.jpg";
 
 const allTreks = [
@@ -45,7 +51,7 @@ const allTreks = [
   {
     id: 4,
     name: "Manaslu Circuit Trek",
-    image: trekLangtang,
+    image: trekManaslu,
     duration: "16 Days",
     difficulty: "Challenging",
     altitude: "5,106m",
@@ -55,7 +61,7 @@ const allTreks = [
   {
     id: 5,
     name: "Upper Mustang Trek",
-    image: trekAnnapurna,
+    image: trekUpperMustang,
     duration: "14 Days",
     difficulty: "Moderate",
     altitude: "3,840m",
@@ -65,7 +71,7 @@ const allTreks = [
   {
     id: 6,
     name: "Ghorepani Poon Hill Trek",
-    image: trekEverest,
+    image: trekPoonHill,
     duration: "7 Days",
     difficulty: "Easy",
     altitude: "3,210m",
@@ -75,7 +81,7 @@ const allTreks = [
   {
     id: 7,
     name: "Mardi Himal Trek",
-    image: trekAnnapurna,
+    image: trekMardiHimal,
     duration: "8 Days",
     difficulty: "Moderate",
     altitude: "4,500m",
@@ -85,7 +91,7 @@ const allTreks = [
   {
     id: 8,
     name: "Kanchenjunga Base Camp Trek",
-    image: trekEverest,
+    image: trekKanchenjunga,
     duration: "21 Days",
     difficulty: "Strenuous",
     altitude: "5,143m",
@@ -95,7 +101,7 @@ const allTreks = [
   {
     id: 9,
     name: "Gokyo Lakes Trek",
-    image: trekLangtang,
+    image: trekGokyo,
     duration: "12 Days",
     difficulty: "Challenging",
     altitude: "5,357m",
