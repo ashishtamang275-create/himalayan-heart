@@ -24,18 +24,21 @@ const Footer = () => {
             <div className="flex gap-4">
               <a
                 href="#"
+                aria-label="Visit our Facebook page"
                 className="w-10 h-10 rounded-full bg-snow/10 flex items-center justify-center hover:bg-accent transition-colors"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
                 href="#"
+                aria-label="Visit our Instagram page"
                 className="w-10 h-10 rounded-full bg-snow/10 flex items-center justify-center hover:bg-accent transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
+                aria-label="Visit our YouTube channel"
                 className="w-10 h-10 rounded-full bg-snow/10 flex items-center justify-center hover:bg-accent transition-colors"
               >
                 <Youtube className="w-5 h-5" />
@@ -45,9 +48,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {["Home", "Trekking Packages", "Our Guides", "Why Choose Us", "Gallery", "Contact"].map(
                 (item) => (
@@ -66,9 +69,9 @@ const Footer = () => {
 
           {/* Popular Treks */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
               Popular Treks
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {[
                 "Everest Base Camp",
@@ -92,9 +95,9 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
               Contact Us
-            </h4>
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
