@@ -20,21 +20,21 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-6 animate-fade-in-up">
+          <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-6 animate-fade-in">
             Your Gateway to the Himalayas
           </span>
           
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 animate-fade-in-up delay-100 leading-tight">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 animate-fade-in delay-100 leading-tight">
             Discover Nepal's{" "}
             <span className="text-gradient">Majestic Peaks</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto animate-fade-in-up delay-200 leading-relaxed">
+          <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto animate-fade-in delay-200 leading-relaxed">
             Experience the adventure of a lifetime with expert local guides. 
             From Everest to Annapurna, your Himalayan journey starts here.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
             <Button variant="hero" size="xl" asChild>
               <Link to="/treks">
                 Explore Treks
@@ -52,7 +52,7 @@ const HeroSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-fade-in-up delay-400">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-fade-in delay-400">
             {[
               { value: "15+", label: "Years Experience" },
               { value: "5000+", label: "Happy Trekkers" },
