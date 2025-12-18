@@ -35,6 +35,7 @@ const GuideProfiles = () => {
                 <img
                   src={guideIndra}
                   alt="Indra Tamang - Senior Trek Leader"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-peak/80 via-peak/20 to-transparent lg:bg-gradient-to-r" />

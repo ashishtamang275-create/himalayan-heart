@@ -6,10 +6,12 @@ import heroImage from "@/assets/hero-mountains.jpg";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+      {/* Background Image - using img tag for better LCP */}
+      <img
+        src={heroImage}
+        alt=""
+        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover"
       />
       
       {/* Gradient Overlay */}
