@@ -26,10 +26,10 @@
 
     /* Muted sage */
     --muted: 150 10% 92%;
-    --muted-foreground: 215 20% 35%;
+    --muted-foreground: 215 25% 28%;
 
-    /* Sunrise/sunset accent - warm terracotta (darkened for accessibility) */
-    --accent: 18 80% 38%;
+    /* Sunrise/sunset accent - warm terracotta (darkened for WCAG AA 4.5:1 contrast) */
+    --accent: 18 85% 28%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -46,8 +46,8 @@
     --mountain-slate: 215 20% 25%;
     --snow-white: 40 30% 99%;
     --glacier-blue: 195 60% 85%;
-    --sunrise-gold: 40 90% 55%;
-    --forest-green: 150 35% 35%;
+    --sunrise-gold: 40 90% 45%;
+    --forest-green: 150 40% 25%;
     --peak-shadow: 215 20% 8%;
 
     /* Gradients */

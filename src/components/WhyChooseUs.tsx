@@ -86,17 +86,17 @@ const WhyChooseUs = () => {
                     Client Satisfaction Rate
                   </p>
                 </div>
-                <div className="bg-accent rounded-2xl p-8 text-accent-foreground">
+                <div className="bg-accent rounded-2xl p-8 text-white">
                   <div className="font-display text-5xl font-bold mb-2">50+</div>
-                  <p className="text-accent-foreground">
+                  <p className="text-white">
                     Trekking Routes
                   </p>
                 </div>
               </div>
               <div className="space-y-4 mt-8">
-                <div className="bg-forest rounded-2xl p-8 text-snow">
+                <div className="bg-forest rounded-2xl p-8 text-white">
                   <div className="font-display text-5xl font-bold mb-2">15+</div>
-                  <p className="text-snow">
+                  <p className="text-white">
                     Years of Experience
                   </p>
                 </div>

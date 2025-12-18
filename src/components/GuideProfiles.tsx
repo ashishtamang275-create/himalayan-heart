@@ -53,7 +53,7 @@ const GuideProfiles = () => {
                   <h3 className="font-display text-3xl font-bold text-foreground">
                     Indra Tamang
                   </h3>
-                  <p className="text-accent text-lg font-medium">Senior Trek Leader</p>
+                  <p className="text-accent text-lg font-semibold">Senior Trek Leader</p>
                 </div>
 
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
@@ -68,11 +68,11 @@ const GuideProfiles = () => {
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-secondary/50 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-accent">20+</div>
+                    <div className="font-display text-3xl font-bold text-foreground">20+</div>
                     <div className="text-muted-foreground text-sm">Years Experience</div>
                   </div>
                   <div className="bg-secondary/50 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-accent">1000+</div>
+                    <div className="font-display text-3xl font-bold text-foreground">1000+</div>
                     <div className="text-muted-foreground text-sm">Treks Completed</div>
                   </div>
                 </div>

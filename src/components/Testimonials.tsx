@@ -62,7 +62,7 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-snow font-semibold tracking-wider uppercase text-sm">
+          <span className="text-sunrise font-semibold tracking-wider uppercase text-sm">
             Testimonials
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-snow mt-3 mb-6">
@@ -78,7 +78,7 @@ const Testimonials = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Quote Icon */}
-            <Quote className="absolute -top-8 -left-4 w-16 h-16 text-accent/30" />
+            <Quote className="absolute -top-8 -left-4 w-16 h-16 text-sunrise/30" />
 
             {/* Testimonial Card */}
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 md:p-12">
@@ -89,7 +89,7 @@ const Testimonials = () => {
                     src={testimonials[currentIndex].image}
                     alt={testimonials[currentIndex].name}
                     loading="lazy"
-                    className="w-24 h-24 rounded-full object-cover border-4 border-accent"
+                    className="w-24 h-24 rounded-full object-cover border-4 border-sunrise"
                   />
                 </div>
 
@@ -98,7 +98,7 @@ const Testimonials = () => {
                   {/* Rating */}
                   <div className="flex justify-center md:justify-start gap-1 mb-4">
                     {Array.from({ length: testimonials[currentIndex].rating }).map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                      <Star key={i} className="w-5 h-5 fill-sunrise text-sunrise" />
                     ))}
                   </div>
 
@@ -115,7 +115,7 @@ const Testimonials = () => {
                     <p className="text-snow/90">
                       {testimonials[currentIndex].location}
                     </p>
-                    <p className="text-accent text-sm mt-1 font-semibold">
+                    <p className="text-sunrise text-sm mt-1 font-semibold">
                       {testimonials[currentIndex].trek}
                     </p>
                   </div>
@@ -145,7 +145,7 @@ const Testimonials = () => {
                     <span
                       className={`block rounded-full transition-all ${
                         index === currentIndex
-                          ? "bg-accent w-6 h-2"
+                          ? "bg-sunrise w-6 h-2"
                           : "bg-snow/50 hover:bg-snow/70 w-2 h-2"
                       }`}
                     />
