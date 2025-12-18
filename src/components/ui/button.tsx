@@ -15,9 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-[0_0_30px_hsl(18_75%_55%/0.3)] hover:shadow-lg transform hover:scale-105",
-        mountain: "bg-[hsl(215_30%_12%)] text-[hsl(40_30%_99%)] hover:bg-[hsl(215_20%_25%)] shadow-[0_4px_20px_-4px_hsl(215_30%_12%/0.1)] hover:shadow-lg",
-        whatsapp: "bg-[hsl(142_70%_45%)] text-[hsl(40_30%_99%)] hover:bg-[hsl(142_70%_40%)] shadow-[0_4px_20px_-4px_hsl(215_30%_12%/0.1)] hover:shadow-lg",
+        hero: "bg-accent text-white hover:bg-accent/90 shadow-[0_0_30px_hsl(18_75%_55%/0.3)] hover:shadow-lg transform hover:scale-105",
+        mountain: "bg-[hsl(215_30%_12%)] text-white hover:bg-[hsl(215_20%_25%)] shadow-[0_4px_20px_-4px_hsl(215_30%_12%/0.1)] hover:shadow-lg",
+        whatsapp: "bg-[hsl(142_70%_30%)] text-white hover:bg-[hsl(142_70%_25%)] shadow-[0_4px_20px_-4px_hsl(215_30%_12%/0.1)] hover:shadow-lg",
         glacier: "bg-[hsl(195_60%_85%)] text-[hsl(215_30%_12%)] hover:bg-[hsl(195_60%_80%)] border border-primary/20",
       },
       size: {

@@ -20,7 +20,7 @@ const CTASection = () => {
             Ready to Start Your{" "}
             <span className="text-gradient">Himalayan Adventure?</span>
           </h2>
-          <p className="text-snow/70 text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-snow/90 text-xl mb-10 max-w-2xl mx-auto">
             Whether you're dreaming of Everest Base Camp or exploring hidden 
             valleys, we're here to make your trek unforgettable. Get in touch today!
           </p>
