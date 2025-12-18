@@ -29,7 +29,7 @@ const HeroSection = () => {
             <span className="text-gradient">Majestic Peaks</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto animate-fade-in delay-200 leading-relaxed">
+          <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto leading-relaxed">
             Experience the adventure of a lifetime with expert local guides. 
             From Everest to Annapurna, your Himalayan journey starts here.
           </p>
