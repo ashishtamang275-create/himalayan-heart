@@ -133,18 +133,22 @@ const Testimonials = () => {
               </button>
               
               {/* Dots */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
                     aria-label={`Go to testimonial ${index + 1}`}
-                    className={`h-3 rounded-full transition-all ${
-                      index === currentIndex
-                        ? "bg-accent w-8"
-                        : "bg-snow/50 hover:bg-snow/70 w-3"
-                    }`}
-                  />
+                    className="w-6 h-6 flex items-center justify-center"
+                  >
+                    <span
+                      className={`block rounded-full transition-all ${
+                        index === currentIndex
+                          ? "bg-accent w-6 h-2"
+                          : "bg-snow/50 hover:bg-snow/70 w-2 h-2"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
 
