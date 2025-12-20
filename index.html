@@ -8,9 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Async font loading to prevent render-blocking -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" /></noscript>
+    <!-- Preload critical fonts to reduce layout shift -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYjMdZwl.woff2" crossorigin />
+    
+    <!-- Font loading with swap to reduce CLS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" />
+    
+    <!-- Font display fallback CSS to prevent layout shift -->
+    <style>
+      /* Reserve space for web fonts to prevent CLS */
+      .font-display { font-family: 'Oswald', Arial, Helvetica, sans-serif; }
+      .font-body { font-family: 'Source Sans 3', Arial, Helvetica, sans-serif; }
+    </style>
     <title>Go Nepal Treks - Expert Guided Himalayan Trekking Adventures</title>
     <meta name="description" content="Experience unforgettable Himalayan treks with Go Nepal Treks. Expert local guides for Everest Base Camp, Annapurna, Langtang & more. Book your Nepal adventure today!" />
     <meta name="keywords" content="Nepal trekking, Everest Base Camp trek, Annapurna trek, Himalayan trekking, Nepal adventure tours, trekking guides Nepal" />
