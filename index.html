@@ -14,11 +14,28 @@
     <!-- Font loading with swap to reduce CLS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" />
     
-    <!-- Font display fallback CSS to prevent layout shift -->
+    <!-- Critical CSS to prevent CLS from font loading -->
     <style>
-      /* Reserve space for web fonts to prevent CLS */
-      .font-display { font-family: 'Oswald', Arial, Helvetica, sans-serif; }
-      .font-body { font-family: 'Source Sans 3', Arial, Helvetica, sans-serif; }
+      /* Define fallback fonts with metrics matching the web fonts */
+      @font-face {
+        font-family: 'Oswald Fallback';
+        src: local('Arial');
+        size-adjust: 85%;
+        ascent-override: 110%;
+        descent-override: 30%;
+        line-gap-override: 0%;
+      }
+      @font-face {
+        font-family: 'Source Sans Fallback';
+        src: local('Arial');
+        size-adjust: 105%;
+        ascent-override: 95%;
+        descent-override: 25%;
+        line-gap-override: 0%;
+      }
+      /* Use fallback fonts in the stack to prevent layout shift */
+      .font-display { font-family: 'Oswald', 'Oswald Fallback', Arial, sans-serif; }
+      .font-body { font-family: 'Source Sans 3', 'Source Sans Fallback', Arial, sans-serif; }
     </style>
     <title>Go Nepal Treks - Expert Guided Himalayan Trekking Adventures</title>
     <meta name="description" content="Experience unforgettable Himalayan treks with Go Nepal Treks. Expert local guides for Everest Base Camp, Annapurna, Langtang & more. Book your Nepal adventure today!" />
