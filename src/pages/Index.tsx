@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedTreks from "@/components/FeaturedTreks";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import GuideProfiles from "@/components/GuideProfiles";
-import Testimonials from "@/components/Testimonials";
+import ReviewSection from "@/components/ReviewSection";
 import Newsletter from "@/components/Newsletter";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ const Index = () => {
         <FeaturedTreks />
         <WhyChooseUs />
         <GuideProfiles />
-        <Testimonials />
+        <ReviewSection />
         <Newsletter />
         <CTASection />
       </main>
