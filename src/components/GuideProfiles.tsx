@@ -54,7 +54,7 @@ const GuideProfiles = () => {
                   <h3 className="font-display text-3xl font-bold text-foreground">
                     Indra Tamang
                   </h3>
-                  <p className="text-accent text-lg font-semibold">Senior Trek Leader</p>
+                  <p className="text-foreground/70 text-lg font-semibold">Senior Trek Leader</p>
                 </div>
 
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">

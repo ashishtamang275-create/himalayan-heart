@@ -48,7 +48,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-snow">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Popular Treks */}
           <div>
-            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-snow">
               Popular Treks
             </h3>
             <ul className="space-y-3">
@@ -95,7 +95,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-display text-lg font-semibold mb-6 text-accent">
+            <h3 className="font-display text-lg font-semibold mb-6 text-snow">
               Contact Us
             </h3>
             <ul className="space-y-4">
