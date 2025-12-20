@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Play } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-mountains.jpg";
 
@@ -40,14 +40,6 @@ const HeroSection = () => {
                 Explore Treks
                 <ChevronRight className="w-5 h-5" />
               </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              size="xl"
-              className="text-snow border-2 border-snow/30 hover:bg-snow/10 hover:border-snow/50"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Watch Video
             </Button>
           </div>
 
