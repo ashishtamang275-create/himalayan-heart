@@ -6,6 +6,7 @@ import ContactDialog from "@/components/ContactDialog";
 import trekEverest from "@/assets/trek-everest.jpg";
 import trekAnnapurna from "@/assets/trek-annapurna.jpg";
 import trekLangtang from "@/assets/trek-langtang.jpg";
+import trekPoonHill from "@/assets/trek-poon-hill.jpg";
 
 const treks = [
   {
@@ -34,6 +35,15 @@ const treks = [
     difficulty: "Moderate",
     altitude: "4,984m",
     description: "Discover the 'Valley of Glaciers' with stunning mountain views and rich Tamang heritage.",
+  },
+  {
+    id: 4,
+    name: "Khopra Trek",
+    image: trekPoonHill,
+    duration: "7 Days",
+    difficulty: "Moderate",
+    altitude: "3,660m",
+    description: "A peaceful off-the-beaten-path trek offering stunning views of Annapurna and Dhaulagiri ranges.",
   },
 ];
 

@@ -108,6 +108,16 @@ const allTreks = [
     region: "Everest",
     description: "Witness the stunning turquoise Gokyo Lakes and climb Gokyo Ri for panoramic Himalayan views.",
   },
+  {
+    id: 10,
+    name: "Khopra Trek",
+    image: trekPoonHill,
+    duration: "7 Days",
+    difficulty: "Moderate",
+    altitude: "3,660m",
+    region: "Annapurna",
+    description: "A peaceful off-the-beaten-path trek offering stunning views of Annapurna and Dhaulagiri ranges.",
+  },
 ];
 
 const regions = ["All", "Everest", "Annapurna", "Langtang", "Manaslu", "Mustang", "Kanchenjunga"];
