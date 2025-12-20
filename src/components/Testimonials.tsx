@@ -115,9 +115,9 @@ const Testimonials = () => {
                     <p className="text-snow/90">
                       {testimonials[currentIndex].location}
                     </p>
-                    <p className="text-sunrise text-sm mt-1 font-semibold">
-                      {testimonials[currentIndex].trek}
-                    </p>
+                                    <p className="text-snow/80 text-sm mt-1 font-semibold">
+                                      {testimonials[currentIndex].trek}
+                                    </p>
                   </div>
                 </div>
               </div>
