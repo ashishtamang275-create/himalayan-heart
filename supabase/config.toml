@@ -1,1 +1,7 @@
 project_id = "fnazrkupmxjvcppgdixs"
+
+[functions.submit-review]
+verify_jwt = false
+
+[functions.upload-review-media]
+verify_jwt = false

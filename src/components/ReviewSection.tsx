@@ -130,7 +130,10 @@ const ReviewForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name.trim() || !message.trim()) {
+    const trimmedName = name.trim();
+    const trimmedMessage = message.trim();
+    
+    if (!trimmedName || !trimmedMessage) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -139,45 +142,65 @@ const ReviewForm = ({ onSuccess }: { onSuccess: () => void }) => {
       return;
     }
 
+    if (trimmedName.length < 2 || trimmedName.length > 100) {
+      toast({
+        title: "Error",
+        description: "Name must be between 2 and 100 characters",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (trimmedMessage.length < 10 || trimmedMessage.length > 1000) {
+      toast({
+        title: "Error",
+        description: "Message must be between 10 and 1000 characters",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Insert review
-      const { data: reviewData, error: reviewError } = await supabase
-        .from('reviews')
-        .insert({
-          reviewer_name: name.trim(),
+      // Submit review via Edge Function (with rate limiting)
+      const { data: reviewResponse, error: reviewError } = await supabase.functions.invoke('submit-review', {
+        body: {
+          reviewer_name: trimmedName,
           rating,
-          message: message.trim()
-        })
-        .select()
-        .single();
+          message: trimmedMessage
+        }
+      });
 
-      if (reviewError) throw reviewError;
+      if (reviewError) {
+        throw new Error(reviewError.message || 'Failed to submit review');
+      }
 
-      // Upload media files
+      if (!reviewResponse?.success) {
+        throw new Error(reviewResponse?.error || 'Failed to submit review');
+      }
+
+      const reviewData = reviewResponse.review;
+
+      // Upload media files via Edge Function (with validation)
       for (const file of files) {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${reviewData.id}/${Date.now()}.${fileExt}`;
-        
-        const { error: uploadError } = await supabase.storage
-          .from('review-media')
-          .upload(fileName, file);
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('reviewId', reviewData.id);
+
+        const { data: uploadResponse, error: uploadError } = await supabase.functions.invoke('upload-review-media', {
+          body: formData
+        });
 
         if (uploadError) {
           console.error('Upload error:', uploadError);
           continue;
         }
 
-        const { data: urlData } = supabase.storage
-          .from('review-media')
-          .getPublicUrl(fileName);
-
-        await supabase.from('review_media').insert({
-          review_id: reviewData.id,
-          media_url: urlData.publicUrl,
-          media_type: file.type.startsWith('image/') ? 'image' : 'video'
-        });
+        if (!uploadResponse?.success) {
+          console.error('Upload failed:', uploadResponse?.error);
+          continue;
+        }
       }
 
       toast({
@@ -190,11 +213,14 @@ const ReviewForm = ({ onSuccess }: { onSuccess: () => void }) => {
       setMessage("");
       setFiles([]);
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting review:', error);
+      const errorMessage = error?.message?.includes('Too many') 
+        ? error.message 
+        : "Failed to submit review. Please try again.";
       toast({
         title: "Error",
-        description: "Failed to submit review. Please try again.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
