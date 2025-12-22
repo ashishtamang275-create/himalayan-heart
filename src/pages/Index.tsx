@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import FeaturedTreks from "@/components/FeaturedTreks";
 
-// Lazy load below-the-fold components to reduce initial JS
+// Lazy load below-the-fold components to reduce initial JS and defer image loading
+const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
 const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
@@ -18,8 +18,8 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <FeaturedTreks />
-        <Suspense fallback={<div className="min-h-[200px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] bg-background" />}>
+          <FeaturedTreks />
           <WhyChooseUs />
           <GuideProfiles />
           <ReviewSection />
