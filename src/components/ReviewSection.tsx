@@ -341,22 +341,6 @@ const ReviewSection = () => {
 
   useEffect(() => {
     fetchReviews();
-
-    // Subscribe to realtime updates
-    const channel = supabase
-      .channel('reviews-changes')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'reviews' },
-        () => {
-          fetchReviews();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   const handleReviewSuccess = () => {
