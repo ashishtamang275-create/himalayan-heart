@@ -27,7 +27,7 @@ const HeroSection = () => {
             Your Gateway to the Himalayas
           </span>
           
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 animate-fade-in delay-100 leading-tight">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
             Discover Nepal's{" "}
             <span className="text-gradient">Majestic Peaks</span>
           </h1>
