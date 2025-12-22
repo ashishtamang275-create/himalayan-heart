@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
 const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
+const GallerySection = lazy(() => import("@/components/GallerySection"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
 const Newsletter = lazy(() => import("@/components/Newsletter"));
 const CTASection = lazy(() => import("@/components/CTASection"));
@@ -22,6 +23,7 @@ const Index = () => {
           <FeaturedTreks />
           <WhyChooseUs />
           <GuideProfiles />
+          <GallerySection />
           <ReviewSection />
           <Newsletter />
           <CTASection />
