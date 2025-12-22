@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const Index = lazy(() => import("./pages/Index"));
 const TreksPage = lazy(() => import("./pages/TreksPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -27,7 +28,7 @@ const App = () => (
             <Route path="/trekking-packages" element={<TreksPage />} />
             <Route path="/guides" element={<Index />} />
             <Route path="/why-us" element={<Index />} />
-            <Route path="/gallery" element={<Index />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
