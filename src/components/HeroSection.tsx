@@ -10,7 +10,10 @@ const HeroSection = () => {
       <img
         src={heroImage}
         alt=""
+        width={1920}
+        height={1080}
         fetchPriority="high"
+        sizes="100vw"
         className="absolute inset-0 w-full h-full object-cover"
       />
       
