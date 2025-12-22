@@ -86,8 +86,11 @@ const FeaturedTreks = () => {
                 <img
                   src={trek.image}
                   alt={trek.name}
+                  width={413}
+                  height={256}
                   loading="lazy"
                   decoding="async"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
