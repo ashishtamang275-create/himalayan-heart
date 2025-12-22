@@ -1,13 +1,16 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturedTreks from "@/components/FeaturedTreks";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import GuideProfiles from "@/components/GuideProfiles";
-import ReviewSection from "@/components/ReviewSection";
-import Newsletter from "@/components/Newsletter";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+
+// Lazy load below-the-fold components to reduce initial JS
+const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
+const ReviewSection = lazy(() => import("@/components/ReviewSection"));
+const Newsletter = lazy(() => import("@/components/Newsletter"));
+const CTASection = lazy(() => import("@/components/CTASection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 
 const Index = () => {
   return (
@@ -16,14 +19,18 @@ const Index = () => {
       <main>
         <HeroSection />
         <FeaturedTreks />
-        <WhyChooseUs />
-        <GuideProfiles />
-        <ReviewSection />
-        <Newsletter />
-        <CTASection />
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <WhyChooseUs />
+          <GuideProfiles />
+          <ReviewSection />
+          <Newsletter />
+          <CTASection />
+        </Suspense>
       </main>
-      <Footer />
-      <WhatsAppButton />
+      <Suspense fallback={null}>
+        <Footer />
+        <WhatsAppButton />
+      </Suspense>
     </div>
   );
 };
