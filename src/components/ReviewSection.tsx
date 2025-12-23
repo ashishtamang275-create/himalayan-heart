@@ -54,7 +54,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
     <div className="bg-card rounded-xl p-6 shadow-soft border border-border/50">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h4 className="font-semibold text-foreground">{review.reviewer_name}</h4>
+          <p className="font-semibold text-foreground text-base">{review.reviewer_name}</p>
           <p className="text-sm text-muted-foreground">{formatDate(review.created_at)}</p>
         </div>
         <StarRating rating={review.rating} />
