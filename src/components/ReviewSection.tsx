@@ -113,7 +113,13 @@ const ReviewSection = () => {
   };
 
   useEffect(() => {
-    fetchReviews();
+    // Defer fetch to improve TTI - run when browser is idle
+    if ('requestIdleCallback' in window) {
+      (window as Window).requestIdleCallback(() => fetchReviews());
+    } else {
+      // Fallback for Safari
+      setTimeout(fetchReviews, 200);
+    }
   }, []);
 
   const handleReviewSuccess = () => {

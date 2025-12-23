@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ContactDialog from "@/components/ContactDialog";
 import trekEverest from "@/assets/trek-everest.jpg";
 import trekAnnapurna from "@/assets/trek-annapurna.jpg";
 import trekLangtang from "@/assets/trek-langtang.jpg";
 import trekPoonHill from "@/assets/trek-poon-hill.jpg";
+
+// Lazy load dialog - only loaded when user clicks contact
+const ContactDialog = lazy(() => import("@/components/ContactDialog"));
 
 const treks = [
   {
@@ -149,11 +151,15 @@ const FeaturedTreks = () => {
         </div>
       </div>
 
-      <ContactDialog 
-        open={contactOpen} 
-        onOpenChange={setContactOpen}
-        trekName={selectedTrek}
-      />
+      {contactOpen && (
+        <Suspense fallback={null}>
+          <ContactDialog 
+            open={contactOpen} 
+            onOpenChange={setContactOpen}
+            trekName={selectedTrek}
+          />
+        </Suspense>
+      )}
     </section>
   );
 };
