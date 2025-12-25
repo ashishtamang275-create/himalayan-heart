@@ -24,7 +24,11 @@ const Index = () => {
           <WhyChooseUs />
           <GuideProfiles />
           <GallerySection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[300px] bg-background" />}>
           <ReviewSection />
+        </Suspense>
+        <Suspense fallback={null}>
           <Newsletter />
           <CTASection />
         </Suspense>
