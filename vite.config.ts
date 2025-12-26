@@ -21,7 +21,9 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-query': ['@tanstack/react-query'],
-          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-tooltip', '@radix-ui/react-toast'],
+          // Split UI components into separate chunks for better tree-shaking
+          'vendor-dialog': ['@radix-ui/react-dialog'],
+          'vendor-toast': ['@radix-ui/react-toast'],
         },
       },
     },
