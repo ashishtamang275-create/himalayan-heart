@@ -3,7 +3,7 @@ import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CTASection = () => {
-  const whatsappNumber = "9779851234567";
+  const whatsappNumber = "9779818800584";
   const whatsappMessage = encodeURIComponent("Hi! I'm interested in booking a trek with Go Nepal Treks. Can you help me plan my adventure?");
 
   return (
