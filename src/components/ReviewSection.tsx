@@ -1,10 +1,12 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Star, Plus, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
 
 // Lazy load heavy Dialog components - only loaded when user clicks "Write a Review"
 const ReviewDialog = lazy(() => import("./ReviewDialog"));
+
+// Dynamically import supabase client to reduce initial bundle
+const getSupabase = () => import("@/integrations/supabase/client").then(m => m.supabase);
 
 interface ReviewMedia {
   id: string;
@@ -95,6 +97,7 @@ const ReviewSection = () => {
 
   const fetchReviews = async () => {
     try {
+      const supabase = await getSupabase();
       const { data: reviewsData, error } = await supabase
         .from('reviews')
         .select(`
