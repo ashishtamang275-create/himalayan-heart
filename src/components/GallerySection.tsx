@@ -11,11 +11,16 @@ import photo4 from "@/assets/gallery/photo-4.jpg";
 import photo5 from "@/assets/gallery/photo-5.jpg";
 import photo6 from "@/assets/gallery/photo-6.jpg";
 import photo7 from "@/assets/gallery/photo-7.jpg";
+import photo8 from "@/assets/gallery/photo-8.jpg";
+import photo9 from "@/assets/gallery/photo-9.jpg";
 
 // Import videos
 import video1 from "@/assets/gallery/video-1.mp4";
 import video2 from "@/assets/gallery/video-2.mp4";
 import video3 from "@/assets/gallery/video-3.mp4";
+import video4 from "@/assets/gallery/video-4.mp4";
+import video5 from "@/assets/gallery/video-5.mp4";
+import video6 from "@/assets/gallery/video-6.mp4";
 
 interface MediaItem {
   id: string;
@@ -34,12 +39,17 @@ const photos: MediaItem[] = [
   { id: "p5", src: photo5, alt: "Mountain lake with snow-capped peaks", type: "photo" },
   { id: "p6", src: photo6, alt: "Trekking group with mountain backdrop", type: "photo" },
   { id: "p7", src: photo7, alt: "Yak in mountain village", type: "photo" },
+  { id: "p8", src: photo8, alt: "Trekker celebrating on snowy summit with prayer flags", type: "photo" },
+  { id: "p9", src: photo9, alt: "Panoramic view of Gokyo Lake and mountains", type: "photo" },
 ];
 
 const videos: MediaItem[] = [
   { id: "v1", src: video1, alt: "Nepal trekking adventure", type: "video" },
   { id: "v2", src: video2, alt: "Mountain scenery video", type: "video" },
   { id: "v3", src: video3, alt: "Himalayan trail experience", type: "video" },
+  { id: "v4", src: video4, alt: "Mountain trail adventure", type: "video" },
+  { id: "v5", src: video5, alt: "Himalayan journey", type: "video" },
+  { id: "v6", src: video6, alt: "Nepal trek highlights", type: "video" },
 ];
 
 const GallerySection = () => {
