@@ -93,13 +93,14 @@ serve(async (req) => {
     
     const supabase = createClient(supabaseUrl, supabaseServiceKey)
     
-    // Insert review
+    // Insert review with pending status for moderation
     const { data: reviewData, error: reviewError } = await supabase
       .from('reviews')
       .insert({
         reviewer_name: trimmedName,
         rating,
-        message: trimmedMessage
+        message: trimmedMessage,
+        status: 'pending'
       })
       .select()
       .single()
