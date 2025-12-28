@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      contacts: {
+        Row: {
+          created_at: string
+          email: string
+          group_size: string | null
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          preferred_date: string | null
+          trek: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          group_size?: string | null
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          preferred_date?: string | null
+          trek?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          group_size?: string | null
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          preferred_date?: string | null
+          trek?: string | null
+        }
+        Relationships: []
+      }
       review_media: {
         Row: {
           created_at: string
@@ -53,6 +89,7 @@ export type Database = {
           message: string
           rating: number
           reviewer_name: string
+          status: string
         }
         Insert: {
           created_at?: string
@@ -60,6 +97,7 @@ export type Database = {
           message: string
           rating: number
           reviewer_name: string
+          status?: string
         }
         Update: {
           created_at?: string
@@ -67,6 +105,7 @@ export type Database = {
           message?: string
           rating?: number
           reviewer_name?: string
+          status?: string
         }
         Relationships: []
       }
