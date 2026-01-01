@@ -2,10 +2,10 @@ import { useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import trekEverest from "@/assets/trek-everest.jpg";
-import trekAnnapurna from "@/assets/trek-annapurna.jpg";
-import trekLangtang from "@/assets/trek-langtang.jpg";
-import trekPoonHill from "@/assets/trek-poon-hill.jpg";
+import trekEverest from "@/assets/trek-everest.webp";
+import trekAnnapurna from "@/assets/trek-annapurna.webp";
+import trekLangtang from "@/assets/trek-langtang.webp";
+import trekPoonHill from "@/assets/trek-poon-hill.webp";
 
 // Lazy load dialog - only loaded when user clicks contact
 const ContactDialog = lazy(() => import("@/components/ContactDialog"));
