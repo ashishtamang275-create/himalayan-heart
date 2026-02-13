@@ -52,18 +52,26 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {["Home", "Trekking Packages", "Our Guides", "Why Choose Us", "Gallery", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="text-snow/70 hover:text-accent transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {[
+                { name: "Home", path: "/" },
+                { name: "Treks", path: "/treks" },
+                { name: "Peak Climbing", path: "/peak-climbing" },
+                { name: "Tours", path: "/tours" },
+                { name: "About Us", path: "/about" },
+                { name: "Blog", path: "/blog" },
+                { name: "FAQ", path: "/faq" },
+                { name: "Gallery", path: "/gallery" },
+                { name: "Contact", path: "/contact" },
+              ].map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className="text-snow/70 hover:text-accent transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -74,19 +82,18 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {[
-                "Everest Base Camp",
-                "Annapurna Base Camp",
-                "Langtang Valley",
-                "Manaslu Circuit",
-                "Upper Mustang",
-                "Ghorepani Poon Hill",
+                { name: "Everest Base Camp", slug: "everest-base-camp" },
+                { name: "Annapurna Base Camp", slug: "annapurna-base-camp" },
+                { name: "Langtang Valley", slug: "langtang-valley" },
+                { name: "Manaslu Circuit", slug: "manaslu-circuit" },
+                { name: "Poon Hill", slug: "ghorepani-poonhill" },
               ].map((trek) => (
-                <li key={trek}>
+                <li key={trek.slug}>
                   <Link
-                    to="/treks"
+                    to={`/trek/${trek.slug}`}
                     className="text-snow/70 hover:text-accent transition-colors"
                   >
-                    {trek}
+                    {trek.name}
                   </Link>
                 </li>
               ))}

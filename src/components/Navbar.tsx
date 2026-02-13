@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Treks", path: "/treks" },
-  { name: "Our Guides", path: "/guides" },
-  { name: "Why Us", path: "/why-us" },
-  { name: "Gallery", path: "/gallery" },
+  { name: "Peak Climbing", path: "/peak-climbing" },
+  { name: "Tours", path: "/tours" },
+  { name: "About", path: "/about" },
+  { name: "Blog", path: "/blog" },
+  { name: "FAQ", path: "/faq" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -52,12 +54,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-medium transition-all duration-300 hover:text-accent relative ${
+                className={`text-sm font-medium transition-all duration-300 hover:text-accent relative ${
                   scrolled ? "text-foreground" : "text-snow"
                 } ${
                   location.pathname === link.path
@@ -71,7 +73,7 @@ const Navbar = () => {
                 )}
               </Link>
             ))}
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" size="default" asChild>
               <Link to="/contact">Book Now</Link>
             </Button>
           </div>
