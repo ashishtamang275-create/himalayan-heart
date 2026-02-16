@@ -6,121 +6,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ContactDialog from "@/components/ContactDialog";
-import trekEverest from "@/assets/trek-everest.webp";
-import trekAnnapurna from "@/assets/trek-annapurna.webp";
-import trekLangtang from "@/assets/trek-langtang.webp";
-import trekManaslu from "@/assets/trek-manaslu.jpg";
-import trekUpperMustang from "@/assets/trek-upper-mustang.jpg";
-import trekPoonHill from "@/assets/trek-poon-hill.webp";
-import trekMardiHimal from "@/assets/trek-mardi-himal.jpg";
-import trekKanchenjunga from "@/assets/trek-kanchenjunga.jpg";
-import trekGokyo from "@/assets/trek-gokyo.jpg";
 import heroImage from "@/assets/hero-mountains.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
 
-const allTreks = [
-  {
-    id: 1,
-    name: "Everest Base Camp Trek",
-    image: trekEverest,
-    duration: "14 Days",
-    difficulty: "Challenging",
-    altitude: "5,364m",
-    region: "Everest",
-    description: "Stand at the foot of the world's highest peak and experience the legendary Sherpa culture.",
-  },
-  {
-    id: 2,
-    name: "Annapurna Base Camp Trek",
-    image: trekAnnapurna,
-    duration: "12 Days",
-    difficulty: "Moderate",
-    altitude: "4,130m",
-    region: "Annapurna",
-    description: "Trek through diverse landscapes from lush forests to the dramatic Annapurna Sanctuary.",
-  },
-  {
-    id: 3,
-    name: "Langtang Valley Trek",
-    image: trekLangtang,
-    duration: "10 Days",
-    difficulty: "Moderate",
-    altitude: "4,984m",
-    region: "Langtang",
-    description: "Discover the 'Valley of Glaciers' with stunning mountain views and rich Tamang heritage.",
-  },
-  {
-    id: 4,
-    name: "Manaslu Circuit Trek",
-    image: trekManaslu,
-    duration: "16 Days",
-    difficulty: "Challenging",
-    altitude: "5,106m",
-    region: "Manaslu",
-    description: "A remote and less-crowded alternative to Annapurna, circling the world's 8th highest peak.",
-  },
-  {
-    id: 5,
-    name: "Upper Mustang Trek",
-    image: trekUpperMustang,
-    duration: "14 Days",
-    difficulty: "Moderate",
-    altitude: "3,840m",
-    region: "Mustang",
-    description: "Explore the forbidden kingdom with its ancient Buddhist monasteries and desert-like landscape.",
-  },
-  {
-    id: 6,
-    name: "Ghorepani Poon Hill Trek",
-    image: trekPoonHill,
-    duration: "7 Days",
-    difficulty: "Easy",
-    altitude: "3,210m",
-    region: "Annapurna",
-    description: "Perfect short trek with spectacular sunrise views over the Annapurna and Dhaulagiri ranges.",
-  },
-  {
-    id: 7,
-    name: "Mardi Himal Trek",
-    image: trekMardiHimal,
-    duration: "8 Days",
-    difficulty: "Moderate",
-    altitude: "4,500m",
-    region: "Annapurna",
-    description: "An off-the-beaten-path adventure with stunning views of Machhapuchhre (Fishtail) mountain.",
-  },
-  {
-    id: 8,
-    name: "Kanchenjunga Base Camp Trek",
-    image: trekKanchenjunga,
-    duration: "21 Days",
-    difficulty: "Strenuous",
-    altitude: "5,143m",
-    region: "Kanchenjunga",
-    description: "Journey to the base of the world's third highest peak through pristine wilderness.",
-  },
-  {
-    id: 9,
-    name: "Gokyo Lakes Trek",
-    image: trekGokyo,
-    duration: "12 Days",
-    difficulty: "Challenging",
-    altitude: "5,357m",
-    region: "Everest",
-    description: "Witness the stunning turquoise Gokyo Lakes and climb Gokyo Ri for panoramic Himalayan views.",
-  },
-  {
-    id: 10,
-    name: "Khopra Trek",
-    image: trekPoonHill,
-    duration: "7 Days",
-    difficulty: "Moderate",
-    altitude: "3,660m",
-    region: "Annapurna",
-    description: "A peaceful off-the-beaten-path trek offering stunning views of Annapurna and Dhaulagiri ranges.",
-  },
-];
-
-const regions = ["All", "Everest", "Annapurna", "Langtang", "Manaslu", "Mustang", "Kanchenjunga"];
 const difficulties = ["All", "Easy", "Moderate", "Challenging", "Strenuous"];
 
 const TreksPage = () => {
@@ -128,17 +19,52 @@ const TreksPage = () => {
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [contactOpen, setContactOpen] = useState(false);
-  const [selectedTrek, setSelectedTrek] = useState<string>("");
+  const [selectedTrekName, setSelectedTrekName] = useState<string>("");
 
-  const filteredTreks = allTreks.filter((trek) => {
-    const matchesSearch = trek.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesRegion = selectedRegion === "All" || trek.region === selectedRegion;
-    const matchesDifficulty = selectedDifficulty === "All" || trek.difficulty === selectedDifficulty;
-    return matchesSearch && matchesRegion && matchesDifficulty;
+  const { data: treks, isLoading: treksLoading } = useQuery({
+    queryKey: ["treks"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("treks")
+        .select(`
+          *,
+          regions (
+            name
+          )
+        `)
+        .eq("is_published", true)
+        .order("display_order");
+      
+      if (error) throw error;
+      return data;
+    },
   });
 
-  const handleContactClick = (trekName: string) => {
-    setSelectedTrek(trekName);
+  const { data: regions, isLoading: regionsLoading } = useQuery({
+    queryKey: ["regions"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("regions")
+        .select("name")
+        .order("display_order");
+      
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const regionNames = ["All", ...(regions?.map(r => r.name) || [])];
+
+  const filteredTreks = treks?.filter((trek) => {
+    const matchesSearch = trek.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRegion = selectedRegion === "All" || trek.regions?.name === selectedRegion;
+    const matchesDifficulty = selectedDifficulty === "All" || trek.difficulty === selectedDifficulty;
+    return matchesSearch && matchesRegion && matchesDifficulty;
+  }) || [];
+
+  const handleContactClick = (trekName: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent Link navigation if button is inside Link
+    setSelectedTrekName(trekName);
     setContactOpen(true);
   };
 
@@ -186,19 +112,27 @@ const TreksPage = () => {
             {/* Region Filter */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
               <Filter className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-              {regions.map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setSelectedRegion(region)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                    selectedRegion === region
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                  }`}
-                >
-                  {region}
-                </button>
-              ))}
+              {regionsLoading ? (
+                <div className="flex gap-2">
+                  <Skeleton className="h-9 w-20 rounded-full" />
+                  <Skeleton className="h-9 w-20 rounded-full" />
+                  <Skeleton className="h-9 w-20 rounded-full" />
+                </div>
+              ) : (
+                regionNames.map((region) => (
+                  <button
+                    key={region}
+                    onClick={() => setSelectedRegion(region)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                      selectedRegion === region
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    }`}
+                  >
+                    {region}
+                  </button>
+                ))
+              )}
             </div>
 
             {/* Difficulty Filter */}
@@ -226,72 +160,98 @@ const TreksPage = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground mb-8">
-            Showing {filteredTreks.length} trek{filteredTreks.length !== 1 ? "s" : ""}
+            {treksLoading ? (
+              <Skeleton className="h-6 w-32" />
+            ) : (
+              `Showing ${filteredTreks.length} trek${filteredTreks.length !== 1 ? "s" : ""}`
+            )}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredTreks.map((trek, index) => (
-              <div
-                key={trek.id}
-                className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-500 animate-fade-in-up"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={trek.image}
-                    alt={trek.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
-                    Contact for pricing
+            {treksLoading ? (
+              // Loading Skeletons
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-card rounded-xl overflow-hidden shadow-soft h-[500px]">
+                  <Skeleton className="w-full h-56" />
+                  <div className="p-6 space-y-4">
+                    <Skeleton className="h-8 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <div className="flex gap-4">
+                      <Skeleton className="h-4 w-20" />
+                      <Skeleton className="h-4 w-20" />
+                    </div>
+                    <Skeleton className="h-10 w-full" />
                   </div>
-                  <div className="absolute top-4 left-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                    {trek.region}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-peak/60 to-transparent" />
                 </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
-                    {trek.name}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 text-sm line-clamp-2">
-                    {trek.description}
-                  </p>
-
-                  {/* Details */}
-                  <div className="flex flex-wrap gap-4 mb-6 text-sm">
-                    <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <Clock className="w-4 h-4 text-accent" />
-                      {trek.duration}
+              ))
+            ) : (
+              filteredTreks.map((trek, index) => (
+                <Link 
+                  to={`/trek/${trek.slug}`} 
+                  key={trek.id}
+                  className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-500 animate-fade-in-up block"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={trek.hero_image_url || "/placeholder.svg"}
+                      alt={trek.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
+                      Contact for pricing
                     </div>
-                    <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <TrendingUp className="w-4 h-4 text-accent" />
-                      {trek.difficulty}
-                    </div>
-                    <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <MapPin className="w-4 h-4 text-accent" />
-                      {trek.altitude}
-                    </div>
+                    {trek.regions && (
+                      <div className="absolute top-4 left-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
+                        {trek.regions.name}
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-peak/60 to-transparent" />
                   </div>
 
-                  <Button 
-                    variant="mountain" 
-                    className="w-full group/btn"
-                    onClick={() => handleContactClick(trek.name)}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Contact Us
-                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </div>
-            ))}
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+                      {trek.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 text-sm line-clamp-2">
+                      {trek.short_description}
+                    </p>
+
+                    {/* Details */}
+                    <div className="flex flex-wrap gap-4 mb-6 text-sm">
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Clock className="w-4 h-4 text-accent" />
+                        {trek.duration_days} Days
+                      </div>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <TrendingUp className="w-4 h-4 text-accent" />
+                        {trek.difficulty}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <MapPin className="w-4 h-4 text-accent" />
+                        {trek.max_altitude_m?.toLocaleString()}m
+                      </div>
+                    </div>
+
+                    <Button 
+                      variant="mountain" 
+                      className="w-full group/btn"
+                      onClick={(e) => handleContactClick(trek.name, e)}
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Contact Us
+                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
 
-          {filteredTreks.length === 0 && (
+          {!treksLoading && filteredTreks.length === 0 && (
             <div className="text-center py-16">
               <Mountain className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">
@@ -311,7 +271,7 @@ const TreksPage = () => {
       <ContactDialog 
         open={contactOpen} 
         onOpenChange={setContactOpen}
-        trekName={selectedTrek}
+        trekName={selectedTrekName}
       />
     </div>
   );
