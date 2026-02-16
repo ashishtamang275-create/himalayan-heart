@@ -17,38 +17,29 @@ const CTASection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-snow mb-6">
-            Ready to Start Your{" "}
-            <span className="text-gradient">Himalayan Adventure?</span>
+            Ready to{" "}
+            <span className="text-gradient">Trek in Nepal?</span>
           </h2>
           <p className="text-snow/90 text-xl mb-10 max-w-2xl mx-auto">
-            Whether you're dreaming of Everest Base Camp or exploring hidden 
-            valleys, we're here to make your trek unforgettable. Get in touch today!
+            Let our experienced local guides plan the perfect Himalayan adventure for you. No hidden fees, just unforgettable memories.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="whatsapp"
-              size="xl"
-              asChild
-            >
+            <Button variant="hero" size="xl" asChild>
+              <Link to="/contact">
+                Plan My Trek
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button variant="whatsapp" size="xl" asChild>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <MessageCircle className="w-5 h-5" />
-                Chat on WhatsApp
+                WhatsApp Us
               </a>
-            </Button>
-            <Button
-              variant="hero"
-              size="xl"
-              asChild
-            >
-              <Link to="/contact">
-                Plan My Trek
-                <ArrowRight className="w-5 h-5" />
-              </Link>
             </Button>
           </div>
 

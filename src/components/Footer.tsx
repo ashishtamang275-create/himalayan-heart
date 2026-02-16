@@ -13,7 +13,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <Mountain className="w-8 h-8 text-accent" />
               <span className="font-display text-xl font-bold tracking-wider">
-                GO NEPAL TREKS
+                GO NEPAL ADVENTURE
               </span>
             </Link>
             <p className="text-snow/70 mb-6 leading-relaxed">
@@ -58,10 +58,15 @@ const Footer = () => {
                 { name: "Peak Climbing", path: "/peak-climbing" },
                 { name: "Tours", path: "/tours" },
                 { name: "About Us", path: "/about" },
+                { name: "Our Guides", path: "/about-our-guides" },
                 { name: "Blog", path: "/blog" },
                 { name: "FAQ", path: "/faq" },
                 { name: "Gallery", path: "/gallery" },
                 { name: "Contact", path: "/contact" },
+                { name: "Trekking Permits", path: "/trekking-permits-nepal" },
+                { name: "Visa Information", path: "/nepal-visa-information" },
+                { name: "Altitude Sickness", path: "/altitude-sickness-guide" },
+                { name: "Safety & Rescue", path: "/safety-and-rescue" },
               ].map((item) => (
                 <li key={item.path}>
                   <Link
@@ -136,7 +141,7 @@ const Footer = () => {
 
         <div className="border-t border-snow/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-snow/50 text-sm">
-            © {currentYear} Go Nepal Treks. All rights reserved.
+            © {currentYear} Go Nepal Adventure. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-snow/50">
             <Link to="/privacy" className="hover:text-accent transition-colors">

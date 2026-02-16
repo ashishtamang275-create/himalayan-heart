@@ -22,6 +22,11 @@ const PeakClimbingPage = lazy(() => import("./pages/PeakClimbingPage"));
 const ToursPage = lazy(() => import("./pages/ToursPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
+const AboutGuidesPage = lazy(() => import("./pages/AboutGuidesPage"));
+const TrekkingPermitsPage = lazy(() => import("./pages/TrekkingPermitsPage"));
+const VisaInfoPage = lazy(() => import("./pages/VisaInfoPage"));
+const AltitudeSicknessPage = lazy(() => import("./pages/AltitudeSicknessPage"));
+const SafetyRescuePage = lazy(() => import("./pages/SafetyRescuePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -52,6 +57,11 @@ const App = () => (
               <Route path="/tours" element={<ToursPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
+              <Route path="/about-our-guides" element={<AboutGuidesPage />} />
+              <Route path="/trekking-permits-nepal" element={<TrekkingPermitsPage />} />
+              <Route path="/nepal-visa-information" element={<VisaInfoPage />} />
+              <Route path="/altitude-sickness-guide" element={<AltitudeSicknessPage />} />
+              <Route path="/safety-and-rescue" element={<SafetyRescuePage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

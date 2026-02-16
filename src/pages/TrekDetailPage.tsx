@@ -181,9 +181,9 @@ const TrekDetailPage = () => {
                 </div>
               </div>
 
-              {/* Summary Card */}
-              <div className="bg-card rounded-xl shadow-elevated p-6 space-y-4">
-                <h3 className="font-display text-lg font-bold text-foreground">Trip Overview</h3>
+              {/* Sticky Sidebar Booking Card */}
+              <div className="lg:sticky lg:top-24 self-start bg-card rounded-xl shadow-elevated p-6 space-y-4">
+                <h3 className="font-display text-xl font-bold text-foreground">Plan This Trek</h3>
                 {trek.starting_price_usd && (
                   <div className="text-center py-3 bg-accent/10 rounded-lg">
                     <span className="text-sm text-muted-foreground">Starting from</span>
@@ -199,7 +199,17 @@ const TrekDetailPage = () => {
                   {trek.group_size_max && <div className="flex justify-between"><span className="text-muted-foreground">Group Size</span><span className="font-semibold">{trek.group_size_min}–{trek.group_size_max}</span></div>}
                   {trek.meeting_point && <div className="flex justify-between"><span className="text-muted-foreground">Meeting Point</span><span className="font-semibold">{trek.meeting_point}</span></div>}
                   {trek.distance_km && <div className="flex justify-between"><span className="text-muted-foreground">Distance</span><span className="font-semibold">{trek.distance_km} km</span></div>}
-                  {trek.transportation && <div className="flex justify-between"><span className="text-muted-foreground">Transportation</span><span className="font-semibold">{trek.transportation}</span></div>}
+                  {trek.transportation && <div className="flex justify-between"><span className="text-muted-foreground">Transport</span><span className="font-semibold">{trek.transportation}</span></div>}
+                </div>
+                <div className="space-y-3 pt-2">
+                  <Button variant="hero" size="lg" className="w-full" onClick={() => setContactOpen(true)}>
+                    Send Inquiry
+                  </Button>
+                  <Button variant="whatsapp" size="lg" className="w-full" asChild>
+                    <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="w-5 h-5" /> WhatsApp Guide
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>

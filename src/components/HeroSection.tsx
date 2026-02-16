@@ -24,31 +24,30 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-4 pt-20">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-6 animate-fade-in">
-            Your Personalized Trekking Planner in Nepal
+            Nepal's Trusted Local Trekking Company
           </span>
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
-            Your Personalized{" "}
-            <span className="text-gradient">Trekking Planner</span>
+            Trek Nepal With a{" "}
+            <span className="text-gradient">Trusted Local Guide</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Tailor-made treks, experienced local guides, and 24/7 support — 
-            start your Himalayan adventure today.
+            Private and small-group Himalayan treks organized by experienced Nepali guides. No middleman, no hidden cost.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
+            <Button variant="hero" size="xl" asChild>
+              <Link to="/contact">
+                Plan My Trek
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+            </Button>
             <Button variant="whatsapp" size="xl" asChild>
               <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20trekking%20in%20Nepal." target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
-                Talk to a Travel Expert
+                Chat on WhatsApp
               </a>
-            </Button>
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">
-                Send Inquiry
-                <ChevronRight className="w-5 h-5" />
-              </Link>
             </Button>
           </div>
 
