@@ -10,9 +10,40 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { lazy, Suspense, useState } from "react";
 
+// Trek-specific hero images
+import heroEverest from "@/assets/trek-hero-everest.webp";
+import heroAnnapurna from "@/assets/trek-hero-annapurna.webp";
+import heroManaslu from "@/assets/trek-hero-manaslu.webp";
+import heroLangtang from "@/assets/trek-hero-langtang.webp";
+import heroPoonhill from "@/assets/trek-hero-poonhill.webp";
+
 const ContactDialog = lazy(() => import("@/components/ContactDialog"));
 
 const WHATSAPP_NUMBER = "9779818800584";
+
+// Map trek slugs to hero images and alt text
+const TREK_HERO_MAP: Record<string, { src: string; alt: string }> = {
+  "everest-base-camp": {
+    src: heroEverest,
+    alt: "Sunrise view of Mount Everest from Kala Patthar with prayer flags – Everest Base Camp Trek Nepal",
+  },
+  "annapurna-base-camp": {
+    src: heroAnnapurna,
+    alt: "Annapurna Sanctuary amphitheater with Machapuchare and snow peaks – Annapurna Base Camp Trek Nepal",
+  },
+  "manaslu-circuit": {
+    src: heroManaslu,
+    alt: "Larkya La Pass with prayer flags and Manaslu mountain – Manaslu Circuit Trek Nepal",
+  },
+  "langtang-valley": {
+    src: heroLangtang,
+    alt: "Kyanjin Gompa village with yaks and Langtang Lirung mountain – Langtang Valley Trek Nepal",
+  },
+  "ghorepani-poonhill": {
+    src: heroPoonhill,
+    alt: "Sunrise from Poon Hill with Dhaulagiri and Annapurna range silhouettes – Ghorepani Poon Hill Trek Nepal",
+  },
+};
 
 const TrekDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -66,9 +97,9 @@ const TrekDetailPage = () => {
         <Navbar />
         <div className="pt-32 pb-20 container mx-auto px-4">
           <div className="animate-pulse space-y-6">
+            <div className="h-64 bg-secondary rounded" />
             <div className="h-12 bg-secondary rounded w-2/3" />
             <div className="h-6 bg-secondary rounded w-1/2" />
-            <div className="h-64 bg-secondary rounded" />
           </div>
         </div>
       </div>
@@ -89,6 +120,7 @@ const TrekDetailPage = () => {
 
   const region = trek.regions as { name: string; slug: string } | null;
   const whatsappMsg = encodeURIComponent(`Hi! I'm interested in the ${trek.name}. Can you share more details?`);
+  const heroImage = slug ? TREK_HERO_MAP[slug] : null;
 
   const metaTitle = trek.meta_title || `${trek.name} – ${trek.duration_days} Days | Go Nepal Adventures — Best Price & Itinerary`;
   const metaDesc = trek.meta_description || `${trek.name} in ${trek.duration_days} days. Best season: ${trek.best_season}. ${trek.starting_price_usd ? `From $${trek.starting_price_usd}.` : ''} Expert guides and full support.`;
@@ -100,6 +132,7 @@ const TrekDetailPage = () => {
     name: trek.name,
     description: trek.short_description,
     touristType: "Adventure",
+    image: heroImage?.src,
     offers: trek.starting_price_usd ? {
       "@type": "Offer",
       price: trek.starting_price_usd,
@@ -123,6 +156,11 @@ const TrekDetailPage = () => {
     ],
   };
 
+  // Gallery images from database or hero fallback
+  const galleryImages = trek.gallery_images && trek.gallery_images.length > 0
+    ? trek.gallery_images.slice(0, 6)
+    : null;
+
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -131,32 +169,71 @@ const TrekDetailPage = () => {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDesc} />
         <meta property="og:type" content="website" />
+        {heroImage && <meta property="og:image" content={heroImage.src} />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
       <Navbar />
       <main>
-        {/* Hero Section */}
-        <section className="pt-28 pb-12 bg-gradient-to-b from-primary/10 to-background">
-          <div className="container mx-auto px-4">
-            {/* Breadcrumbs */}
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
-              <Link to="/" className="hover:text-accent">Home</Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link to="/treks" className="hover:text-accent">Treks</Link>
-              {region && (
-                <>
+        {/* Hero Banner Image */}
+        {heroImage && (
+          <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+            <img
+              src={heroImage.src}
+              alt={heroImage.alt}
+              width="1920"
+              height="1080"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+              <div className="container mx-auto">
+                <nav className="flex items-center gap-2 text-sm text-primary-foreground/80 mb-3 flex-wrap">
+                  <Link to="/" className="hover:text-primary-foreground">Home</Link>
                   <ChevronRight className="w-4 h-4" />
-                  <Link to={`/region/${region.slug}`} className="hover:text-accent">{region.name}</Link>
-                </>
-              )}
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-foreground">{trek.name}</span>
-            </nav>
+                  <Link to="/treks" className="hover:text-primary-foreground">Treks</Link>
+                  {region && (
+                    <>
+                      <ChevronRight className="w-4 h-4" />
+                      <Link to={`/region/${region.slug}`} className="hover:text-primary-foreground">{region.name}</Link>
+                    </>
+                  )}
+                  <ChevronRight className="w-4 h-4" />
+                  <span className="text-primary-foreground">{trek.name}</span>
+                </nav>
+                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground drop-shadow-lg">{trek.name}</h1>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Main Content */}
+        <section className={`${heroImage ? 'pt-8' : 'pt-28'} pb-12`}>
+          <div className="container mx-auto px-4">
+            {/* Breadcrumbs fallback if no hero */}
+            {!heroImage && (
+              <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
+                <Link to="/" className="hover:text-accent">Home</Link>
+                <ChevronRight className="w-4 h-4" />
+                <Link to="/treks" className="hover:text-accent">Treks</Link>
+                {region && (
+                  <>
+                    <ChevronRight className="w-4 h-4" />
+                    <Link to={`/region/${region.slug}`} className="hover:text-accent">{region.name}</Link>
+                  </>
+                )}
+                <ChevronRight className="w-4 h-4" />
+                <span className="text-foreground">{trek.name}</span>
+              </nav>
+            )}
 
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
-                <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">{trek.name}</h1>
+                {!heroImage && (
+                  <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">{trek.name}</h1>
+                )}
                 <p className="text-lg text-muted-foreground mb-6">{trek.short_description}</p>
 
                 {/* Quick Stats */}
@@ -273,6 +350,28 @@ const TrekDetailPage = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </section>
+        )}
+
+        {/* Trek Photo Gallery */}
+        {galleryImages && galleryImages.length > 0 && (
+          <section className="py-12 bg-secondary/30">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <h2 className="font-display text-3xl font-bold text-foreground mb-8">Trek Photos</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.map((img: string, i: number) => (
+                  <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden group">
+                    <img
+                      src={img}
+                      alt={`${trek.name} photo ${i + 1} – Nepal Himalayan trekking`}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         )}
