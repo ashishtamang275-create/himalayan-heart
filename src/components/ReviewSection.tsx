@@ -74,6 +74,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
                   alt="Review media"
                   className="w-24 h-24 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => window.open(media.media_url, '_blank')}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               ) : (
                 <video

@@ -9,6 +9,7 @@ import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle, Users, Calendar
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { lazy, Suspense, useState } from "react";
+import TrekImage, { getTrekFallbackImage } from "@/components/TrekImage";
 
 const TrekTestimonialBlock = lazy(() => import("@/components/TrekTestimonialBlock"));
 const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
@@ -159,8 +160,11 @@ const TrekDetailPage = () => {
 
   // Gallery images from database or hero fallback
   const galleryImages = trek.gallery_images && trek.gallery_images.length > 0
-    ? trek.gallery_images.slice(0, 6)
+    ? trek.gallery_images.filter((img: string) => img && img.trim().length > 0).slice(0, 6)
     : null;
+
+  // Always have a hero — use local asset map or fallback
+  const heroSrc = heroImage?.src || getTrekFallbackImage(slug);
 
   return (
     <div className="min-h-screen">
@@ -176,65 +180,46 @@ const TrekDetailPage = () => {
       </Helmet>
       <Navbar />
       <main>
-        {/* Hero Banner Image */}
-        {heroImage && (
-          <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
-            <img
-              src={heroImage.src}
-              alt={heroImage.alt}
-              width="1920"
-              height="1080"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-              <div className="container mx-auto">
-                <nav className="flex items-center gap-2 text-sm text-primary-foreground/80 mb-3 flex-wrap">
-                  <Link to="/" className="hover:text-primary-foreground">Home</Link>
-                  <ChevronRight className="w-4 h-4" />
-                  <Link to="/treks" className="hover:text-primary-foreground">Treks</Link>
-                  {region && (
-                    <>
-                      <ChevronRight className="w-4 h-4" />
-                      <Link to={`/region/${region.slug}`} className="hover:text-primary-foreground">{region.name}</Link>
-                    </>
-                  )}
-                  <ChevronRight className="w-4 h-4" />
-                  <span className="text-primary-foreground">{trek.name}</span>
-                </nav>
-                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground drop-shadow-lg">{trek.name}</h1>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Main Content */}
-        <section className={`${heroImage ? 'pt-8' : 'pt-28'} pb-12`}>
-          <div className="container mx-auto px-4">
-            {/* Breadcrumbs fallback if no hero */}
-            {!heroImage && (
-              <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
-                <Link to="/" className="hover:text-accent">Home</Link>
+        {/* Hero Banner Image — always shown */}
+        <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+          <TrekImage
+            src={heroSrc}
+            trekSlug={slug}
+            alt={heroImage?.alt || `${trek.name} – Nepal Himalayan Trek`}
+            width={1920}
+            height={1080}
+            className="absolute inset-0 w-full h-full object-cover"
+            wrapperClassName="absolute inset-0"
+            loading="eager"
+            decoding="async"
+            showSkeleton={true}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+            <div className="container mx-auto">
+              <nav className="flex items-center gap-2 text-sm text-primary-foreground/80 mb-3 flex-wrap">
+                <Link to="/" className="hover:text-primary-foreground">Home</Link>
                 <ChevronRight className="w-4 h-4" />
-                <Link to="/treks" className="hover:text-accent">Treks</Link>
+                <Link to="/treks" className="hover:text-primary-foreground">Treks</Link>
                 {region && (
                   <>
                     <ChevronRight className="w-4 h-4" />
-                    <Link to={`/region/${region.slug}`} className="hover:text-accent">{region.name}</Link>
+                    <Link to={`/region/${region.slug}`} className="hover:text-primary-foreground">{region.name}</Link>
                   </>
                 )}
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-foreground">{trek.name}</span>
+                <span className="text-primary-foreground">{trek.name}</span>
               </nav>
-            )}
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground drop-shadow-lg">{trek.name}</h1>
+            </div>
+          </div>
+        </section>
 
+        {/* Main Content */}
+        <section className="pt-8 pb-12">
+          <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
-                {!heroImage && (
-                  <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">{trek.name}</h1>
-                )}
                 <p className="text-lg text-muted-foreground mb-6">{trek.short_description}</p>
 
                 {/* Quick Stats */}
@@ -368,10 +353,12 @@ const TrekDetailPage = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {galleryImages.map((img: string, i: number) => (
                   <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden group">
-                    <img
+                    <TrekImage
                       src={img}
+                      trekSlug={slug}
                       alt={`${trek.name} photo ${i + 1} – Nepal Himalayan trekking`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      wrapperClassName="w-full h-full"
                       loading="lazy"
                       decoding="async"
                     />

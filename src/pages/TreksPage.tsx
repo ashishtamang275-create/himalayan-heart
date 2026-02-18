@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
+import TrekImage from "@/components/TrekImage";
 
 const difficulties = ["All", "Easy", "Moderate", "Challenging", "Strenuous"];
 
@@ -195,10 +196,14 @@ const TreksPage = () => {
                 >
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={trek.hero_image_url || "/placeholder.svg"}
-                      alt={trek.name}
+                    <TrekImage
+                      src={trek.hero_image_url}
+                      trekSlug={trek.slug}
+                      alt={`${trek.name} – Nepal Himalayan trek`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      wrapperClassName="w-full h-full"
                     />
                     <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
                       Contact for pricing

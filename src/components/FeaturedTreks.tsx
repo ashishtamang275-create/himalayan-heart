@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import TrekImage from "@/components/TrekImage";
 
 // Lazy load dialog - only loaded when user clicks contact
 const ContactDialog = lazy(() => import("@/components/ContactDialog"));
@@ -81,14 +82,16 @@ const FeaturedTreks = () => {
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={trek.hero_image_url || "/placeholder.svg"}
-                    alt={trek.name}
+                  <TrekImage
+                    src={trek.hero_image_url}
+                    trekSlug={trek.slug}
+                    alt={`${trek.name} – Nepal Himalayan trek`}
                     width={413}
                     height={256}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    wrapperClassName="w-full h-full"
                   />
                   <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
                     Contact for pricing
