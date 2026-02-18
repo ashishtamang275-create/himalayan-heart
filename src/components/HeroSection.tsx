@@ -28,8 +28,8 @@ const HeroSection = () => {
           </span>
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
-            Trek Nepal With a{" "}
-            <span className="text-gradient">Trusted Local Guide</span>
+            Trek the Himalayas With{" "}
+            <span className="text-gradient">Local Experts</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto leading-relaxed">

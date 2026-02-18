@@ -10,14 +10,15 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { lazy, Suspense, useState } from "react";
 
+const TrekTestimonialBlock = lazy(() => import("@/components/TrekTestimonialBlock"));
+const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
+
 // Trek-specific hero images
 import heroEverest from "@/assets/trek-hero-everest.webp";
 import heroAnnapurna from "@/assets/trek-hero-annapurna.webp";
 import heroManaslu from "@/assets/trek-hero-manaslu.webp";
 import heroLangtang from "@/assets/trek-hero-langtang.webp";
 import heroPoonhill from "@/assets/trek-hero-poonhill.webp";
-
-const ContactDialog = lazy(() => import("@/components/ContactDialog"));
 
 const WHATSAPP_NUMBER = "9779818800584";
 
@@ -320,6 +321,11 @@ const TrekDetailPage = () => {
           </section>
         )}
 
+        {/* Testimonial Block - above itinerary for trust */}
+        <Suspense fallback={null}>
+          <TrekTestimonialBlock />
+        </Suspense>
+
         {/* Itinerary */}
         {itinerary.length > 0 && (
           <section className="py-12">
@@ -493,7 +499,7 @@ const TrekDetailPage = () => {
       <WhatsAppButton />
       {contactOpen && (
         <Suspense fallback={null}>
-          <ContactDialog open={contactOpen} onOpenChange={setContactOpen} trekName={trek.name} />
+          <InquiryFormDialog open={contactOpen} onOpenChange={setContactOpen} prefilledTrek={trek.name} />
         </Suspense>
       )}
     </div>

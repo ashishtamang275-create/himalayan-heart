@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Mountain } from "lucide-react";
+import { Menu, X, Mountain, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -17,6 +19,7 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -28,96 +31,115 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-soft"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <Mountain
-              className={`w-8 h-8 transition-colors ${
-                scrolled ? "text-primary" : "text-snow"
-              } group-hover:text-accent`}
-            />
-            <span
-              className={`font-display text-xl font-bold tracking-wider transition-colors ${
-                scrolled ? "text-foreground" : "text-snow"
-              }`}
-            >
-              GO NEPAL TREKS
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-all duration-300 hover:text-accent relative ${
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/95 backdrop-blur-md shadow-soft"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 group">
+              <Mountain
+                className={`w-8 h-8 transition-colors ${
+                  scrolled ? "text-primary" : "text-snow"
+                } group-hover:text-accent`}
+              />
+              <span
+                className={`font-display text-xl font-bold tracking-wider transition-colors ${
                   scrolled ? "text-foreground" : "text-snow"
-                } ${
-                  location.pathname === link.path
-                    ? "text-accent"
-                    : ""
                 }`}
               >
-                {link.name}
-                {location.pathname === link.path && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent" />
-                )}
-              </Link>
-            ))}
-            <Button variant="hero" size="default" asChild>
-              <Link to="/contact">Book Now</Link>
-            </Button>
-          </div>
+                GO NEPAL TREKS
+              </span>
+            </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            className={`lg:hidden p-2 transition-colors ${
-              scrolled ? "text-foreground" : "text-snow"
-            }`}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden absolute top-20 left-0 right-0 bg-background shadow-elevated animate-fade-in-up">
-            <div className="flex flex-col p-4 gap-2">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-5">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-md font-medium transition-colors hover:bg-secondary ${
+                  className={`text-sm font-medium transition-all duration-300 hover:text-accent relative ${
+                    scrolled ? "text-foreground" : "text-snow"
+                  } ${
                     location.pathname === link.path
-                      ? "bg-secondary text-accent"
-                      : "text-foreground"
+                      ? "text-accent"
+                      : ""
                   }`}
                 >
                   {link.name}
+                  {location.pathname === link.path && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent" />
+                  )}
                 </Link>
               ))}
-              <Button variant="hero" className="mt-2" asChild>
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  Book Your Trek
-                </Link>
+              <Button variant="hero" size="default" onClick={() => setInquiryOpen(true)}>
+                <Send className="w-4 h-4" />
+                Quick Inquiry
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <Button
+                variant="hero"
+                size="sm"
+                onClick={() => setInquiryOpen(true)}
+                className="text-xs"
+              >
+                <Send className="w-3.5 h-3.5" />
+                Inquire
+              </Button>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                className={`p-2 transition-colors ${
+                  scrolled ? "text-foreground" : "text-snow"
+                }`}
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <div className="lg:hidden absolute top-20 left-0 right-0 bg-background shadow-elevated animate-fade-in-up">
+              <div className="flex flex-col p-4 gap-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`px-4 py-3 rounded-md font-medium transition-colors hover:bg-secondary ${
+                      location.pathname === link.path
+                        ? "bg-secondary text-accent"
+                        : "text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <Button variant="hero" className="mt-2" onClick={() => { setIsOpen(false); setInquiryOpen(true); }}>
+                  <Send className="w-4 h-4" />
+                  Quick Inquiry
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {inquiryOpen && (
+        <Suspense fallback={null}>
+          <InquiryFormDialog open={inquiryOpen} onOpenChange={setInquiryOpen} />
+        </Suspense>
+      )}
+    </>
   );
 };
 

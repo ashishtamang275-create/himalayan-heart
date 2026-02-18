@@ -3,8 +3,10 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 
 // Lazy load below-the-fold components
+const TrustBadgesEnhanced = lazy(() => import("@/components/TrustBadgesEnhanced"));
 const WhyGoNepal = lazy(() => import("@/components/WhyGoNepal"));
 const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
+const HowBookingWorks = lazy(() => import("@/components/HowBookingWorks"));
 const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
@@ -19,9 +21,13 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <Suspense fallback={<div className="min-h-[60px] bg-secondary" />}>
+          <TrustBadgesEnhanced />
+        </Suspense>
         <Suspense fallback={<div className="min-h-[400px] bg-secondary" />}>
           <WhyGoNepal />
           <FeaturedTreks />
+          <HowBookingWorks />
           <QuickFactBar />
           <GuideProfiles />
         </Suspense>
