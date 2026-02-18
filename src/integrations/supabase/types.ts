@@ -75,33 +75,42 @@ export type Database = {
         Row: {
           created_at: string
           email: string
+          experience_level: string | null
           group_size: string | null
           id: string
           message: string
           name: string
+          nationality: string | null
           phone: string | null
+          planned_month: string | null
           preferred_date: string | null
           trek: string | null
         }
         Insert: {
           created_at?: string
           email: string
+          experience_level?: string | null
           group_size?: string | null
           id?: string
           message: string
           name: string
+          nationality?: string | null
           phone?: string | null
+          planned_month?: string | null
           preferred_date?: string | null
           trek?: string | null
         }
         Update: {
           created_at?: string
           email?: string
+          experience_level?: string | null
           group_size?: string | null
           id?: string
           message?: string
           name?: string
+          nationality?: string | null
           phone?: string | null
+          planned_month?: string | null
           preferred_date?: string | null
           trek?: string | null
         }

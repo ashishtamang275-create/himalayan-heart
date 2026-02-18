@@ -79,7 +79,7 @@ serve(async (req) => {
 
     // Parse and validate request body
     const body = await req.json();
-    const { name, email, phone, trek, groupSize, preferredDate, message } = body;
+    const { name, email, phone, trek, groupSize, preferredDate, message, nationality, experience_level, planned_month } = body;
 
     // Validate required fields
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
@@ -137,6 +137,9 @@ serve(async (req) => {
       group_size: groupSize ? sanitizeString(groupSize, 50) : null,
       preferred_date: preferredDate || null,
       message: sanitizeString(message, 2000),
+      nationality: nationality ? sanitizeString(nationality, 100) : null,
+      experience_level: experience_level || null,
+      planned_month: planned_month ? sanitizeString(planned_month, 20) : null,
     };
 
     console.log(`[submit-contact] Validated submission from: ${sanitizedData.email}`);
