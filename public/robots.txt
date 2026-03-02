@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://go-nepal-adventures.lovable.app/sitemap.xml
