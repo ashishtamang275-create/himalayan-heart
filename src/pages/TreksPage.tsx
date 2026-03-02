@@ -199,9 +199,11 @@ const TreksPage = () => {
                     <TrekImage
                       src={trek.hero_image_url}
                       trekSlug={trek.slug}
+                      variant="card"
                       alt={`${trek.name} – Nepal Himalayan trek`}
                       loading="lazy"
                       decoding="async"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       wrapperClassName="w-full h-full"
                     />

@@ -85,11 +85,13 @@ const FeaturedTreks = () => {
                   <TrekImage
                     src={trek.hero_image_url}
                     trekSlug={trek.slug}
+                    variant="card"
                     alt={`${trek.name} – Nepal Himalayan trek`}
-                    width={413}
+                    width={455}
                     height={256}
                     loading="lazy"
                     decoding="async"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     wrapperClassName="w-full h-full"
                   />
