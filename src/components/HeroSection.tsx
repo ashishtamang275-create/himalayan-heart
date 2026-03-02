@@ -28,12 +28,13 @@ const HeroSection = () => {
           </span>
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
-            Trek the Himalayas With{" "}
-            <span className="text-gradient">Local Experts</span>
+            Trek Nepal with a Licensed{" "}
+            <span className="text-gradient">Local Guide</span>
+            {" "}— No Agency Fees
           </h1>
           
           <p className="text-xl md:text-2xl text-snow/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Private and small-group Himalayan treks organized by experienced Nepali guides. No middleman, no hidden cost.
+            Personalized Himalayan adventures led by experienced local trekking guides. Direct booking, transparent pricing, unforgettable journeys.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
@@ -54,10 +55,10 @@ const HeroSection = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-fade-in delay-400">
             {[
-              { value: "15+", label: "Years Experience" },
-              { value: "5000+", label: "Happy Trekkers" },
+              { value: "8+", label: "Years Experience" },
+              { value: "150+", label: "Trekkers Guided" },
               { value: "50+", label: "Trek Routes" },
-              { value: "100%", label: "Safety Record" },
+              { value: "24/7", label: "Mountain Support" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">

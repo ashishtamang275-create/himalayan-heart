@@ -64,8 +64,12 @@ const Footer = () => {
                 { name: "Gallery", path: "/gallery" },
                 { name: "Contact", path: "/contact" },
                 { name: "Trekking Permits", path: "/trekking-permits-nepal" },
-                { name: "Visa Information", path: "/nepal-visa-information" },
+                { name: "Best Time to Trek", path: "/best-time-to-trek-nepal" },
                 { name: "Altitude Sickness", path: "/altitude-sickness-guide" },
+                { name: "EBC Cost Breakdown", path: "/everest-base-camp-cost" },
+                { name: "Do You Need a Guide?", path: "/do-you-need-guide-nepal" },
+                { name: "Trek Difficulty", path: "/nepal-trek-difficulty-comparison" },
+                { name: "Annapurna vs Everest", path: "/annapurna-vs-everest" },
                 { name: "Safety & Rescue", path: "/safety-and-rescue" },
               ].map((item) => (
                 <li key={item.path}>

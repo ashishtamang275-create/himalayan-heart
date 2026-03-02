@@ -1,10 +1,12 @@
-import { Shield, Award, Heart, Headphones } from "lucide-react";
+import { Shield, Award, Heart, Headphones, Languages, Users } from "lucide-react";
 
 const badges = [
-  { icon: Shield, label: "Government Registered Company" },
-  { icon: Award, label: "Licensed Trekking Guides" },
-  { icon: Heart, label: "Emergency Evacuation Support" },
-  { icon: Headphones, label: "5-Star Guest Satisfaction" },
+  { icon: Award, label: "8+ Years Experience" },
+  { icon: Users, label: "150+ Trekkers Guided" },
+  { icon: Shield, label: "Licensed Guide" },
+  { icon: Languages, label: "English Speaking" },
+  { icon: Headphones, label: "24/7 Mountain Support" },
+  { icon: Heart, label: "Emergency Evacuation" },
 ];
 
 const TrustBadgesEnhanced = () => (

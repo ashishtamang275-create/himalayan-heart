@@ -27,6 +27,11 @@ const TrekkingPermitsPage = lazy(() => import("./pages/TrekkingPermitsPage"));
 const VisaInfoPage = lazy(() => import("./pages/VisaInfoPage"));
 const AltitudeSicknessPage = lazy(() => import("./pages/AltitudeSicknessPage"));
 const SafetyRescuePage = lazy(() => import("./pages/SafetyRescuePage"));
+const EBCCostPage = lazy(() => import("./pages/EBCCostPage"));
+const GuideRequirementPage = lazy(() => import("./pages/GuideRequirementPage"));
+const DifficultyComparisonPage = lazy(() => import("./pages/DifficultyComparisonPage"));
+const AnnapurnaVsEverestPage = lazy(() => import("./pages/AnnapurnaVsEverestPage"));
+const BestTimeToTrekPage = lazy(() => import("./pages/BestTimeToTrekPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -62,6 +67,11 @@ const App = () => (
               <Route path="/nepal-visa-information" element={<VisaInfoPage />} />
               <Route path="/altitude-sickness-guide" element={<AltitudeSicknessPage />} />
               <Route path="/safety-and-rescue" element={<SafetyRescuePage />} />
+              <Route path="/everest-base-camp-cost" element={<EBCCostPage />} />
+              <Route path="/do-you-need-guide-nepal" element={<GuideRequirementPage />} />
+              <Route path="/nepal-trek-difficulty-comparison" element={<DifficultyComparisonPage />} />
+              <Route path="/annapurna-vs-everest" element={<AnnapurnaVsEverestPage />} />
+              <Route path="/best-time-to-trek-nepal" element={<BestTimeToTrekPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
