@@ -1,6 +1,6 @@
 import { Award, Languages, Mountain, CheckCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import guideIndra from "@/assets/guide-indra.jpg";
+import guideIndra from "@/assets/guide-indra.webp";
 
 const WHATSAPP_NUMBER = "+977 9818800584";
 const EMAIL = "ashishtamang12340@gmail.com";

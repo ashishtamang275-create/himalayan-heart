@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-mountains-optimized.webp";
+import heroImage from "@/assets/hero-mountains-compressed.webp";
 
 const HeroSection = () => {
   return (
