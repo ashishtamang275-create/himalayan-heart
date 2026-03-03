@@ -1,4 +1,4 @@
-import { Shield, Award, Heart, Headphones, Languages, Users } from "lucide-react";
+import { Shield, Award, Heart, Headphones, Languages, Users, Clock, UserCheck } from "lucide-react";
 
 const badges = [
   { icon: Award, label: "8+ Years Experience" },
@@ -7,12 +7,14 @@ const badges = [
   { icon: Languages, label: "English Speaking" },
   { icon: Headphones, label: "24/7 Mountain Support" },
   { icon: Heart, label: "Emergency Evacuation" },
+  { icon: UserCheck, label: "Small Groups (Max 6)" },
+  { icon: Clock, label: "Reply in 2 Hours" },
 ];
 
 const TrustBadgesEnhanced = () => (
   <div className="py-6 bg-primary/5 border-y border-border">
     <div className="container mx-auto px-4">
-      <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-8">
         {badges.map((b) => (
           <div key={b.label} className="flex items-center gap-2 text-sm font-medium text-foreground">
             <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
