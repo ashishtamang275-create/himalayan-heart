@@ -4,12 +4,12 @@ import HeroSection from "@/components/HeroSection";
 
 // Lazy load below-the-fold components
 const TrustBadgesEnhanced = lazy(() => import("@/components/TrustBadgesEnhanced"));
-const WhyGoNepal = lazy(() => import("@/components/WhyGoNepal"));
-const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
-const HowBookingWorks = lazy(() => import("@/components/HowBookingWorks"));
-const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
 const GovernmentLicense = lazy(() => import("@/components/GovernmentLicense"));
+const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
+const HowBookingWorks = lazy(() => import("@/components/HowBookingWorks"));
+const WhyBookDirect = lazy(() => import("@/components/WhyBookDirect"));
+const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const RealTrekkersGallery = lazy(() => import("@/components/RealTrekkersGallery"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
 const BlogPreview = lazy(() => import("@/components/BlogPreview"));
@@ -27,12 +27,12 @@ const Index = () => {
           <TrustBadgesEnhanced />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] bg-secondary" />}>
-          <WhyGoNepal />
-          <FeaturedTreks />
-          <HowBookingWorks />
-          <QuickFactBar />
           <GuideProfiles />
           <GovernmentLicense />
+          <FeaturedTreks />
+          <HowBookingWorks />
+          <WhyBookDirect />
+          <QuickFactBar />
           <RealTrekkersGallery />
         </Suspense>
         <Suspense fallback={<div className="min-h-[300px] bg-background" />}>
