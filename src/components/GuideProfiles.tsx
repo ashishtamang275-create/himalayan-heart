@@ -1,7 +1,7 @@
 import { Award, Languages, Mountain, CheckCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import guideIndra from "@/assets/guide-indra.webp";
-
+import groupPhoto from "@/assets/clients/annapurna-trek-prayer-flags.jpeg";
 const WHATSAPP_NUMBER = "+977 9818800584";
 const EMAIL = "ashishtamang12340@gmail.com";
 
@@ -60,24 +60,41 @@ const GuideProfiles = () => {
                   <p className="text-foreground/70 text-lg font-semibold">Senior Trek Leader</p>
                 </div>
 
-                <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-                  With over two decades of experience guiding trekkers through Nepal's most 
-                  breathtaking trails, Indra Tamang brings unparalleled expertise, local 
-                  knowledge, and a deep passion for sharing the beauty of the Himalayas. 
-                  His commitment to safety, cultural immersion, and creating unforgettable 
-                  experiences has earned him the trust of thousands of adventurers from 
-                  around the world.
+                <p className="text-muted-foreground mb-4 text-lg leading-relaxed">
+                  With <strong>8+ years of experience</strong> and <strong>150+ international trekkers</strong> guided
+                  safely through Nepal's most breathtaking trails, Indra Tamang is a
+                  government-licensed, English-speaking guide with deep local knowledge
+                  and a passion for sharing the beauty of the Himalayas.
                 </p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  His commitment to <strong>safety, proper acclimatization</strong>, cultural immersion,
+                  and creating unforgettable experiences has earned him the trust of
+                  adventurers from around the world. Every trek follows carefully planned
+                  altitude schedules and emergency protocols.
+                </p>
+
+                {/* Group Photo */}
+                <div className="rounded-xl overflow-hidden mb-6">
+                  <img
+                    src={groupPhoto}
+                    alt="Guide Indra Tamang with international trekkers near Annapurna Base Camp with snow-capped Himalayan mountains"
+                    width={500}
+                    height={300}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-secondary/50 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-foreground">20+</div>
+                    <div className="font-display text-3xl font-bold text-foreground">8+</div>
                     <div className="text-muted-foreground text-sm">Years Experience</div>
                   </div>
                   <div className="bg-secondary/50 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-foreground">1000+</div>
-                    <div className="text-muted-foreground text-sm">Treks Completed</div>
+                    <div className="font-display text-3xl font-bold text-foreground">150+</div>
+                    <div className="text-muted-foreground text-sm">Trekkers Guided</div>
                   </div>
                 </div>
 
