@@ -9,6 +9,8 @@ const FeaturedTreks = lazy(() => import("@/components/FeaturedTreks"));
 const HowBookingWorks = lazy(() => import("@/components/HowBookingWorks"));
 const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const GuideProfiles = lazy(() => import("@/components/GuideProfiles"));
+const GovernmentLicense = lazy(() => import("@/components/GovernmentLicense"));
+const RealTrekkersGallery = lazy(() => import("@/components/RealTrekkersGallery"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
 const BlogPreview = lazy(() => import("@/components/BlogPreview"));
 const CTASection = lazy(() => import("@/components/CTASection"));
@@ -30,6 +32,8 @@ const Index = () => {
           <HowBookingWorks />
           <QuickFactBar />
           <GuideProfiles />
+          <GovernmentLicense />
+          <RealTrekkersGallery />
         </Suspense>
         <Suspense fallback={<div className="min-h-[300px] bg-background" />}>
           <ReviewSection />
