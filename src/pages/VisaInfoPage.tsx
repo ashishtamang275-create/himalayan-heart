@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet-async";
 const VisaInfoPage = () => (
   <div className="min-h-screen">
     <Helmet>
-      <title>Nepal Visa Information – Requirements, Fees & Process | Go Nepal Adventure</title>
-      <meta name="description" content="Everything you need to know about getting a Nepal visa: on-arrival visas, fees, required documents, and tips from our local team." />
+      <title>Nepal Visa Guide 2026 – Fees, Process & Tips</title>
+      <meta name="description" content="Nepal visa on arrival: fees ($30–$100), documents needed & process explained. Updated 2026 guide from a local trekking company. Apply hassle-free." />
     </Helmet>
     <Navbar />
     <main>

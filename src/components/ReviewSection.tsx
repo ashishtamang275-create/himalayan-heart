@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Star, Plus, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 
 // Lazy load heavy Dialog components - only loaded when user clicks "Write a Review"
 const ReviewDialog = lazy(() => import("./ReviewDialog"));
@@ -131,8 +132,33 @@ const ReviewSection = () => {
     fetchReviews();
   };
 
+  const reviewSchema = reviews.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Go Nepal Adventure",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1),
+      "reviewCount": reviews.length,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": reviews.slice(0, 10).map((r) => ({
+      "@type": "Review",
+      "author": { "@type": "Person", "name": r.reviewer_name },
+      "datePublished": r.created_at.split("T")[0],
+      "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": "5" },
+      "reviewBody": r.message,
+    }))
+  } : null;
+
   return (
     <section className="py-20 bg-background">
+      {reviewSchema && (
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(reviewSchema)}</script>
+        </Helmet>
+      )}
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-accent font-semibold uppercase tracking-wider text-sm">

@@ -12,6 +12,7 @@ const WhyBookDirect = lazy(() => import("@/components/WhyBookDirect"));
 const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const RealTrekkersGallery = lazy(() => import("@/components/RealTrekkersGallery"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
+const HomepageFAQ = lazy(() => import("@/components/HomepageFAQ"));
 const BlogPreview = lazy(() => import("@/components/BlogPreview"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -39,6 +40,7 @@ const Index = () => {
           <ReviewSection />
         </Suspense>
         <Suspense fallback={null}>
+          <HomepageFAQ />
           <BlogPreview />
           <CTASection />
         </Suspense>

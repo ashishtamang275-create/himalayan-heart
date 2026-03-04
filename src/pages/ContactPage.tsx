@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Mail, Phone, MapPin, MessageCircle, Send, Clock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -101,6 +102,10 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Contact Us – Free Trek Planning | Go Nepal Adventure</title>
+        <meta name="description" content="Get a free custom Nepal trekking itinerary in 24 hours. Chat on WhatsApp or email our licensed guide Indra Tamang. No agency fees, direct booking." />
+      </Helmet>
       <Navbar />
       
       {/* Hero Section */}
@@ -112,13 +117,13 @@ const ContactPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-4">
-              Get In Touch
+              Free Trek Planning
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-snow mb-4">
-              Contact Us
+              Plan Your Nepal Trek
             </h1>
             <p className="text-xl text-snow/80">
-              Have questions? Ready to book your adventure? We're here to help plan your perfect trek.
+              Get a free custom itinerary in 24 hours. No commitment, no agency fees — just honest advice from a local guide.
             </p>
           </div>
         </div>

@@ -17,8 +17,8 @@ const values = [
 const AboutPage = () => (
   <div className="min-h-screen">
     <Helmet>
-      <title>About Us | Go Nepal Adventures – Local Trekking Experts</title>
-      <meta name="description" content="Meet the team behind Go Nepal Adventures. 20+ years of Himalayan trekking experience, licensed local guides, and a commitment to safety and community." />
+      <title>About Us – Licensed Nepal Trekking Team | Go Nepal Adventure</title>
+      <meta name="description" content="Meet Indra Tamang and the Go Nepal Adventure team. Government-licensed guides with 8+ years experience. Safety-first trekking across Everest, Annapurna & more." />
     </Helmet>
     <Navbar />
     <main>
