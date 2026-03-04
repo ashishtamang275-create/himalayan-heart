@@ -124,6 +124,24 @@ const DifficultyComparisonPage = () => {
             <div><h3 className="font-semibold text-foreground mb-2">Which is harder: Annapurna or Everest Base Camp?</h3><p className="text-muted-foreground">Everest Base Camp is slightly harder due to higher altitude and longer duration.</p></div>
           </div>
 
+          {/* Related Resources */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Read Next</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { title: "Annapurna vs Everest Base Camp", href: "/annapurna-vs-everest", desc: "Detailed side-by-side comparison" },
+                { title: "Altitude Sickness Prevention", href: "/altitude-sickness-guide", desc: "Stay safe on high-altitude treks" },
+                { title: "EBC Cost Breakdown 2026", href: "/everest-base-camp-cost", desc: "Full budget planning guide" },
+                { title: "Best Time to Trek Nepal", href: "/best-time-to-trek-nepal", desc: "Month-by-month season guide" },
+              ].map((r) => (
+                <Link key={r.href} to={r.href} className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                  <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{r.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{r.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="bg-primary/5 rounded-2xl p-8 text-center">
             <h2 className="font-display text-2xl font-bold text-foreground mb-3">Not Sure Which Trek Is Right for You?</h2>
             <p className="text-muted-foreground mb-6">Our experienced team will recommend the perfect trek based on your fitness, time, and interests.</p>

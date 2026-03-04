@@ -24,8 +24,8 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Trekking Blog | Nepal Travel Tips & Guides – Go Nepal Adventures</title>
-        <meta name="description" content="Expert trekking guides, Nepal travel tips, altitude sickness prevention, packing lists, and visa guides from experienced local trekkers." />
+        <title>Nepal Trekking Blog 2026 – Expert Guides & Tips</title>
+        <meta name="description" content="Expert Nepal trekking tips from a licensed local guide. Altitude sickness, packing lists, best seasons, costs & visa guides. Updated for 2026." />
       </Helmet>
       <Navbar />
       <main>

@@ -50,8 +50,8 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>FAQ | Nepal Trekking Questions Answered – Go Nepal Adventures</title>
-        <meta name="description" content="Frequently asked questions about trekking in Nepal. Learn about fitness requirements, altitude sickness, best seasons, booking, and more." />
+        <title>Nepal Trekking FAQ 2026 – Your Questions Answered</title>
+        <meta name="description" content="Get answers to common Nepal trekking questions: costs, fitness, altitude sickness, permits, best season & more. Advice from a licensed local guide." />
         <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
       </Helmet>
       <Navbar />

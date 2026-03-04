@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 const SafetyRescuePage = () => (
   <div className="min-h-screen">
     <Helmet>
-      <title>Safety & Rescue – How We Keep Trekkers Safe | Go Nepal Adventure</title>
-      <meta name="description" content="Learn about Go Nepal Adventure's safety protocols, emergency rescue procedures, and how we ensure every trekker returns home safely." />
+      <title>Nepal Trekking Safety & Rescue Protocols 2026</title>
+      <meta name="description" content="How we keep trekkers safe: pulse oximeters, satellite phones, helicopter evacuation & strict acclimatization protocols. 100% safety record since 2018." />
     </Helmet>
     <Navbar />
     <main>

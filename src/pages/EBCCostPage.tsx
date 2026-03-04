@@ -147,6 +147,39 @@ const EBCCostPage = () => {
           </div>
 
           {/* CTA */}
+          {/* Related Resources */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Related Guides</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { title: "Altitude Sickness Prevention Guide", href: "/altitude-sickness-guide", desc: "Stay safe above 3,000m with our expert tips" },
+                { title: "Nepal Trekking Permits 2026", href: "/trekking-permits-nepal", desc: "All permits, costs & how we handle them" },
+                { title: "Best Time to Trek in Nepal", href: "/best-time-to-trek-nepal", desc: "Month-by-month weather & season guide" },
+                { title: "Trek Difficulty Comparison", href: "/trek-difficulty-comparison", desc: "Find the right trek for your fitness level" },
+              ].map((r) => (
+                <Link key={r.href} to={r.href} className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                  <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{r.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{r.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Related Treks */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Related Trek Packages</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Link to="/trek/everest-base-camp" className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">Everest Base Camp Trek</h3>
+                <p className="text-muted-foreground text-sm mt-1">12–14 days · From $1,200 · Moderate-Challenging</p>
+              </Link>
+              <Link to="/trek/ghorepani-poonhill" className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">Ghorepani Poon Hill Trek</h3>
+                <p className="text-muted-foreground text-sm mt-1">4–5 days · Budget-friendly · Easy</p>
+              </Link>
+            </div>
+          </div>
+
           <div className="bg-primary/5 rounded-2xl p-8 text-center">
             <h2 className="font-display text-2xl font-bold text-foreground mb-3">Get a Free EBC Cost Estimate</h2>
             <p className="text-muted-foreground mb-6">Chat directly with our team for a personalized quote — no obligation, no agency fees.</p>

@@ -17,8 +17,8 @@ const peaks = [
 const PeakClimbingPage = () => (
   <div className="min-h-screen">
     <Helmet>
-      <title>Peak Climbing in Nepal | Guided Expeditions – Go Nepal Adventures</title>
-      <meta name="description" content="Climb Nepal's trekking peaks with expert guides. Island Peak, Mera Peak, Lobuche East, and more. Full expedition support and permits included." />
+      <title>Nepal Peak Climbing 2026 – Guided Expeditions</title>
+      <meta name="description" content="Climb Island Peak, Mera Peak & Lobuche East with licensed guides. Full expedition support, permits & safety gear included. Book direct and save." />
     </Helmet>
     <Navbar />
     <main>

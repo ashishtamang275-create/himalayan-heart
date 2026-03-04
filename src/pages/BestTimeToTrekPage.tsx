@@ -139,6 +139,24 @@ const BestTimeToTrekPage = () => {
             <div><h3 className="font-semibold text-foreground mb-2">Can you trek during monsoon?</h3><p className="text-muted-foreground">It's possible but challenging. Rain-shadow areas like Upper Mustang are the exception and trek well during monsoon.</p></div>
           </div>
 
+          {/* Related Resources */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Read Next</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { title: "EBC Trek Cost Breakdown 2026", href: "/everest-base-camp-cost", desc: "Budget, mid-range & luxury cost estimates" },
+                { title: "Altitude Sickness Guide", href: "/altitude-sickness-guide", desc: "Prevention, symptoms & treatment on the trail" },
+                { title: "Annapurna vs Everest", href: "/annapurna-vs-everest", desc: "Which trek is right for you?" },
+                { title: "Trekking Permits Nepal", href: "/trekking-permits-nepal", desc: "All permits explained with costs" },
+              ].map((r) => (
+                <Link key={r.href} to={r.href} className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                  <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{r.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{r.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="bg-primary/5 rounded-2xl p-8 text-center">
             <h2 className="font-display text-2xl font-bold text-foreground mb-3">Ready to Plan Your Trek?</h2>
             <p className="text-muted-foreground mb-6">Tell us your preferred dates and we'll suggest the best trek for that season.</p>

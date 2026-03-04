@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Clock, TrendingUp, MapPin, ChevronRight, Search, Filter, Mountain, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -71,6 +72,10 @@ const TreksPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Nepal Trekking Packages 2026 | Go Nepal Adventure</title>
+        <meta name="description" content="Browse Nepal trekking packages from $799. Everest, Annapurna, Langtang & more with a licensed local guide. No agency fees. Book directly and save 30–50%." />
+      </Helmet>
       <Navbar />
       
       {/* Hero Section */}
@@ -85,10 +90,10 @@ const TreksPage = () => {
               Explore Nepal's Himalayas
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-snow mb-4">
-              Trekking Packages
+              Nepal Trekking Packages 2026
             </h1>
             <p className="text-xl text-snow/80">
-              From beginner-friendly trails to challenging expeditions, find your perfect Himalayan adventure.
+              From beginner-friendly trails to challenging expeditions — book directly with a licensed local guide and save.
             </p>
           </div>
         </div>

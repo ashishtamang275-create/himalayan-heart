@@ -143,6 +143,38 @@ const AnnapurnaVsEverestPage = () => {
             <div><h3 className="font-semibold text-foreground mb-2">Which is more crowded?</h3><p className="text-muted-foreground">EBC tends to be more crowded due to its iconic status. ABC is quieter, especially outside peak season.</p></div>
           </div>
 
+          {/* Related Resources */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Related Trek Packages</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Link to="/trek/everest-base-camp" className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">Everest Base Camp Trek</h3>
+                <p className="text-muted-foreground text-sm mt-1">12–14 days · 5,364m · Moderate-Challenging</p>
+              </Link>
+              <Link to="/trek/annapurna-base-camp" className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">Annapurna Base Camp Trek</h3>
+                <p className="text-muted-foreground text-sm mt-1">10–12 days · 4,130m · Moderate</p>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Read Next</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { title: "Trek Difficulty Comparison", href: "/trek-difficulty-comparison", desc: "Compare all Nepal treks by difficulty" },
+                { title: "EBC Cost Breakdown 2026", href: "/everest-base-camp-cost", desc: "Budget, mid-range & luxury estimates" },
+                { title: "Best Time to Trek Nepal", href: "/best-time-to-trek-nepal", desc: "Month-by-month season guide" },
+                { title: "Altitude Sickness Guide", href: "/altitude-sickness-guide", desc: "Prevention & treatment on the trail" },
+              ].map((r) => (
+                <Link key={r.href} to={r.href} className="bg-card p-4 rounded-lg border border-border/50 hover:border-accent/50 transition-colors group">
+                  <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{r.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{r.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="bg-primary/5 rounded-2xl p-8 text-center">
             <h2 className="font-display text-2xl font-bold text-foreground mb-3">Still Can't Decide?</h2>
             <p className="text-muted-foreground mb-6">Tell us your dates, fitness level, and preferences — we'll recommend the perfect trek for you.</p>

@@ -24,19 +24,19 @@ const HeroSection = () => {
           </span>
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
-            Your Himalayan Adventure{" "}
-            <span className="text-gradient">Starts Here</span>
-            {" "}— Direct with a Local Guide
+            Transform Your Life{" "}
+            <span className="text-gradient">in the Himalayas</span>
+            {" "}— Direct with a Licensed Guide
           </h1>
           
           <p className="text-xl md:text-2xl text-snow/80 mb-4 max-w-2xl mx-auto leading-relaxed">
-            Skip the agency middlemen. Trek with licensed local guides who know every trail, teahouse, and hidden viewpoint in the Himalayas.
+            Skip agency middlemen and trek safely with Indra Tamang — a government-licensed guide who's led 150+ international trekkers through Nepal's most breathtaking trails.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-10 text-snow/70 text-sm">
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ No Agency Fees</span>
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Free Trek Planning Consultation</span>
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Response within 2 Hours</span>
+          <div className="flex flex-wrap justify-center gap-3 mb-6 text-snow/70 text-sm">
+            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ No Agency Fees — Save 30–50%</span>
+            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Free Custom Itinerary in 24 Hours</span>
+            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Safety-First: Pulse Oximeter & Sat Phone</span>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
@@ -54,7 +54,12 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-fade-in delay-400">
+          {/* Micro-proof */}
+          <p className="text-snow/60 text-sm mt-4 animate-fade-in delay-400">
+            🛡️ 150+ international trekkers guided safely · 100% safety record · Licensed since 2018
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-fade-in delay-400">
             {[
               { value: "8+", label: "Years Experience" },
               { value: "150+", label: "Trekkers Guided" },

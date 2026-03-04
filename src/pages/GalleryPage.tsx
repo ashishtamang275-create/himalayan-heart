@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, Play, ChevronLeft, ChevronRight, Image, Video, Grid3X3 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -105,6 +106,10 @@ const GalleryPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Nepal Trekking Photos & Videos | Go Nepal Adventure</title>
+        <meta name="description" content="Real photos and videos from Nepal treks — Everest, Annapurna, Langtang & more. See what trekking with a licensed local guide looks like." />
+      </Helmet>
       <Navbar />
       
       {/* Hero Section */}
@@ -116,13 +121,13 @@ const GalleryPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-4">
-              Our Adventures
+              Real Trek Moments
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-snow mb-4">
-              Gallery
+              Nepal Trekking Gallery
             </h1>
             <p className="text-xl text-snow/80">
-              Experience the breathtaking beauty of Nepal through our collection of photos and videos from our treks.
+              Real photos and videos from our treks — no stock images, just authentic Himalayan experiences.
             </p>
           </div>
         </div>
