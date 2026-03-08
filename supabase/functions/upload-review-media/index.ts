@@ -11,6 +11,11 @@ const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif
 const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/quicktime', 'video/webm']
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 
+// In-memory rate limiting
+const rateLimit = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_MAX = 10 // Max 10 uploads per hour per IP
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -18,6 +23,23 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                     req.headers.get('x-real-ip') ||
+                     'unknown'
+    const now = Date.now()
+    const limit = rateLimit.get(clientIP)
+    if (limit && limit.resetAt > now) {
+      if (limit.count >= RATE_LIMIT_MAX) {
+        return new Response(
+          JSON.stringify({ error: 'Too many uploads. Please try again later.' }),
+          { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
+      limit.count++
+    } else {
+      rateLimit.set(clientIP, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
+    }
     const formData = await req.formData()
     const file = formData.get('file') as File | null
     const reviewId = formData.get('reviewId') as string | null
