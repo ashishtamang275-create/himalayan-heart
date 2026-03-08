@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 // Import default fallback
-import defaultFallback from "@/assets/hero-mountains-compressed.webp";
+import defaultFallback from "@/assets/hero-mountains-compressed2.webp";
 
 // Trek-specific fallback images - full size (for hero sections)
 import heroEverest from "@/assets/trek-hero-everest.webp";
