@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
 import { ChevronRight, Calendar, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DOMPurify from "dompurify";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -84,7 +85,10 @@ const BlogPostPage = () => {
           )}
 
           <div className="prose prose-lg max-w-none text-foreground [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-muted-foreground [&_li]:mb-2"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content, {
+              ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','ul','ol','li','strong','em','a','img','blockquote','code','pre','br','span','div','table','thead','tbody','tr','th','td'],
+              ALLOWED_ATTR: ['href','src','alt','title','class','target','rel']
+            }) }}
           />
 
           {post.tags && post.tags.length > 0 && (
