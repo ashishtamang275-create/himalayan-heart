@@ -1,7 +1,7 @@
 import { Award, Languages, Mountain, CheckCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import guideIndra from "@/assets/guide-indra.webp";
-import groupPhoto from "@/assets/clients/annapurna-trek-prayer-flags.jpeg";
+import guideIndra from "@/assets/guide-indra-optimized.webp";
+import groupPhoto from "@/assets/clients/annapurna-trek-prayer-flags.webp";
 const WHATSAPP_NUMBER = "+977 9818800584";
 const EMAIL = "ashishtamang12340@gmail.com";
 

@@ -1,5 +1,5 @@
 import { Shield, Mountain, Heart, CheckCircle } from "lucide-react";
-import licenseImage from "@/assets/licensed-nepal-trekking-guide-indra-tamang.jpeg";
+import licenseImage from "@/assets/licensed-nepal-trekking-guide-indra-tamang.webp";
 
 const GovernmentLicense = () => {
   return (
