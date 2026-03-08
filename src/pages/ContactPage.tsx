@@ -55,17 +55,19 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.from('contacts').insert({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim() || null,
-        trek: formData.trek || null,
-        group_size: formData.groupSize.trim() || null,
-        preferred_date: formData.preferredDate || null,
-        message: formData.message.trim(),
+      const { data, error } = await supabase.functions.invoke('submit-contact', {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || null,
+          trek: formData.trek || null,
+          groupSize: formData.groupSize.trim() || null,
+          preferredDate: formData.preferredDate || null,
+          message: formData.message.trim(),
+        },
       });
-
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
 
       toast({
         title: "Message sent successfully!",

@@ -58,17 +58,20 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
     }
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("contacts").insert({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        nationality: formData.nationality.trim() || null,
-        trek: formData.trek || null,
-        planned_month: formData.planned_month || null,
-        group_size: formData.groupSize.trim() || null,
-        experience_level: formData.experience_level || null,
-        message: formData.message.trim() || "Quick inquiry from website",
+      const { data, error } = await supabase.functions.invoke('submit-contact', {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          nationality: formData.nationality.trim() || null,
+          trek: formData.trek || null,
+          planned_month: formData.planned_month || null,
+          groupSize: formData.groupSize.trim() || null,
+          experience_level: formData.experience_level || null,
+          message: formData.message.trim() || "Quick inquiry from website",
+        },
       });
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
       toast({ title: "Inquiry sent!", description: "We'll get back to you within 24 hours." });
       setFormData({ name: "", email: "", nationality: "", trek: prefilledTrek || "", planned_month: "", groupSize: "", experience_level: "", message: "" });
       onOpenChange(false);
