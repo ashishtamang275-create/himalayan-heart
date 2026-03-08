@@ -210,18 +210,20 @@ const ReviewSection = () => {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedReviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </div>
-          {!showAll && reviews.length > REVIEWS_PER_PAGE && (
-            <div className="flex justify-center mt-8">
-              <Button variant="outline" size="lg" onClick={() => setShowAll(true)}>
-                Show All Reviews ({reviews.length})
-              </Button>
+          <>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedReviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
             </div>
-          )}
+            {!showAll && reviews.length > REVIEWS_PER_PAGE && (
+              <div className="flex justify-center mt-8">
+                <Button variant="outline" size="lg" onClick={() => setShowAll(true)}>
+                  Show All Reviews ({reviews.length})
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
