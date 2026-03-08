@@ -68,13 +68,41 @@ serve(async (req) => {
       )
     }
 
-    // Validate file type
+    // Validate file type by MIME header first
     const isImage = ALLOWED_IMAGE_TYPES.includes(file.type)
     const isVideo = ALLOWED_VIDEO_TYPES.includes(file.type)
     
     if (!isImage && !isVideo) {
       return new Response(
         JSON.stringify({ error: 'Invalid file type. Only images (JPEG, PNG, WebP, GIF) and videos (MP4, QuickTime, WebM) are allowed' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Validate file content via magic bytes to prevent MIME spoofing
+    const arrayBuffer = await file.arrayBuffer()
+    const bytes = new Uint8Array(arrayBuffer)
+    
+    const magicByteValid = (() => {
+      if (bytes.length < 12) return false
+      // JPEG: FF D8 FF
+      if (file.type === 'image/jpeg') return bytes[0] === 0xFF && bytes[1] === 0xD8 && bytes[2] === 0xFF
+      // PNG: 89 50 4E 47
+      if (file.type === 'image/png') return bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4E && bytes[3] === 0x47
+      // WebP: RIFF....WEBP
+      if (file.type === 'image/webp') return bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46 && bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50
+      // GIF: GIF87a or GIF89a
+      if (file.type === 'image/gif') return bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x38
+      // MP4/QuickTime: ....ftyp (at offset 4)
+      if (file.type === 'video/mp4' || file.type === 'video/quicktime') return bytes[4] === 0x66 && bytes[5] === 0x74 && bytes[6] === 0x79 && bytes[7] === 0x70
+      // WebM: 1A 45 DF A3 (EBML header)
+      if (file.type === 'video/webm') return bytes[0] === 0x1A && bytes[1] === 0x45 && bytes[2] === 0xDF && bytes[3] === 0xA3
+      return false
+    })()
+
+    if (!magicByteValid) {
+      return new Response(
+        JSON.stringify({ error: 'File content does not match declared type. Upload rejected.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
