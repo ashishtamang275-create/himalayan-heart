@@ -1,11 +1,11 @@
 import everestWinter from "@/assets/clients/everest-trek-winter-group.jpeg";
-import annapurnaPrayerFlags from "@/assets/clients/annapurna-trek-prayer-flags.jpeg";
+import annapurnaPrayerFlags from "@/assets/clients/annapurna-trek-prayer-flags.webp";
 import teahouseDinner from "@/assets/clients/teahouse-dinner-trekkers.jpeg";
 import monasteryVisit from "@/assets/clients/monastery-visit-group.jpeg";
 import thorangLaPass from "@/assets/clients/thorang-la-pass-group.jpeg";
 import langtangRest from "@/assets/clients/langtang-valley-rest-stop.jpeg";
 import waterfallSelfie from "@/assets/clients/waterfall-trek-group-selfie.jpeg";
-import guideIndra from "@/assets/guide-indra.webp";
+import guideIndra from "@/assets/guide-indra-optimized.webp";
 
 const photos = [
   {
