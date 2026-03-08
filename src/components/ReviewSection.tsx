@@ -71,8 +71,14 @@ const ReviewCard = ({ review }: { review: Review }) => {
             <div key={media.id} className="relative">
               {media.media_type === 'image' ? (
                 <img
-                  src={media.media_url}
+                  src={media.media_url.includes('/storage/v1/object/public/') 
+                    ? media.media_url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=200&height=200&resize=cover' 
+                    : media.media_url}
                   alt="Review media"
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  decoding="async"
                   className="w-24 h-24 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => window.open(media.media_url, '_blank')}
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
