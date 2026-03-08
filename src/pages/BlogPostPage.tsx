@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
 import { ChevronRight, Calendar, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DOMPurify from "dompurify";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
