@@ -98,10 +98,13 @@ const ReviewCard = ({ review }: { review: Review }) => {
   );
 };
 
+const REVIEWS_PER_PAGE = 6;
+
 const ReviewSection = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const fetchReviews = async () => {
     try {
@@ -112,7 +115,9 @@ const ReviewSection = () => {
           *,
           review_media (*)
         `)
-        .order('created_at', { ascending: false });
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+        .limit(20);
 
       if (error) throw error;
       setReviews(reviewsData || []);
@@ -124,14 +129,12 @@ const ReviewSection = () => {
   };
 
   useEffect(() => {
-    // Defer fetch to improve TTI - run when browser is idle
-    if ('requestIdleCallback' in window) {
-      (window as Window).requestIdleCallback(() => fetchReviews());
-    } else {
-      // Fallback for Safari
-      setTimeout(fetchReviews, 200);
-    }
+    // Defer fetch to after initial paint to improve TTI
+    const timer = setTimeout(fetchReviews, 500);
+    return () => clearTimeout(timer);
   }, []);
+
+  const displayedReviews = showAll ? reviews : reviews.slice(0, REVIEWS_PER_PAGE);
 
   const handleReviewSuccess = () => {
     setIsDialogOpen(false);
@@ -207,11 +210,20 @@ const ReviewSection = () => {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </div>
+          <>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedReviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+            {!showAll && reviews.length > REVIEWS_PER_PAGE && (
+              <div className="flex justify-center mt-8">
+                <Button variant="outline" size="lg" onClick={() => setShowAll(true)}>
+                  Show All Reviews ({reviews.length})
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
