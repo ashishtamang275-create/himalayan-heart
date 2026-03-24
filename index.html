@@ -119,13 +119,48 @@
 
   <body>
     <div id="root">
-      <!-- Inline skeleton for faster First Contentful Paint -->
-      <div style="min-height:100vh;background:#1a1a2e;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e0e0e0;font-family:'Source Sans 3','Source Sans Fallback',Arial,sans-serif;">
-        <div style="width:100%;max-width:1200px;padding:0 1rem;">
-          <div style="height:64px;background:rgba(255,255,255,0.05);border-radius:8px;margin-bottom:2rem;"></div>
-          <div style="text-align:center;padding:4rem 1rem;">
-            <div style="height:3rem;width:60%;margin:0 auto 1rem;background:rgba(255,255,255,0.08);border-radius:4px;"></div>
-            <div style="height:1.5rem;width:40%;margin:0 auto;background:rgba(255,255,255,0.05);border-radius:4px;"></div>
+      <!-- Inline skeleton matching hero layout for faster Speed Index -->
+      <div style="min-height:100vh;background:#1a1a2e;display:flex;flex-direction:column;font-family:'Source Sans 3','Source Sans Fallback',Arial,sans-serif;color:#e0e0e0;overflow:hidden;">
+        <!-- Nav skeleton -->
+        <div style="height:64px;width:100%;display:flex;align-items:center;padding:0 1.5rem;position:absolute;top:0;z-index:10;">
+          <div style="width:140px;height:32px;background:rgba(255,255,255,0.08);border-radius:4px;"></div>
+          <div style="margin-left:auto;display:flex;gap:1.5rem;">
+            <div style="width:50px;height:14px;background:rgba(255,255,255,0.06);border-radius:3px;"></div>
+            <div style="width:50px;height:14px;background:rgba(255,255,255,0.06);border-radius:3px;"></div>
+            <div style="width:50px;height:14px;background:rgba(255,255,255,0.06);border-radius:3px;"></div>
+          </div>
+        </div>
+        <!-- Hero skeleton -->
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:5rem 1rem 2rem;">
+          <div style="max-width:56rem;width:100%;">
+            <!-- Badge -->
+            <div style="display:inline-block;width:280px;height:32px;background:rgba(255,255,255,0.08);border-radius:9999px;margin-bottom:1.5rem;"></div>
+            <!-- H1 lines -->
+            <div style="margin-bottom:0.5rem;">
+              <div style="height:3.5rem;width:80%;margin:0 auto 0.5rem;background:rgba(255,255,255,0.1);border-radius:4px;"></div>
+              <div style="height:3.5rem;width:90%;margin:0 auto 0.5rem;background:rgba(255,255,255,0.1);border-radius:4px;"></div>
+            </div>
+            <!-- Subtitle -->
+            <div style="height:1.5rem;width:70%;margin:0 auto 0.5rem;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
+            <div style="height:1.5rem;width:55%;margin:0 auto 1.5rem;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
+            <!-- Trust badges row -->
+            <div style="display:flex;justify-content:center;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+              <div style="width:180px;height:28px;background:rgba(255,255,255,0.06);border-radius:9999px;"></div>
+              <div style="width:200px;height:28px;background:rgba(255,255,255,0.06);border-radius:9999px;"></div>
+              <div style="width:220px;height:28px;background:rgba(255,255,255,0.06);border-radius:9999px;"></div>
+            </div>
+            <!-- CTA buttons -->
+            <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:1rem;">
+              <div style="width:200px;height:52px;background:rgba(245,158,11,0.3);border-radius:8px;"></div>
+              <div style="width:220px;height:52px;background:rgba(37,211,102,0.2);border-radius:8px;"></div>
+            </div>
+            <!-- Stats row -->
+            <div style="display:flex;justify-content:center;gap:3rem;margin-top:3rem;">
+              <div style="text-align:center;"><div style="width:50px;height:2.5rem;background:rgba(255,255,255,0.1);border-radius:4px;margin:0 auto 0.5rem;"></div><div style="width:80px;height:0.75rem;background:rgba(255,255,255,0.05);border-radius:3px;margin:0 auto;"></div></div>
+              <div style="text-align:center;"><div style="width:50px;height:2.5rem;background:rgba(255,255,255,0.1);border-radius:4px;margin:0 auto 0.5rem;"></div><div style="width:80px;height:0.75rem;background:rgba(255,255,255,0.05);border-radius:3px;margin:0 auto;"></div></div>
+              <div style="text-align:center;"><div style="width:50px;height:2.5rem;background:rgba(255,255,255,0.1);border-radius:4px;margin:0 auto 0.5rem;"></div><div style="width:80px;height:0.75rem;background:rgba(255,255,255,0.05);border-radius:3px;margin:0 auto;"></div></div>
+              <div style="text-align:center;"><div style="width:50px;height:2.5rem;background:rgba(255,255,255,0.1);border-radius:4px;margin:0 auto 0.5rem;"></div><div style="width:80px;height:0.75rem;background:rgba(255,255,255,0.05);border-radius:3px;margin:0 auto;"></div></div>
+            </div>
           </div>
         </div>
       </div>
