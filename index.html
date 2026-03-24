@@ -119,7 +119,18 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Inline skeleton for faster First Contentful Paint -->
+      <div style="min-height:100vh;background:#1a1a2e;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e0e0e0;font-family:'Source Sans 3','Source Sans Fallback',Arial,sans-serif;">
+        <div style="width:100%;max-width:1200px;padding:0 1rem;">
+          <div style="height:64px;background:rgba(255,255,255,0.05);border-radius:8px;margin-bottom:2rem;"></div>
+          <div style="text-align:center;padding:4rem 1rem;">
+            <div style="height:3rem;width:60%;margin:0 auto 1rem;background:rgba(255,255,255,0.08);border-radius:4px;"></div>
+            <div style="height:1.5rem;width:40%;margin:0 auto;background:rgba(255,255,255,0.05);border-radius:4px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
