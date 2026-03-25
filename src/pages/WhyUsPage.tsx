@@ -1,5 +1,6 @@
 import { Award, DollarSign, MapPin, Shield, Settings, MessageCircle, Heart, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -58,7 +59,12 @@ const WhyUsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Why Choose Go Nepal Adventure – Direct Booking, No Agency Fees</title>
+        <meta name="description" content="Book direct with a licensed Nepal trekking guide. No agency fees, 20+ years experience, customised itineraries & 24/7 support. Save 30–50% on your Himalayan trek." />
+      </Helmet>
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <section 
@@ -179,6 +185,7 @@ const WhyUsPage = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
       <WhatsAppButton />

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 
@@ -21,6 +22,11 @@ const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Nepal Trekking 2026 – Licensed Local Guide | Go Nepal Adventure</title>
+        <meta name="description" content="Trek Nepal directly with a licensed local guide. No agency fees. Everest, Annapurna & Langtang treks with safety-first protocols. Free custom itinerary in 24hrs." />
+        <link rel="canonical" href="https://go-nepal-adventures.lovable.app/" />
+      </Helmet>
       <Navbar />
       <main>
         <HeroSection />
