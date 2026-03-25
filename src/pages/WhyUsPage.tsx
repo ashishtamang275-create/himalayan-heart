@@ -185,6 +185,7 @@ const WhyUsPage = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
       <WhatsAppButton />
