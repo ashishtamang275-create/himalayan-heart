@@ -1,5 +1,6 @@
 import { Award, DollarSign, MapPin, Shield, Settings, MessageCircle, Heart, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
