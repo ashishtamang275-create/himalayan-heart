@@ -59,7 +59,12 @@ const WhyUsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Why Choose Go Nepal Adventure – Direct Booking, No Agency Fees</title>
+        <meta name="description" content="Book direct with a licensed Nepal trekking guide. No agency fees, 20+ years experience, customised itineraries & 24/7 support. Save 30–50% on your Himalayan trek." />
+      </Helmet>
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <section 
