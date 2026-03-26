@@ -82,11 +82,13 @@ const GuideProfiles = () => {
                 <div className="rounded-xl overflow-hidden mb-6">
                   <img
                     src={groupPhoto}
+                    srcSet={`${groupPhoto400} 400w, ${groupPhoto800} 800w, ${groupPhoto} 864w`}
                     alt="Guide Indra Tamang with international trekkers near Annapurna Base Camp with snow-capped Himalayan mountains"
                     width={500}
                     height={300}
                     loading="lazy"
                     decoding="async"
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 400px"
                     className="w-full h-48 object-cover"
                   />
                 </div>
