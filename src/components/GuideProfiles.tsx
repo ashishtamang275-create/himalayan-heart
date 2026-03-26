@@ -38,12 +38,13 @@ const GuideProfiles = () => {
               <div className="relative h-80 lg:h-full min-h-[400px]">
                 <img
                   src={guideIndra}
+                  srcSet={`${guideIndra400} 400w, ${guideIndra800} 800w, ${guideIndra} 1024w`}
                   alt="Indra Tamang - Senior Trek Leader"
                   width={512}
                   height={640}
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-peak/80 via-peak/20 to-transparent lg:bg-gradient-to-r" />
