@@ -28,11 +28,13 @@ const GovernmentLicense = () => {
                 <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm w-full">
                   <img
                     src={licenseImage}
+                    srcSet={`${licenseImage400} 400w, ${licenseImage} 768w`}
                     alt="Government licensed trekking guide in Nepal – Indra Tamang official ID card issued by Bagmati Province Ministry of Culture and Tourism"
                     width={400}
                     height={250}
                     loading="lazy"
                     decoding="async"
+                    sizes="(max-width: 640px) 90vw, 384px"
                     className="w-full h-auto object-contain"
                   />
                 </div>

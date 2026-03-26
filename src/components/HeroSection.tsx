@@ -47,7 +47,7 @@ const HeroSection = () => {
               </Link>
             </Button>
             <Button variant="whatsapp" size="xl" asChild>
-              <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20trekking%20in%20Nepal.%20Can%20you%20help%20me%20plan?" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20trekking%20in%20Nepal.%20Can%20you%20help%20me%20plan?" target="_blank" rel="noopener noreferrer" aria-label="Chat with guide Indra Tamang on WhatsApp to plan your trek">
                 <MessageCircle className="w-5 h-5" />
                 Chat with Indra on WhatsApp
               </a>

@@ -142,7 +142,7 @@ const GuideProfiles = () => {
 
                 {/* Contact Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1" aria-label="Message guide Indra Tamang on WhatsApp">
                     <Button variant="whatsapp" className="w-full">
                       <MessageCircle className="w-5 h-5 mr-2" />
                       WhatsApp
