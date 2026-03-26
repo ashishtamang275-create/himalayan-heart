@@ -1,7 +1,11 @@
 import { Award, Languages, Mountain, CheckCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import guideIndra from "@/assets/guide-indra-optimized3.webp";
+import guideIndra400 from "@/assets/guide-indra-optimized3-400w.webp";
+import guideIndra800 from "@/assets/guide-indra-optimized3-800w.webp";
 import groupPhoto from "@/assets/clients/annapurna-trek-prayer-flags.webp";
+import groupPhoto400 from "@/assets/clients/annapurna-trek-prayer-flags-400w.webp";
+import groupPhoto800 from "@/assets/clients/annapurna-trek-prayer-flags-800w.webp";
 const WHATSAPP_NUMBER = "+977 9818800584";
 const EMAIL = "ashishtamang12340@gmail.com";
 
@@ -34,12 +38,13 @@ const GuideProfiles = () => {
               <div className="relative h-80 lg:h-full min-h-[400px]">
                 <img
                   src={guideIndra}
+                  srcSet={`${guideIndra400} 400w, ${guideIndra800} 800w, ${guideIndra} 1024w`}
                   alt="Indra Tamang - Senior Trek Leader"
                   width={512}
                   height={640}
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-peak/80 via-peak/20 to-transparent lg:bg-gradient-to-r" />
@@ -77,11 +82,13 @@ const GuideProfiles = () => {
                 <div className="rounded-xl overflow-hidden mb-6">
                   <img
                     src={groupPhoto}
+                    srcSet={`${groupPhoto400} 400w, ${groupPhoto800} 800w, ${groupPhoto} 864w`}
                     alt="Guide Indra Tamang with international trekkers near Annapurna Base Camp with snow-capped Himalayan mountains"
                     width={500}
                     height={300}
                     loading="lazy"
                     decoding="async"
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 400px"
                     className="w-full h-48 object-cover"
                   />
                 </div>
@@ -135,7 +142,7 @@ const GuideProfiles = () => {
 
                 {/* Contact Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex-1" aria-label="Message guide Indra Tamang on WhatsApp">
                     <Button variant="whatsapp" className="w-full">
                       <MessageCircle className="w-5 h-5 mr-2" />
                       WhatsApp

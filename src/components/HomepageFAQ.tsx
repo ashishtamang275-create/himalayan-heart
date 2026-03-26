@@ -93,6 +93,7 @@ const HomepageFAQ = () => (
             href="https://wa.me/9779818800584?text=Hi!%20I%20have%20a%20question%20about%20trekking%20in%20Nepal."
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Ask a trekking question — message Indra on WhatsApp"
           >
             <MessageCircle className="w-5 h-5" />
             Ask Indra on WhatsApp

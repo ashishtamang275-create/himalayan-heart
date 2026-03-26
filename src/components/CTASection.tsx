@@ -51,6 +51,7 @@ const CTASection = () => {
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Book your trek now — chat with Indra on WhatsApp"
               >
                 <MessageCircle className="w-5 h-5" />
                 Chat with Indra on WhatsApp

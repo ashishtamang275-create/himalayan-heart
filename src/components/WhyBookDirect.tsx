@@ -93,7 +93,7 @@ const WhyBookDirect = () => (
         <div className="text-center">
           <p className="text-muted-foreground mb-4 text-sm">⚡ Limited seasonal availability — Small group treks fill up fast</p>
           <Button variant="whatsapp" size="lg" asChild>
-            <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20booking%20directly%20with%20a%20local%20guide." target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20booking%20directly%20with%20a%20local%20guide." target="_blank" rel="noopener noreferrer" aria-label="Book direct with guide Indra — chat on WhatsApp">
               <MessageCircle className="w-5 h-5" />
               Chat with Indra on WhatsApp
             </a>
