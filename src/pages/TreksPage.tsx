@@ -1,3 +1,26 @@
+import { useEffect } from "react";
+
+function TreksPage() {
+
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "canonical";
+    link.href = "https://ashish-tamang.com.np/treks";
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  return (
+    <div>
+      <h1>Treks Page</h1>
+    </div>
+  );
+}
+
+export default TreksPage;
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Clock, TrendingUp, MapPin, ChevronRight, Search, Filter, Mountain, MessageCircle } from "lucide-react";
