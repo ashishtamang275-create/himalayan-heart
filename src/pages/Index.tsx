@@ -1,3 +1,26 @@
+import { useEffect } from "react";
+
+function Index() {
+
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "canonical";
+    link.href = "https://ashish-tamang.com.np/";
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  return (
+    <div>
+      <h1>Homepage</h1>
+    </div>
+  );
+}
+
+export default Index;
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
