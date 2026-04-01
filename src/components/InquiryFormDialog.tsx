@@ -34,6 +34,7 @@ interface InquiryFormDialogProps {
 }
 
 const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDialogProps) => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
