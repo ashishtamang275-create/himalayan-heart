@@ -73,7 +73,9 @@ const App = () => (
               <Route path="/nepal-trek-difficulty-comparison" element={<DifficultyComparisonPage />} />
               <Route path="/annapurna-vs-everest" element={<AnnapurnaVsEverestPage />} />
               <Route path="/best-time-to-trek-nepal" element={<BestTimeToTrekPage />} />
+              <Route path="/thank-you" element={<ThankYouPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

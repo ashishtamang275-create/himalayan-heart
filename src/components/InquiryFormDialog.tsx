@@ -74,9 +74,8 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      toast({ title: "Inquiry sent!", description: "We'll get back to you within 24 hours." });
-      setFormData({ name: "", email: "", nationality: "", trek: prefilledTrek || "", planned_month: "", groupSize: "", experience_level: "", message: "" });
       onOpenChange(false);
+      navigate("/thank-you");
     } catch {
       toast({ title: "Failed to send inquiry", description: "Please try again or contact us via WhatsApp.", variant: "destructive" });
     } finally {
