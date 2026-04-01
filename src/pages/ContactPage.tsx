@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Mail, Phone, MapPin, MessageCircle, Send, Clock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ const trekOptions = [
 ];
 
 const ContactPage = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -69,20 +71,7 @@ const ContactPage = () => {
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
 
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        trek: "",
-        groupSize: "",
-        preferredDate: "",
-        message: "",
-      });
+      navigate("/thank-you");
     } catch (error) {
       console.error('Error submitting contact form:', error);
       toast({

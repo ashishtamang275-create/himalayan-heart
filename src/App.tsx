@@ -32,6 +32,7 @@ const GuideRequirementPage = lazy(() => import("./pages/GuideRequirementPage"));
 const DifficultyComparisonPage = lazy(() => import("./pages/DifficultyComparisonPage"));
 const AnnapurnaVsEverestPage = lazy(() => import("./pages/AnnapurnaVsEverestPage"));
 const BestTimeToTrekPage = lazy(() => import("./pages/BestTimeToTrekPage"));
+const ThankYouPage = lazy(() => import("./pages/ThankYouPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -72,7 +73,9 @@ const App = () => (
               <Route path="/nepal-trek-difficulty-comparison" element={<DifficultyComparisonPage />} />
               <Route path="/annapurna-vs-everest" element={<AnnapurnaVsEverestPage />} />
               <Route path="/best-time-to-trek-nepal" element={<BestTimeToTrekPage />} />
+              <Route path="/thank-you" element={<ThankYouPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

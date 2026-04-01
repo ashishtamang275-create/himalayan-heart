@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,7 @@ interface InquiryFormDialogProps {
 }
 
 const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDialogProps) => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -72,9 +74,8 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      toast({ title: "Inquiry sent!", description: "We'll get back to you within 24 hours." });
-      setFormData({ name: "", email: "", nationality: "", trek: prefilledTrek || "", planned_month: "", groupSize: "", experience_level: "", message: "" });
       onOpenChange(false);
+      navigate("/thank-you");
     } catch {
       toast({ title: "Failed to send inquiry", description: "Please try again or contact us via WhatsApp.", variant: "destructive" });
     } finally {
