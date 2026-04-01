@@ -151,9 +151,9 @@ const TrekDetailPage = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://go-nepal-adventures.lovable.app/" },
-      { "@type": "ListItem", position: 2, name: "Treks", item: "https://go-nepal-adventures.lovable.app/treks" },
-      ...(region ? [{ "@type": "ListItem", position: 3, name: region.name, item: `https://go-nepal-adventures.lovable.app/region/${region.slug}` }] : []),
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ashish-tamang.com.np/" },
+      { "@type": "ListItem", position: 2, name: "Treks", item: "https://ashish-tamang.com.np/treks" },
+      ...(region ? [{ "@type": "ListItem", position: 3, name: region.name, item: `https://ashish-tamang.com.np/region/${region.slug}` }] : []),
       { "@type": "ListItem", position: region ? 4 : 3, name: trek.name },
     ],
   };

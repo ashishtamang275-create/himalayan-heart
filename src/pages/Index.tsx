@@ -48,7 +48,7 @@ const Index = () => {
       <Helmet>
         <title>Nepal Trekking 2026 – Licensed Local Guide | Go Nepal Adventure</title>
         <meta name="description" content="Trek Nepal directly with a licensed local guide. No agency fees. Everest, Annapurna & Langtang treks with safety-first protocols. Free custom itinerary in 24hrs." />
-        <link rel="canonical" href="https://gonepaltreks.com/" />
+        <link rel="canonical" href="https://ashish-tamang.com.np/" />
       </Helmet>
       <Navbar />
       <main>
