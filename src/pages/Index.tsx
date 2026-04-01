@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
