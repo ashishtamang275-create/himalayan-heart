@@ -60,6 +60,22 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
     }
     setIsSubmitting(true);
     try {
+      // Fire webhook in background — don't block redirect on failure
+      fetch('https://hook.eu1.make.com/swvrdprvm4r1ly4bd1dmkg5coii6ffvu', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim() || "Quick inquiry from website",
+          trek: formData.trek || null,
+          nationality: formData.nationality.trim() || null,
+          planned_month: formData.planned_month || null,
+          group_size: formData.groupSize.trim() || null,
+          experience_level: formData.experience_level || null,
+        }),
+      }).catch((err) => console.error('Make.com webhook error:', err));
+
       const { data, error } = await supabase.functions.invoke('submit-contact', {
         body: {
           name: formData.name.trim(),
