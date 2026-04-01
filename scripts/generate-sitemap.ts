@@ -7,7 +7,7 @@
  * Or add to build: "prebuild": "npx tsx scripts/generate-sitemap.ts"
  */
 
-const SITE_URL = "https://go-nepal-adventures.lovable.app";
+const SITE_URL = "https://ashish-tamang.com.np";
 const TODAY = new Date().toISOString().split("T")[0];
 
 // Static routes with priority and changefreq

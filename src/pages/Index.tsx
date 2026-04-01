@@ -1,26 +1,3 @@
-import { useEffect } from "react";
-
-function Index() {
-
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "canonical";
-    link.href = "https://ashish-tamang.com.np/";
-    document.head.appendChild(link);
-
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, []);
-
-  return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
-  );
-}
-
-export default Index;
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
@@ -48,7 +25,7 @@ const Index = () => {
       <Helmet>
         <title>Nepal Trekking 2026 – Licensed Local Guide | Go Nepal Adventure</title>
         <meta name="description" content="Trek Nepal directly with a licensed local guide. No agency fees. Everest, Annapurna & Langtang treks with safety-first protocols. Free custom itinerary in 24hrs." />
-        <link rel="canonical" href="https://gonepaltreks.com/" />
+        <link rel="canonical" href="https://ashish-tamang.com.np/" />
       </Helmet>
       <Navbar />
       <main>

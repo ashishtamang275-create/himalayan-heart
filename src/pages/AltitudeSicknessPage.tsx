@@ -21,8 +21,8 @@ const AltitudeSicknessPage = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://gonepaltreks.com" },
-      { "@type": "ListItem", position: 2, name: "Altitude Sickness Guide", item: "https://gonepaltreks.com/altitude-sickness-guide" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ashish-tamang.com.np" },
+      { "@type": "ListItem", position: 2, name: "Altitude Sickness Guide", item: "https://ashish-tamang.com.np/altitude-sickness-guide" },
     ]
   };
 
