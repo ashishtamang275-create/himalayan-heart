@@ -32,6 +32,7 @@ const GuideRequirementPage = lazy(() => import("./pages/GuideRequirementPage"));
 const DifficultyComparisonPage = lazy(() => import("./pages/DifficultyComparisonPage"));
 const AnnapurnaVsEverestPage = lazy(() => import("./pages/AnnapurnaVsEverestPage"));
 const BestTimeToTrekPage = lazy(() => import("./pages/BestTimeToTrekPage"));
+const ThankYouPage = lazy(() => import("./pages/ThankYouPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
