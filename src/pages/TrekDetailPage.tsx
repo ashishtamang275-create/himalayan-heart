@@ -143,7 +143,7 @@ const TrekDetailPage = () => {
     provider: {
       "@type": "TravelAgency",
       name: "Go Nepal Adventures",
-      url: "https://go-nepal-adventures.lovable.app",
+      url: "https://ashish-tamang.com.np",
     },
   };
 
