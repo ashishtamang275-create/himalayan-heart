@@ -54,6 +54,15 @@ const ContactPage = () => {
       return;
     }
 
+    if (formData.message.trim().length < 10) {
+      toast({
+        title: "Message too short",
+        description: "Please write at least 10 characters in your message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
