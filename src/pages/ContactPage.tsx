@@ -26,6 +26,7 @@ const trekOptions = [
 ];
 
 const ContactPage = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
