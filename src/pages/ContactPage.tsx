@@ -66,26 +66,39 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const { data, error } = await supabase.functions.invoke('submit-contact', {
-        body: {
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim() || null,
-          trek: formData.trek || null,
-          groupSize: formData.groupSize.trim() || null,
-          preferredDate: formData.preferredDate || null,
-          message: formData.message.trim(),
-        },
-      });
-      if (error) throw error;
-      if (data?.error) throw new Error(data.error);
+      // Send to Make.com webhook and Supabase in parallel
+      const [webhookResponse, supabaseResult] = await Promise.all([
+        fetch('https://hook.eu1.make.com/swvrdprvm4r1ly4bd1dmkg5coii6ffvu', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim(),
+          }),
+        }),
+        supabase.functions.invoke('submit-contact', {
+          body: {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim() || null,
+            trek: formData.trek || null,
+            groupSize: formData.groupSize.trim() || null,
+            preferredDate: formData.preferredDate || null,
+            message: formData.message.trim(),
+          },
+        }),
+      ]);
+
+      if (!webhookResponse.ok) throw new Error('Webhook request failed');
+      if (supabaseResult.error) throw supabaseResult.error;
 
       navigate("/thank-you");
     } catch (error) {
       console.error('Error submitting contact form:', error);
       toast({
         title: "Failed to send message",
-        description: "Please try again or contact us via WhatsApp.",
+        description: "Something went wrong. Please try again or contact us via WhatsApp.",
         variant: "destructive",
       });
     } finally {
