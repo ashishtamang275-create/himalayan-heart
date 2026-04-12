@@ -305,7 +305,9 @@ export type Database = {
       treks: {
         Row: {
           accommodation_description: string | null
+          badge_label: string | null
           best_season: string | null
+          budget_price_usd: number | null
           created_at: string
           description: string
           difficulty: string
@@ -323,6 +325,7 @@ export type Database = {
           includes: string[] | null
           is_featured: boolean | null
           is_published: boolean | null
+          luxury_price_usd: number | null
           max_altitude_m: number | null
           meals_description: string | null
           meeting_point: string | null
@@ -331,19 +334,23 @@ export type Database = {
           name: string
           optional_extras: string[] | null
           packing_list: string[] | null
+          permits_breakdown: string | null
           rating: number | null
           region_id: string | null
           review_count: number | null
           schema_json: Json | null
           short_description: string
           slug: string
+          standard_price_usd: number | null
           starting_price_usd: number | null
           transportation: string | null
           updated_at: string
         }
         Insert: {
           accommodation_description?: string | null
+          badge_label?: string | null
           best_season?: string | null
+          budget_price_usd?: number | null
           created_at?: string
           description?: string
           difficulty?: string
@@ -361,6 +368,7 @@ export type Database = {
           includes?: string[] | null
           is_featured?: boolean | null
           is_published?: boolean | null
+          luxury_price_usd?: number | null
           max_altitude_m?: number | null
           meals_description?: string | null
           meeting_point?: string | null
@@ -369,19 +377,23 @@ export type Database = {
           name: string
           optional_extras?: string[] | null
           packing_list?: string[] | null
+          permits_breakdown?: string | null
           rating?: number | null
           region_id?: string | null
           review_count?: number | null
           schema_json?: Json | null
           short_description?: string
           slug: string
+          standard_price_usd?: number | null
           starting_price_usd?: number | null
           transportation?: string | null
           updated_at?: string
         }
         Update: {
           accommodation_description?: string | null
+          badge_label?: string | null
           best_season?: string | null
+          budget_price_usd?: number | null
           created_at?: string
           description?: string
           difficulty?: string
@@ -399,6 +411,7 @@ export type Database = {
           includes?: string[] | null
           is_featured?: boolean | null
           is_published?: boolean | null
+          luxury_price_usd?: number | null
           max_altitude_m?: number | null
           meals_description?: string | null
           meeting_point?: string | null
@@ -407,12 +420,14 @@ export type Database = {
           name?: string
           optional_extras?: string[] | null
           packing_list?: string[] | null
+          permits_breakdown?: string | null
           rating?: number | null
           region_id?: string | null
           review_count?: number | null
           schema_json?: Json | null
           short_description?: string
           slug?: string
+          standard_price_usd?: number | null
           starting_price_usd?: number | null
           transportation?: string | null
           updated_at?: string

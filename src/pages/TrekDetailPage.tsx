@@ -13,6 +13,7 @@ import TrekImage, { getTrekFallbackImage } from "@/components/TrekImage";
 
 const TrekTestimonialBlock = lazy(() => import("@/components/TrekTestimonialBlock"));
 const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
+import TrekPricingTable from "@/components/TrekPricingTable";
 
 // Trek-specific hero images
 import heroEverest from "@/assets/trek-hero-everest.webp";
@@ -124,8 +125,8 @@ const TrekDetailPage = () => {
   const whatsappMsg = encodeURIComponent(`Hi! I'm interested in the ${trek.name}. Can you share more details?`);
   const heroImage = slug ? TREK_HERO_MAP[slug] : null;
 
-  const metaTitle = trek.meta_title || `${trek.name} – ${trek.duration_days} Days | Go Nepal Adventures — Best Price & Itinerary`;
-  const metaDesc = trek.meta_description || `${trek.name} in ${trek.duration_days} days. Best season: ${trek.best_season}. ${trek.starting_price_usd ? `From $${trek.starting_price_usd}.` : ''} Expert guides and full support.`;
+  const metaTitle = trek.meta_title || `${trek.name} Cost 2026: Licensed Kathmandu Guide ${trek.budget_price_usd ? `$${trek.budget_price_usd}` : ''} → Direct Booking`;
+  const metaDesc = trek.meta_description || `No agency fees. Licensed local guide, full itinerary, permits included. ${trek.best_season || 'April 2026'} slots open! ${trek.budget_price_usd ? `From $${trek.budget_price_usd}.` : ''}`;
 
   // JSON-LD structured data
   const jsonLd = {
@@ -278,6 +279,16 @@ const TrekDetailPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Pricing Table */}
+        <TrekPricingTable
+          trekName={trek.name}
+          budgetPrice={(trek as any).budget_price_usd}
+          standardPrice={(trek as any).standard_price_usd}
+          luxuryPrice={(trek as any).luxury_price_usd}
+          permitsBreakdown={(trek as any).permits_breakdown}
+          onInquiryClick={() => setContactOpen(true)}
+        />
 
         {/* Description */}
         <section className="py-12">
