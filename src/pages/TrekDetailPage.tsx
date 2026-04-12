@@ -287,6 +287,7 @@ const TrekDetailPage = () => {
           standardPrice={(trek as any).standard_price_usd}
           luxuryPrice={(trek as any).luxury_price_usd}
           permitsBreakdown={(trek as any).permits_breakdown}
+          durationDays={trek.duration_days}
           onInquiryClick={() => setContactOpen(true)}
         />
 
