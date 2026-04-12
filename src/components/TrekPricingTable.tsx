@@ -1,13 +1,5 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 const WHATSAPP_NUMBER = "9779818800584";
 
@@ -17,13 +9,30 @@ interface TrekPricingTableProps {
   standardPrice?: number | null;
   luxuryPrice?: number | null;
   permitsBreakdown?: string | null;
+  durationDays?: number | null;
   onInquiryClick: () => void;
 }
 
 const tiers = [
-  { key: "budget" as const, label: "Budget", desc: "Tea-house lodges, group trek, basic meals" },
-  { key: "standard" as const, label: "Standard", desc: "Private guide, better lodges, full-board meals" },
-  { key: "luxury" as const, label: "Luxury", desc: "Premium lodges, porter service, all transfers included" },
+  {
+    key: "budget" as const,
+    label: "Budget",
+    desc: "Tea-house lodges, group trek, basic meals",
+    color: "border-muted",
+  },
+  {
+    key: "standard" as const,
+    label: "Standard",
+    desc: "Private guide, better lodges, full-board meals",
+    color: "border-accent",
+    popular: true,
+  },
+  {
+    key: "luxury" as const,
+    label: "Luxury",
+    desc: "Premium lodges, porter service, all transfers included",
+    color: "border-primary",
+  },
 ];
 
 const TrekPricingTable = ({
@@ -32,6 +41,7 @@ const TrekPricingTable = ({
   standardPrice,
   luxuryPrice,
   permitsBreakdown,
+  durationDays,
   onInquiryClick,
 }: TrekPricingTableProps) => {
   const prices = { budget: budgetPrice, standard: standardPrice, luxury: luxuryPrice };
@@ -46,9 +56,12 @@ const TrekPricingTable = ({
     ? permitsBreakdown.split("|").map((p) => p.trim())
     : null;
 
+  const days = durationDays || 14;
+  const guideCostPerDay = 25;
+
   return (
     <section className="py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="font-display text-3xl font-bold text-foreground mb-2">
           {trekName} Cost 2026
         </h2>
@@ -56,48 +69,85 @@ const TrekPricingTable = ({
           All prices per person. Permits, licensed guide, and accommodation included.
         </p>
 
-        <div className="rounded-xl border overflow-hidden bg-card shadow-soft">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-primary/5">
-                <TableHead className="font-display font-bold text-foreground">Package</TableHead>
-                <TableHead className="font-display font-bold text-foreground">Price (USD)</TableHead>
-                <TableHead className="font-display font-bold text-foreground hidden sm:table-cell">Includes</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {tiers.map((tier) => {
-                const price = prices[tier.key];
-                if (!price) return null;
-                return (
-                  <TableRow key={tier.key}>
-                    <TableCell className="font-semibold text-foreground">
-                      {tier.label}
-                      <span className="block sm:hidden text-xs text-muted-foreground font-normal mt-1">
-                        {tier.desc}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <span className="font-display text-xl font-bold text-accent">
-                        ${price.toLocaleString()}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground text-sm hidden sm:table-cell">
-                      {tier.desc}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+        {/* Pricing Cards */}
+        <div className="grid sm:grid-cols-3 gap-6 mb-8">
+          {tiers.map((tier) => {
+            const price = prices[tier.key];
+            if (!price) return null;
+            return (
+              <div
+                key={tier.key}
+                className={`relative rounded-xl border-2 ${tier.color} bg-card p-6 shadow-soft transition-shadow hover:shadow-elevated ${
+                  tier.popular ? "ring-2 ring-accent" : ""
+                }`}
+              >
+                {tier.popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">
+                    Most Popular
+                  </span>
+                )}
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">
+                  {tier.label}
+                </h3>
+                <p className="text-xs text-muted-foreground mb-4">{tier.desc}</p>
+                <div className="mb-4">
+                  <span className="font-display text-3xl font-bold text-accent">
+                    ${price.toLocaleString()}
+                  </span>
+                  <span className="text-sm text-muted-foreground"> / person</span>
+                </div>
+
+                {/* Cost breakdown */}
+                <div className="space-y-2 text-sm border-t border-border pt-4 mb-6">
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Licensed guide</span>
+                    <span className="font-medium text-foreground">
+                      ${guideCostPerDay}/day × {days}d
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Food & lodging</span>
+                    <span className="font-medium text-foreground">Included</span>
+                  </div>
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Permits & fees</span>
+                    <span className="font-medium text-foreground">Included</span>
+                  </div>
+                </div>
+
+                <Button
+                  variant="whatsapp"
+                  size="sm"
+                  className="w-full"
+                  asChild
+                >
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                      `Hi! I'd like to book the ${trekName} – ${tier.label} package ($${price}). Can we discuss?`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="w-4 h-4" /> Customize & Book
+                  </a>
+                </Button>
+              </div>
+            );
+          })}
         </div>
 
+        {/* Permits breakdown */}
         {permits && (
-          <div className="mt-6 p-4 bg-secondary/50 rounded-lg">
-            <h3 className="font-semibold text-foreground text-sm mb-2">Permits Breakdown (included in all packages)</h3>
+          <div className="p-4 bg-secondary/50 rounded-lg mb-8">
+            <h3 className="font-semibold text-foreground text-sm mb-2">
+              Permits Breakdown (included in all packages)
+            </h3>
             <div className="flex flex-wrap gap-3">
               {permits.map((p, i) => (
-                <span key={i} className="text-sm text-muted-foreground bg-card px-3 py-1 rounded-full border">
+                <span
+                  key={i}
+                  className="text-sm text-muted-foreground bg-card px-3 py-1 rounded-full border"
+                >
                   {p}
                 </span>
               ))}
@@ -105,7 +155,7 @@ const TrekPricingTable = ({
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
+        <div className="flex flex-col sm:flex-row gap-4">
           <Button variant="whatsapp" size="lg" asChild>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`}
