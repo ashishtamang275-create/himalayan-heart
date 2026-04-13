@@ -6,24 +6,21 @@ import { Button } from "@/components/ui/button";
 const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
 
 const travelGuides = [
-  { name: "Trekking Permits in Nepal", path: "/trekking-permits-nepal" },
-  { name: "Best Time to Trek in Nepal", path: "/best-time-to-trek-nepal" },
   { name: "Altitude Sickness Guide", path: "/altitude-sickness-guide" },
-  { name: "EBC Trek Cost Breakdown", path: "/everest-base-camp-cost" },
   { name: "Do You Need a Guide?", path: "/do-you-need-guide-nepal" },
+  { name: "Safety & Rescue", path: "/safety-and-rescue" },
+  { name: "Best Time to Trek", path: "/best-time-to-trek-nepal" },
   { name: "Trek Difficulty Comparison", path: "/nepal-trek-difficulty-comparison" },
+  { name: "Trekking Permits", path: "/trekking-permits-nepal" },
+  { name: "EBC Cost Breakdown", path: "/everest-base-camp-cost" },
   { name: "Annapurna vs Everest", path: "/annapurna-vs-everest" },
   { name: "Visa Information", path: "/nepal-visa-information" },
-  { name: "Safety & Rescue", path: "/safety-and-rescue" },
 ];
 
 const navLinks = [
-  { name: "Home", path: "/" },
   { name: "Treks", path: "/treks" },
-  { name: "Peak Climbing", path: "/peak-climbing" },
-  { name: "Tours", path: "/tours" },
-  { name: "About", path: "/about" },
   { name: "Blog", path: "/blog" },
+  { name: "About Us", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -42,7 +39,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClick = () => setGuidesOpen(false);
     if (guidesOpen) {
@@ -62,35 +58,29 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <Mountain
                 className={`w-8 h-8 transition-colors ${
-                  scrolled ? "text-primary" : "text-snow"
+                  scrolled ? "text-primary" : "text-[hsl(var(--snow-white))]"
                 } group-hover:text-accent`}
               />
               <span
                 className={`font-display text-xl font-bold tracking-wider transition-colors ${
-                  scrolled ? "text-foreground" : "text-snow"
+                  scrolled ? "text-foreground" : "text-[hsl(var(--snow-white))]"
                 }`}
               >
                 GO NEPAL TREKS
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-5">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={`text-sm font-medium transition-all duration-300 hover:text-accent relative ${
-                    scrolled ? "text-foreground" : "text-snow"
-                  } ${
-                    location.pathname === link.path
-                      ? "text-accent"
-                      : ""
-                  }`}
+                    scrolled ? "text-foreground" : "text-[hsl(var(--snow-white))]"
+                  } ${location.pathname === link.path ? "text-accent" : ""}`}
                 >
                   {link.name}
                   {location.pathname === link.path && (
@@ -99,19 +89,18 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Travel Guides Dropdown */}
               <div className="relative">
                 <button
                   onClick={(e) => { e.stopPropagation(); setGuidesOpen(!guidesOpen); }}
                   className={`text-sm font-medium transition-all duration-300 hover:text-accent flex items-center gap-1 ${
-                    scrolled ? "text-foreground" : "text-snow"
+                    scrolled ? "text-foreground" : "text-[hsl(var(--snow-white))]"
                   }`}
                 >
                   Travel Guides
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform ${guidesOpen ? "rotate-180" : ""}`} />
                 </button>
                 {guidesOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-64 bg-card rounded-xl shadow-elevated border border-border animate-fade-in-up overflow-hidden z-50">
+                  <div className="absolute top-full right-0 mt-2 w-64 bg-card rounded-xl shadow-elevated border border-border overflow-hidden z-50">
                     {travelGuides.map((guide) => (
                       <Link
                         key={guide.path}
@@ -130,11 +119,10 @@ const Navbar = () => {
 
               <Button variant="hero" size="default" onClick={() => setInquiryOpen(true)}>
                 <Send className="w-4 h-4" />
-                Quick Inquiry
+                Get Free Itinerary
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 lg:hidden">
               <Button
                 variant="hero"
@@ -149,7 +137,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 className={`p-2 transition-colors ${
-                  scrolled ? "text-foreground" : "text-snow"
+                  scrolled ? "text-foreground" : "text-[hsl(var(--snow-white))]"
                 }`}
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -157,19 +145,25 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           {isOpen && (
-            <div className="lg:hidden absolute top-20 left-0 right-0 bg-background shadow-elevated animate-fade-in-up max-h-[80vh] overflow-y-auto">
+            <div className="lg:hidden absolute top-20 left-0 right-0 bg-background shadow-elevated max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col p-4 gap-2">
+                <Link
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                  className={`px-4 py-3 rounded-md font-medium transition-colors hover:bg-secondary ${
+                    location.pathname === "/" ? "bg-secondary text-accent" : "text-foreground"
+                  }`}
+                >
+                  Home
+                </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
                     className={`px-4 py-3 rounded-md font-medium transition-colors hover:bg-secondary ${
-                      location.pathname === link.path
-                        ? "bg-secondary text-accent"
-                        : "text-foreground"
+                      location.pathname === link.path ? "bg-secondary text-accent" : "text-foreground"
                     }`}
                   >
                     {link.name}
@@ -184,9 +178,7 @@ const Navbar = () => {
                     to={guide.path}
                     onClick={() => setIsOpen(false)}
                     className={`px-4 py-2.5 rounded-md text-sm transition-colors hover:bg-secondary ${
-                      location.pathname === guide.path
-                        ? "bg-secondary text-accent"
-                        : "text-muted-foreground"
+                      location.pathname === guide.path ? "bg-secondary text-accent" : "text-muted-foreground"
                     }`}
                   >
                     {guide.name}
@@ -194,7 +186,7 @@ const Navbar = () => {
                 ))}
                 <Button variant="hero" className="mt-2" onClick={() => { setIsOpen(false); setInquiryOpen(true); }}>
                   <Send className="w-4 h-4" />
-                  Quick Inquiry
+                  Get Free Itinerary
                 </Button>
               </div>
             </div>

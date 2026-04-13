@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-mountains-optimized4.webp";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
       <img
         src={heroImage}
         alt="Panoramic view of the Nepal Himalayas with snow-capped peaks and trekking trails"
@@ -17,71 +17,42 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-hero-gradient" />
 
-      <div className="relative z-10 container mx-auto px-4 pt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-snow/10 backdrop-blur-sm text-snow text-sm font-medium mb-6 animate-fade-in">
-            🏔️ Personalized Small Group Treks — Max 6 People
-          </span>
-          
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-6 leading-tight">
-            Transform Your Life{" "}
-            <span className="text-gradient">in the Himalayas</span>
-            {" "}— Direct with a Licensed Guide
+      <div className="relative z-10 container mx-auto px-4 pt-20 pb-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--snow-white))] mb-6 leading-tight">
+            Nepal Trekking with{" "}
+            <span className="text-gradient">Licensed Local Experts</span>
           </h1>
-          
-          <p className="text-xl md:text-2xl text-snow/80 mb-4 max-w-2xl mx-auto leading-relaxed">
-            Skip agency middlemen and trek safely with Indra Tamang — a government-licensed guide who's led 150+ international trekkers through Nepal's most breathtaking trails.
+
+          <p className="text-lg md:text-xl text-[hsl(var(--snow-white))]/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Safe, memorable, and fully guided trekking experiences in Nepal
+            with a trusted local team.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-6 text-snow/70 text-sm">
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ No Agency Fees — Save 30–50%</span>
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Free Custom Itinerary in 24 Hours</span>
-            <span className="flex items-center gap-1.5 bg-snow/10 backdrop-blur-sm px-3 py-1.5 rounded-full">✅ Safety-First: Pulse Oximeter & Sat Phone</span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
-                Plan My Trek — It's Free
+                Get a Free Itinerary
                 <ChevronRight className="w-5 h-5" />
               </Link>
             </Button>
-            <Button variant="whatsapp" size="xl" asChild>
-              <a href="https://wa.me/9779818800584?text=Hi!%20I'm%20interested%20in%20trekking%20in%20Nepal.%20Can%20you%20help%20me%20plan?" target="_blank" rel="noopener noreferrer" aria-label="Chat with guide Indra Tamang on WhatsApp to plan your trek">
-                <MessageCircle className="w-5 h-5" />
-                Chat with Indra on WhatsApp
-              </a>
+            <Button variant="glacier" size="xl" asChild>
+              <Link to="/treks">
+                View Trek Packages
+                <ChevronRight className="w-5 h-5" />
+              </Link>
             </Button>
           </div>
 
-          {/* Micro-proof */}
-          <p className="text-snow/60 text-sm mt-4 animate-fade-in delay-400">
-            🛡️ 150+ international trekkers guided safely · 100% safety record · Licensed since 2018
+          <p className="text-[hsl(var(--snow-white))]/60 text-sm">
+            Local expertise, flexible planning, and safety-first support.
           </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-fade-in delay-400">
-            {[
-              { value: "8+", label: "Years Experience" },
-              { value: "150+", label: "Trekkers Guided" },
-              { value: "50+", label: "Trek Routes" },
-              { value: "24/7", label: "Mountain Support" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-snow/70 text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-        <div className="w-8 h-12 rounded-full border-2 border-snow/30 flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 rounded-full bg-snow/50 animate-bounce" />
+        <div className="w-8 h-12 rounded-full border-2 border-[hsl(var(--snow-white))]/30 flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 rounded-full bg-[hsl(var(--snow-white))]/50 animate-bounce" />
         </div>
       </div>
     </section>
