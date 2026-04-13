@@ -1,24 +1,26 @@
-import { Shield, MapPin, Compass, MessageCircle, Mountain, Handshake } from "lucide-react";
+import { Shield, Award, Heart, Headphones, Languages, Users, Clock, UserCheck } from "lucide-react";
 
 const badges = [
-  { icon: Shield, label: "Licensed Local Guides" },
-  { icon: Mountain, label: "Safety-First Trekking" },
-  { icon: Compass, label: "Custom Itineraries" },
-  { icon: MessageCircle, label: "Fast WhatsApp Response" },
-  { icon: MapPin, label: "Local Expertise" },
-  { icon: Handshake, label: "Transparent Communication" },
+  { icon: Award, label: "8+ Years Experience" },
+  { icon: Users, label: "150+ Trekkers Guided" },
+  { icon: Shield, label: "Licensed Guide" },
+  { icon: Languages, label: "English Speaking" },
+  { icon: Headphones, label: "24/7 Mountain Support" },
+  { icon: Heart, label: "Emergency Evacuation" },
+  { icon: UserCheck, label: "Small Groups (Max 6)" },
+  { icon: Clock, label: "Reply in 2 Hours" },
 ];
 
 const TrustBadgesEnhanced = () => (
-  <div className="py-8 bg-secondary border-y border-border">
+  <div className="py-6 bg-primary/5 border-y border-border">
     <div className="container mx-auto px-4">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-8">
         {badges.map((b) => (
-          <div key={b.label} className="flex flex-col items-center gap-2 text-center p-3">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <b.icon className="w-5 h-5 text-primary" />
+          <div key={b.label} className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+              <b.icon className="w-4 h-4 text-accent" />
             </div>
-            <span className="text-sm font-medium text-foreground leading-tight">{b.label}</span>
+            <span className="whitespace-nowrap">{b.label}</span>
           </div>
         ))}
       </div>
