@@ -100,10 +100,8 @@ const TrekPricingTable = ({
                 {/* Cost breakdown */}
                 <div className="space-y-2 text-sm border-t border-border pt-4 mb-6">
                   <div className="flex justify-between text-muted-foreground">
-                    <span>Licensed guide</span>
-                    <span className="font-medium text-foreground">
-                      ${guideCostPerDay}/day × {days}d
-                    </span>
+                    <span>Professional Licensed Guide</span>
+                    <span className="font-medium text-accent">Included</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Food & lodging</span>
@@ -116,7 +114,7 @@ const TrekPricingTable = ({
                 </div>
 
                 <Button
-                  variant="whatsapp"
+                  variant="hero"
                   size="sm"
                   className="w-full"
                   asChild

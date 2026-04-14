@@ -95,15 +95,13 @@ const FeaturedTreks = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     wrapperClassName="w-full h-full"
                   />
-                  {(trek as any).budget_price_usd ? (
-                    <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm shadow-lg">
-                      From ${(trek as any).budget_price_usd.toLocaleString()}
-                    </div>
-                  ) : (
-                    <div className="absolute top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full font-medium text-sm">
-                      Contact for pricing
-                    </div>
-                  )}
+                  <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm shadow-lg">
+                    {(trek as any).budget_price_usd
+                      ? `From $${(trek as any).budget_price_usd.toLocaleString()} / person`
+                      : (trek as any).starting_price_usd
+                        ? `From $${(trek as any).starting_price_usd.toLocaleString()} / person`
+                        : "From $500 / person"}
+                  </div>
                 </div>
 
                 {/* Content */}
