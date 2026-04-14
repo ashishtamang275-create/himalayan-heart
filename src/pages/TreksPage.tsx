@@ -207,11 +207,13 @@ const TreksPage = () => {
                           wrapperClassName="w-full h-full"
                         />
                         {/* Price badge */}
-                        {trekAny.budget_price_usd && (
-                          <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm shadow-lg">
-                            From ${trekAny.budget_price_usd.toLocaleString()}
-                          </div>
-                        )}
+                        <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm shadow-lg">
+                          {trekAny.budget_price_usd
+                            ? `From $${trekAny.budget_price_usd.toLocaleString()} / person`
+                            : trekAny.starting_price_usd
+                              ? `From $${trekAny.starting_price_usd.toLocaleString()} / person`
+                              : "From $500 / person"}
+                        </div>
                         {(trek.regions as any) && (
                           <div className="absolute top-4 left-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                             {(trek.regions as any).name}
