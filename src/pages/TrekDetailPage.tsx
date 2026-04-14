@@ -11,7 +11,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { lazy, Suspense, useState } from "react";
 import TrekImage, { getTrekFallbackImage } from "@/components/TrekImage";
 
-const TrekTestimonialBlock = lazy(() => import("@/components/TrekTestimonialBlock"));
 const InquiryFormDialog = lazy(() => import("@/components/InquiryFormDialog"));
 import TrekPricingTable from "@/components/TrekPricingTable";
 
@@ -318,12 +317,6 @@ const TrekDetailPage = () => {
           </section>
         )}
 
-        {/* Testimonial Block - above itinerary for trust */}
-        <Suspense fallback={null}>
-          <TrekTestimonialBlock />
-        </Suspense>
-
-        {/* Itinerary */}
         {itinerary.length > 0 && (
           <section className="py-12">
             <div className="container mx-auto px-4 max-w-4xl">
