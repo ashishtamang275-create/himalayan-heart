@@ -114,7 +114,7 @@ const TrekPricingTable = ({
                 </div>
 
                 <Button
-                  variant="whatsapp"
+                  variant="hero"
                   size="sm"
                   className="w-full"
                   asChild
