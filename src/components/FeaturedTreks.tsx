@@ -19,7 +19,7 @@ const FeaturedTreks = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("treks")
-        .select("id, name, slug, hero_image_url, duration_days, difficulty, max_altitude_m, short_description")
+        .select("id, name, slug, hero_image_url, duration_days, difficulty, max_altitude_m, short_description, budget_price_usd, starting_price_usd, badge_label")
         .eq("is_featured", true)
         .eq("is_published", true)
         .order("display_order")
@@ -96,11 +96,11 @@ const FeaturedTreks = () => {
                     wrapperClassName="w-full h-full"
                   />
                   <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full font-bold text-sm shadow-lg">
-                    {(trek as any).budget_price_usd
-                      ? `From $${(trek as any).budget_price_usd.toLocaleString()} / person`
-                      : (trek as any).starting_price_usd
-                        ? `From $${(trek as any).starting_price_usd.toLocaleString()} / person`
-                        : "From $500 / person"}
+                    {trek.budget_price_usd
+                      ? `From $${trek.budget_price_usd.toLocaleString()} / person`
+                      : trek.starting_price_usd
+                        ? `From $${trek.starting_price_usd.toLocaleString()} / person`
+                        : "Custom Quote"}
                   </div>
                 </div>
 
