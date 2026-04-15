@@ -16,6 +16,7 @@ const ReviewSection = lazy(() => import("@/components/ReviewSection"));
 const HomepageFAQ = lazy(() => import("@/components/HomepageFAQ"));
 const BlogPreview = lazy(() => import("@/components/BlogPreview"));
 const CTASection = lazy(() => import("@/components/CTASection"));
+const CostTransparencyCTA = lazy(() => import("@/components/CostTransparencyCTA"));
 const Footer = lazy(() => import("@/components/Footer"));
 const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 
@@ -47,6 +48,7 @@ const Index = () => {
         </Suspense>
         <Suspense fallback={null}>
           <HomepageFAQ />
+          <CostTransparencyCTA />
           <BlogPreview />
           <CTASection />
         </Suspense>
