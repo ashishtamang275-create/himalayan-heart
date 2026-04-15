@@ -201,6 +201,7 @@ const TrekDetailPage = () => {
         {heroImage && <meta property="og:image" content={heroImage.src} />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
       </Helmet>
       <Navbar />
       <main>
