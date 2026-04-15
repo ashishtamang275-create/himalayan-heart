@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, DollarSign, Shield, CheckCircle } from "lucide-react";
+import { MessageCircle, DollarSign, Shield, CheckCircle, FileText } from "lucide-react";
 
 const WHATSAPP_NUMBER = "9779818800584";
 
@@ -78,6 +78,24 @@ const TrekkingCostBreakdownPage = () => {
                 </li>
               ))}
             </ul>
+          </section>
+
+          {/* Tipping & Ethical Trekking */}
+          <section className="bg-muted/40 rounded-xl p-6 md:p-8 mb-12">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+              <DollarSign className="w-6 h-6 text-accent" /> Honest Tipping Guidelines
+            </h2>
+            <p className="text-foreground mb-2">
+              Tipping is an important part of trekking culture in Nepal. A standard tip of <strong>10% to 15%</strong> of your total trek cost is customary and is shared among your guide and porter team.
+            </p>
+            <p className="text-muted-foreground mb-6">
+              This directly rewards the people who carry your gear, cook your meals, and keep you safe on the trail. We encourage all trekkers to tip fairly — it makes a real difference in their livelihoods.
+            </p>
+            <Button variant="hero" size="lg" asChild>
+              <a href="/2026_Nepal_Trekking_Tipping_Guide.pdf" target="_blank" rel="noopener noreferrer">
+                <FileText className="w-5 h-5" /> Download Tipping & Cost Guide (PDF)
+              </a>
+            </Button>
           </section>
 
           {/* CTA */}

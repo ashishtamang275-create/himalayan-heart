@@ -107,6 +107,20 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+
+            <h3 className="font-display text-lg font-semibold mb-6 mt-8 text-snow">
+              Transparency
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/trekking-cost-breakdown"
+                  className="text-snow/70 hover:text-accent transition-colors"
+                >
+                  2026 Cost Breakdown
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact Info */}

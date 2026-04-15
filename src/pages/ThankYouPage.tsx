@@ -9,7 +9,7 @@ const WHATSAPP_NUMBER = "9779818800584";
 const WHATSAPP_MSG = encodeURIComponent(
   "Hi Indra! I just submitted an inquiry on Go Nepal Adventure and would love to start planning my trek."
 );
-const GEAR_CHECKLIST_URL = "/trekking-gear-checklist.pdf";
+const GEAR_CHECKLIST_URL = "/Ultimate_Nepal_Trekking_Gear_Checklist.pdf";
 
 const ThankYouPage = () => {
   return (
