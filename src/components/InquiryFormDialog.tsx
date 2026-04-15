@@ -130,7 +130,7 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label htmlFor="iq-month" className="block text-sm font-medium text-foreground mb-1">Planned Month</label>
               <select id="iq-month" name="planned_month" value={formData.planned_month} onChange={handleChange} className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground text-sm">

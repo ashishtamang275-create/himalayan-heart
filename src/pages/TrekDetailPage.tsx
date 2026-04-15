@@ -127,25 +127,49 @@ const TrekDetailPage = () => {
   const metaTitle = trek.meta_title || `${trek.name} Cost 2026: Licensed Kathmandu Guide ${trek.budget_price_usd ? `$${trek.budget_price_usd}` : ''} → Direct Booking`;
   const metaDesc = trek.meta_description || `No agency fees. Licensed local guide, full itinerary, permits included. ${trek.best_season || 'April 2026'} slots open! ${trek.budget_price_usd ? `From $${trek.budget_price_usd}.` : ''}`;
 
-  // JSON-LD structured data
+  const lowestPrice = trek.budget_price_usd || trek.starting_price_usd || trek.standard_price_usd;
+
+  // JSON-LD structured data — TouristTrip
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: trek.name,
     description: trek.short_description,
     touristType: "Adventure",
-    image: heroImage?.src,
-    offers: trek.starting_price_usd ? {
-      "@type": "Offer",
-      price: trek.starting_price_usd,
-      priceCurrency: "USD",
-    } : undefined,
+    image: heroImage?.src || getTrekFallbackImage(slug),
+    itinerary: {
+      "@type": "ItemList",
+      numberOfItems: trek.duration_days,
+      description: `${trek.duration_days}-day trek${trek.max_altitude_m ? `, max altitude ${trek.max_altitude_m}m` : ''}`,
+    },
+    ...(lowestPrice ? {
+      offers: {
+        "@type": "Offer",
+        price: lowestPrice,
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+    } : {}),
     provider: {
       "@type": "TravelAgency",
       name: "Go Nepal Adventures",
       url: "https://ashish-tamang.com.np",
     },
   };
+
+  // JSON-LD — FAQPage (only if FAQs exist)
+  const faqLd = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  } : null;
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -177,6 +201,7 @@ const TrekDetailPage = () => {
         {heroImage && <meta property="og:image" content={heroImage.src} />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
       </Helmet>
       <Navbar />
       <main>
