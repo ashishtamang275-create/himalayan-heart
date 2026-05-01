@@ -12,6 +12,7 @@ const HowBookingWorks = lazy(() => import("@/components/HowBookingWorks"));
 const WhyBookDirect = lazy(() => import("@/components/WhyBookDirect"));
 const QuickFactBar = lazy(() => import("@/components/QuickFactBar"));
 const RealTrekkersGallery = lazy(() => import("@/components/RealTrekkersGallery"));
+const RegionGrid = lazy(() => import("@/components/RegionGrid"));
 const ReviewSection = lazy(() => import("@/components/ReviewSection"));
 const HomepageFAQ = lazy(() => import("@/components/HomepageFAQ"));
 const BlogPreview = lazy(() => import("@/components/BlogPreview"));
@@ -38,6 +39,7 @@ const Index = () => {
           <GuideProfiles />
           <GovernmentLicense />
           <FeaturedTreks />
+          <RegionGrid />
           <HowBookingWorks />
           <WhyBookDirect />
           <QuickFactBar />
