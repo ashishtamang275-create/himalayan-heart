@@ -59,6 +59,8 @@ const Footer = () => {
                 { name: "Tours", path: "/tours" },
                 { name: "About Us", path: "/about" },
                 { name: "Our Guides", path: "/about-our-guides" },
+              { name: "Why Us", path: "/why-us" },
+              { name: "Trekking Packages", path: "/trekking-packages" },
                 { name: "Blog", path: "/blog" },
                 { name: "FAQ", path: "/faq" },
                 { name: "Gallery", path: "/gallery" },
