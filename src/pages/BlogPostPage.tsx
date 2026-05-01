@@ -10,6 +10,46 @@ import { Button } from "@/components/ui/button";
 import DOMPurify from "dompurify";
 import RelatedTreks from "@/components/RelatedTreks";
 
+// Static SEO fallbacks rendered immediately from the URL slug — before Supabase loads.
+const BLOG_SEO_FALLBACK: Record<
+  string,
+  { title: string; description: string; category: string; readTime: number }
+> = {
+  "best-time-to-trek-in-nepal": {
+    title: "Best Time to Trek in Nepal: A Complete Seasonal Guide",
+    description: "Month-by-month breakdown of the best seasons to trek Nepal — weather, visibility, and crowd levels.",
+    category: "Trekking Guides",
+    readTime: 8,
+  },
+  "everest-base-camp-trek-complete-guide": {
+    title: "Everest Base Camp Trek: The Complete 2026 Guide",
+    description: "Everything you need to plan the EBC trek — itinerary, costs, permits, training, and acclimatization.",
+    category: "Trekking Guides",
+    readTime: 12,
+  },
+  "altitude-sickness-prevention-nepal": {
+    title: "Altitude Sickness in Nepal: How to Prevent, Recognize & Treat It",
+    description: "Practical advice on AMS prevention, symptoms, treatment, and emergency descent for high-altitude trekkers.",
+    category: "Safety",
+    readTime: 7,
+  },
+  "packing-list-for-nepal-trek": {
+    title: "The Ultimate Packing List for Trekking in Nepal",
+    description: "Complete gear checklist for Nepal treks — layers, footwear, sleeping bag, first-aid, and documents.",
+    category: "Trekking Guides",
+    readTime: 6,
+  },
+  "culture-etiquette-nepal": {
+    title: "Cultural Etiquette in Nepal: Do's and Don'ts for Travelers",
+    description: "Respectful travel in Nepal — temple etiquette, greetings, dress code, and cultural awareness.",
+    category: "Culture",
+    readTime: 5,
+  },
+};
+
+const slugToTitle = (slug?: string) =>
+  slug ? slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ") : "Article";
+
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -28,14 +68,45 @@ const BlogPostPage = () => {
   });
 
   if (isLoading) {
+    const fallback = slug ? BLOG_SEO_FALLBACK[slug] : undefined;
+    const title = fallback?.title || slugToTitle(slug);
+    const description = fallback?.description || `Read our guide on ${title} — tips and insights from Go Nepal Adventure.`;
     return (
       <div className="min-h-screen">
+        <Helmet>
+          <title>{`${title} | Go Nepal Adventures Blog`}</title>
+          <meta name="description" content={description} />
+          <link rel="canonical" href={`https://ashish-tamang.com.np/blog/${slug ?? ""}`} />
+        </Helmet>
         <Navbar />
-        <div className="pt-32 container mx-auto px-4 max-w-3xl animate-pulse space-y-4">
-          <div className="h-10 bg-secondary rounded w-2/3" />
-          <div className="h-6 bg-secondary rounded w-1/3" />
-          <div className="h-64 bg-secondary rounded" />
-        </div>
+        <main className="pt-28 pb-16">
+          <article className="container mx-auto px-4 max-w-3xl">
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8 flex-wrap">
+              <Link to="/" className="hover:text-accent">Home</Link>
+              <ChevronRight className="w-4 h-4" />
+              <Link to="/blog" className="hover:text-accent">Blog</Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-foreground line-clamp-1">{title}</span>
+            </nav>
+            {fallback && (
+              <span className="text-accent text-sm font-semibold uppercase tracking-wider">{fallback.category}</span>
+            )}
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">{title}</h1>
+            <p className="text-lg text-muted-foreground mb-6">{description}</p>
+            {fallback && (
+              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
+                <span className="flex items-center gap-1"><User className="w-4 h-4" />Indra Tamang</span>
+                <span className="flex items-center gap-1"><Clock className="w-4 h-4" />{fallback.readTime} min read</span>
+              </div>
+            )}
+            <div className="animate-pulse space-y-3" aria-hidden="true">
+              <div className="h-64 bg-secondary rounded" />
+              <div className="h-4 bg-secondary rounded w-full" />
+              <div className="h-4 bg-secondary rounded w-5/6" />
+              <div className="h-4 bg-secondary rounded w-2/3" />
+            </div>
+          </article>
+        </main>
       </div>
     );
   }
