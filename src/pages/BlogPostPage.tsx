@@ -52,6 +52,24 @@ const BlogPostPage = () => {
     );
   }
 
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.meta_description || post.excerpt,
+    image: post.hero_image_url || undefined,
+    datePublished: post.published_at || undefined,
+    dateModified: post.updated_at || post.published_at || undefined,
+    author: {
+      "@type": "Person",
+      name: "Indra Tamang",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Go Nepal Adventure",
+    },
+  };
+
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -60,6 +78,7 @@ const BlogPostPage = () => {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
       </Helmet>
       <Navbar />
       <main className="pt-28 pb-16">
