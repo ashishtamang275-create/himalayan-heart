@@ -47,6 +47,57 @@ const TREK_HERO_MAP: Record<string, { src: string; alt: string }> = {
   },
 };
 
+// Static SEO fallbacks rendered immediately from the URL slug — before Supabase data loads.
+// Lets crawlers and first-paint users see a meaningful H1, description and key stats.
+const TREK_SEO_FALLBACK: Record<
+  string,
+  { name: string; description: string; durationDays: number; difficulty: string; maxAltitudeM: number; region: string }
+> = {
+  "everest-base-camp": {
+    name: "Everest Base Camp Trek",
+    description: "Classic 14-day trek to the foot of Mount Everest (5,364m) through Sherpa villages and Khumbu glaciers.",
+    durationDays: 14,
+    difficulty: "Challenging",
+    maxAltitudeM: 5644,
+    region: "Everest Region",
+  },
+  "annapurna-base-camp": {
+    name: "Annapurna Base Camp Trek",
+    description: "Iconic 10-day trek into the Annapurna Sanctuary surrounded by 7,000m+ peaks.",
+    durationDays: 10,
+    difficulty: "Moderate",
+    maxAltitudeM: 4130,
+    region: "Annapurna Region",
+  },
+  "manaslu-circuit": {
+    name: "Manaslu Circuit Trek",
+    description: "Remote 14-day circuit around the world's 8th highest peak, crossing the Larkya La Pass (5,160m).",
+    durationDays: 14,
+    difficulty: "Challenging",
+    maxAltitudeM: 5160,
+    region: "Manaslu Region",
+  },
+  "langtang-valley": {
+    name: "Langtang Valley Trek",
+    description: "Scenic 8-day trek through Tamang villages and glacial valleys close to Kathmandu.",
+    durationDays: 8,
+    difficulty: "Moderate",
+    maxAltitudeM: 4984,
+    region: "Langtang Region",
+  },
+  "ghorepani-poonhill": {
+    name: "Ghorepani Poon Hill Trek",
+    description: "Short 5-day trek with sunrise views over Dhaulagiri and the Annapurna range from Poon Hill.",
+    durationDays: 5,
+    difficulty: "Easy",
+    maxAltitudeM: 3210,
+    region: "Annapurna Region",
+  },
+};
+
+const slugToTitle = (slug?: string) =>
+  slug ? slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ") + " Trek" : "Trek";
+
 const TrekDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [contactOpen, setContactOpen] = useState(false);
@@ -94,16 +145,68 @@ const TrekDetailPage = () => {
   });
 
   if (isLoading) {
+    const fallback = slug ? TREK_SEO_FALLBACK[slug] : undefined;
+    const title = fallback?.name || slugToTitle(slug);
+    const description = fallback?.description || `Full itinerary, permits, and licensed local guide for the ${title}.`;
+    const heroImage = slug ? TREK_HERO_MAP[slug] : null;
     return (
       <div className="min-h-screen">
+        <Helmet>
+          <title>{`${title} | Go Nepal Adventure`}</title>
+          <meta name="description" content={description} />
+          <link rel="canonical" href={`https://ashish-tamang.com.np/trek/${slug ?? ""}`} />
+        </Helmet>
         <Navbar />
-        <div className="pt-32 pb-20 container mx-auto px-4">
-          <div className="animate-pulse space-y-6">
-            <div className="h-64 bg-secondary rounded" />
-            <div className="h-12 bg-secondary rounded w-2/3" />
-            <div className="h-6 bg-secondary rounded w-1/2" />
+        <main className="pt-28 pb-20">
+          <div className="container mx-auto px-4">
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
+              <Link to="/" className="hover:text-accent">Home</Link>
+              <ChevronRight className="w-4 h-4" />
+              <Link to="/treks" className="hover:text-accent">Treks</Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-foreground">{title}</span>
+            </nav>
+
+            <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">{title}</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mb-6">{description}</p>
+
+            {fallback && (
+              <div className="flex flex-wrap gap-6 text-sm mb-8">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <Clock className="w-4 h-4 text-accent" />
+                  {fallback.durationDays} Days
+                </div>
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <TrendingUp className="w-4 h-4 text-accent" />
+                  {fallback.difficulty}
+                </div>
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <Mountain className="w-4 h-4 text-accent" />
+                  Max altitude {fallback.maxAltitudeM.toLocaleString()}m
+                </div>
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <MapPin className="w-4 h-4 text-accent" />
+                  {fallback.region}
+                </div>
+              </div>
+            )}
+
+            {heroImage && (
+              <img
+                src={heroImage.src}
+                alt={heroImage.alt}
+                className="w-full h-64 md:h-96 object-cover rounded-xl mb-8"
+              />
+            )}
+
+            <div className="animate-pulse space-y-4" aria-hidden="true">
+              <div className="h-6 bg-secondary rounded w-1/2" />
+              <div className="h-4 bg-secondary rounded w-full" />
+              <div className="h-4 bg-secondary rounded w-5/6" />
+              <div className="h-4 bg-secondary rounded w-2/3" />
+            </div>
           </div>
-        </div>
+        </main>
       </div>
     );
   }
