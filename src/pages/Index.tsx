@@ -22,12 +22,29 @@ const Footer = lazy(() => import("@/components/Footer"));
 const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 
 const Index = () => {
+  const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristInformationCenter",
+    name: "Go Nepal Adventure",
+    url: "https://ashish-tamang.com.np",
+    telephone: "+977-9818800584",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kathmandu",
+      addressCountry: "NP",
+    },
+    description:
+      "Licensed local trekking guide in Nepal. EBC, Annapurna, Langtang, Manaslu treks. Book direct, save 30-50%.",
+    priceRange: "$$",
+  };
+
   return (
     <div className="min-h-screen">
       <Helmet>
         <title>Nepal Trekking 2026 – Licensed Local Guide | Go Nepal Adventure</title>
         <meta name="description" content="Trek Nepal directly with a licensed local guide. No agency fees. Everest, Annapurna & Langtang treks with safety-first protocols. Free custom itinerary in 24hrs." />
         <link rel="canonical" href="https://ashish-tamang.com.np/" />
+        <script type="application/ld+json">{JSON.stringify(localBusinessLd)}</script>
       </Helmet>
       <Navbar />
       <main>
