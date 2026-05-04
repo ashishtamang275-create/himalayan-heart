@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load pages for better performance
@@ -52,7 +52,7 @@ const App = () => (
               <Route path="/trekking-packages" element={<TreksPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/guides" element={<Index />} />
+              <Route path="/guides" element={<Navigate to="/about-our-guides" replace />} />
               <Route path="/why-us" element={<WhyUsPage />} />
               <Route path="/region/:slug" element={<RegionPage />} />
               <Route path="/trek/:slug" element={<TrekDetailPage />} />
