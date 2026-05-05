@@ -90,6 +90,15 @@ const InquiryFormDialog = ({ open, onOpenChange, prefilledTrek }: InquiryFormDia
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
+
+      // Fire GA4 conversion event
+      if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+        (window as any).gtag("event", "trek_inquiry", {
+          event_category: "conversion",
+          event_label: formData.trek || "general",
+        });
+      }
+
       onOpenChange(false);
       navigate("/thank-you");
     } catch {

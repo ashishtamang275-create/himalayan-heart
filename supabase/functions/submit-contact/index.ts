@@ -149,6 +149,33 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    // For newsletter signups, prevent duplicates by email
+    if (sanitizedData.trek === 'Newsletter Signup') {
+      const { data: existing, error: lookupError } = await supabase
+        .from('contacts')
+        .select('id')
+        .eq('email', sanitizedData.email)
+        .eq('trek', 'Newsletter Signup')
+        .limit(1)
+        .maybeSingle();
+
+      if (lookupError) {
+        console.error('[submit-contact] Newsletter duplicate check error:', lookupError);
+      }
+
+      if (existing) {
+        console.log(`[submit-contact] Duplicate newsletter signup blocked: ${sanitizedData.email}`);
+        return new Response(JSON.stringify({
+          success: false,
+          duplicate: true,
+          message: "You're already subscribed!",
+        }), {
+          status: 200,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
     // Insert contact into database
     const { data, error } = await supabase
       .from('contacts')

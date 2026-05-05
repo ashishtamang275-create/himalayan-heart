@@ -38,6 +38,23 @@ const Newsletter = () => {
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
 
+      if (data?.duplicate) {
+        toast({
+          title: "You're already subscribed!",
+          description: "This email is already on our list.",
+        });
+        setEmail("");
+        return;
+      }
+
+      // Fire GA4 conversion event
+      if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+        (window as any).gtag("event", "newsletter_signup", {
+          event_category: "engagement",
+          event_label: "footer_newsletter",
+        });
+      }
+
       setIsSubmitted(true);
       toast({
         title: "Subscribed!",
