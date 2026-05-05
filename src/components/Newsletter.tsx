@@ -3,13 +3,15 @@ import { Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email) {
@@ -21,15 +23,38 @@ const Newsletter = () => {
       return;
     }
 
-    // Simulate submission
-    setIsSubmitted(true);
-    toast({
-      title: "Successfully subscribed!",
-      description: "You'll receive our latest trekking tips and offers.",
-    });
-    setEmail("");
-    
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("submit-contact", {
+        body: {
+          name: "Newsletter Subscriber",
+          email: email.trim(),
+          trek: "Newsletter Signup",
+          message: "Newsletter subscription from website footer.",
+          source: "newsletter",
+          type: "newsletter",
+        },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+
+      setIsSubmitted(true);
+      toast({
+        title: "Subscribed!",
+        description: "Thank you! We'll send you Nepal trekking tips and seasonal deals.",
+      });
+      setEmail("");
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      console.error("Newsletter signup error:", err);
+      toast({
+        title: "Subscription failed",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -63,7 +88,7 @@ const Newsletter = () => {
                 type="submit"
                 variant="hero"
                 size="lg"
-                disabled={isSubmitted}
+                disabled={isSubmitted || isSubmitting}
                 className="min-w-[140px]"
               >
                 {isSubmitted ? (
@@ -73,7 +98,7 @@ const Newsletter = () => {
                   </>
                 ) : (
                   <>
-                    Subscribe
+                    {isSubmitting ? "Subscribing..." : "Subscribe"}
                     <Send className="w-4 h-4" />
                   </>
                 )}
