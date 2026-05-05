@@ -4,12 +4,48 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle, Star } from "lucide-react";
+import { Clock, TrendingUp, MapPin, ChevronRight, MessageCircle, Star, Check, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
 
+const REGION_SEO_FALLBACK: Record<
+  string,
+  { name: string; description: string; highlights: string[]; permit: string }
+> = {
+  everest: {
+    name: "Everest Region Trekking",
+    description:
+      "Trek in the Everest region of Nepal — home to the world's highest peak. Explore Khumbu valley, Namche Bazaar, and Tengboche monastery with a licensed local guide.",
+    highlights: ["Everest Base Camp", "Kala Patthar", "Namche Bazaar", "Tengboche Monastery"],
+    permit: "Sagarmatha National Park Permit + TIMS",
+  },
+  langtang: {
+    name: "Langtang Region Trekking",
+    description:
+      "Trek through Langtang National Park — Nepal's closest trekking region to Kathmandu. Tamang villages, yak pastures and stunning Himalayan views await.",
+    highlights: ["Kyanjin Gompa", "Tserko Ri", "Langtang Village", "Tamang Heritage"],
+    permit: "Langtang National Park Permit + TIMS",
+  },
+  manaslu: {
+    name: "Manaslu Region Trekking",
+    description:
+      "Trek the remote Manaslu Circuit around the world's 8th highest peak. A restricted area permit trek with dramatic scenery and authentic mountain culture.",
+    highlights: ["Larkya La Pass 5160m", "Samagaun Village", "Manaslu Base Camp", "Tsum Valley"],
+    permit: "Manaslu Restricted Area Permit + MCAP + TIMS",
+  },
+  kanchenjunga: {
+    name: "Kanchenjunga Region Trekking",
+    description:
+      "Trek to the base camps of Kanchenjunga — the world's 3rd highest mountain. A remote, off-the-beaten-path adventure in far eastern Nepal.",
+    highlights: ["North Base Camp 5143m", "South Base Camp", "Ghunsa Village", "Taplejung"],
+    permit: "Kanchenjunga Restricted Area Permit + TIMS",
+  },
+};
+
 const RegionPage = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  const fallback = slug ? REGION_SEO_FALLBACK[slug] : undefined;
 
   const { data: region, isLoading: regionLoading } = useQuery({
     queryKey: ["region", slug],
@@ -40,7 +76,7 @@ const RegionPage = () => {
     enabled: !!region?.id,
   });
 
-  if (regionLoading) {
+  if (regionLoading && !fallback) {
     return (
       <div className="min-h-screen">
         <Navbar />
@@ -54,7 +90,7 @@ const RegionPage = () => {
     );
   }
 
-  if (!region) {
+  if (!region && !fallback) {
     return (
       <div className="min-h-screen">
         <Navbar />
@@ -66,11 +102,18 @@ const RegionPage = () => {
     );
   }
 
+  const displayName = region?.name ?? fallback!.name.replace(/\s+Trekking$/, "");
+  const displayDescription = region?.description ?? fallback!.description;
+  const seoTitle =
+    region?.meta_title || `${fallback?.name ?? `${displayName} Treks`} | Go Nepal Adventures`;
+  const seoDescription =
+    region?.meta_description || region?.short_description || fallback!.description;
+
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>{region.meta_title || `${region.name} Treks | Go Nepal Adventures`}</title>
-        <meta name="description" content={region.meta_description || region.short_description} />
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
       </Helmet>
       <Navbar />
       <main>
@@ -82,14 +125,39 @@ const RegionPage = () => {
               <ChevronRight className="w-4 h-4" />
               <Link to="/treks" className="hover:text-accent">Treks</Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-foreground">{region.name}</span>
+              <span className="text-foreground">{displayName}</span>
             </nav>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              {region.name} Treks
+              {displayName} Treks
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-              {region.description}
+              {displayDescription}
             </p>
+
+            {fallback && (
+              <div className="grid md:grid-cols-2 gap-8 mt-10 max-w-4xl">
+                <div className="bg-card rounded-xl p-6 shadow-soft">
+                  <h2 className="font-display text-xl font-bold text-foreground mb-4">
+                    Trek Highlights
+                  </h2>
+                  <ul className="space-y-2">
+                    {fallback.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2 text-muted-foreground">
+                        <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-soft">
+                  <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-accent" />
+                    Permits Required
+                  </h2>
+                  <p className="text-muted-foreground">{fallback.permit}</p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -97,7 +165,7 @@ const RegionPage = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="font-display text-3xl font-bold text-foreground mb-10">
-              Available Treks in {region.name}
+              Available Treks in {displayName}
             </h2>
             {treks.length === 0 ? (
               <p className="text-muted-foreground">No treks available yet for this region. Check back soon!</p>
