@@ -32,8 +32,9 @@ const EBCCostPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Everest Base Camp Trek Cost Breakdown 2026 | Go Nepal Adventure</title>
-        <meta name="description" content="Complete cost breakdown for Everest Base Camp trek in 2026. Budget, mid-range, and luxury options explained. Permits, flights, accommodation, food, and tips." />
+        <title>Everest Base Camp Trek Cost 2026 — Complete Breakdown ($800–$2,500)</title>
+        <meta name="description" content="How much does Everest Base Camp trek cost in 2026? Full breakdown: permits $60, Lukla flights $350, guide fees, teahouse costs. Budget $800 vs luxury $2,500. Book direct with licensed local guide and save 30-50% vs agencies." />
+        <link rel="canonical" href="https://ashish-tamang.com.np/everest-base-camp-cost" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <Navbar />
@@ -47,22 +48,17 @@ const EBCCostPage = () => {
           </nav>
 
           <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Everest Base Camp Trek Cost Breakdown 2026
+            Everest Base Camp Trek Cost 2026 — Complete Breakdown
           </h1>
           <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
             Planning your Everest Base Camp trek and wondering how much it will really cost? This comprehensive guide breaks down every expense — from flights and permits to accommodation, food, and tips — so you can budget accurately for your Himalayan adventure.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Overview: What Does EBC Trek Cost?</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">How Much Does EBC Trek Cost in 2026?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            The Everest Base Camp trek typically costs between <strong>$1,200 and $3,500+</strong> depending on your travel style. This includes international flights to Kathmandu, the domestic flight to Lukla, trekking permits, accommodation, meals, guide and porter fees, gear, and insurance.
-          </p>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
-            Booking directly with a local trekking company in Nepal — rather than through an international agency — can save you 30–50% on package costs. Local operators like Go Nepal Adventure offer transparent pricing with no hidden fees.
+            The Everest Base Camp trek costs between <strong>$800 and $2,500</strong> in 2026 when you book directly with a licensed Nepali guide, and $1,500–$4,000+ if you book through an international agency. The price depends on group size, accommodation tier, whether you fly or drive to Lukla, and if you add extras like a helicopter return from Gorak Shep. The categories below cover every line item you'll actually pay for on a standard 12–14 day itinerary.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Detailed Cost Breakdown</h2>
-          
           <div className="overflow-x-auto mb-8">
             <table className="w-full border-collapse border border-border text-sm">
               <thead>
@@ -93,33 +89,58 @@ const EBCCostPage = () => {
             </table>
           </div>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Permit Costs Explained</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Nepal Trekking Permit Costs</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Two permits are required for the Everest Base Camp trek: the <strong>TIMS card</strong> (Trekkers' Information Management System) costing around $20, and the <strong>Sagarmatha National Park entry permit</strong> costing approximately $60 for foreign nationals. Your trekking company will typically arrange these in Kathmandu before departure. For more details, see our <Link to="/trekking-permits-nepal" className="text-accent hover:underline">complete trekking permits guide</Link>.
+            Two permits are required for EBC in 2026. The <strong>Sagarmatha National Park Entry Permit</strong> costs <strong>NPR 3,000</strong> (~$25 USD) for foreign nationals and NPR 1,500 for SAARC citizens — issued by the Nepal Tourism Board in Kathmandu or at the Monjo checkpoint. The <strong>Khumbu Pasang Lhamu Rural Municipality Permit</strong> costs <strong>NPR 2,000</strong> (~$17 USD) and replaced the standard TIMS card inside the Khumbu region back in 2018; it's collected at Lukla on arrival. You'll need your passport and two passport-size photos. Combined permit cost: roughly <strong>$42–$60 USD</strong>. Licensed operators handle every permit end-to-end, so you don't queue. See our full <Link to="/trekking-permits-nepal" className="text-accent hover:underline">Nepal trekking permits guide</Link> for region-by-region rules.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">How to Save Money on EBC Trek</h2>
-          <ul className="list-disc list-inside text-muted-foreground mb-6 space-y-2">
-            <li><strong>Book directly with a local company:</strong> Cut out the middleman and save 30–50%.</li>
-            <li><strong>Trek in shoulder season:</strong> March, May, October, and November offer good weather with lower prices.</li>
-            <li><strong>Share a porter:</strong> Two trekkers can share one porter to split costs.</li>
-            <li><strong>Rent gear in Kathmandu:</strong> Thamel has affordable rental shops for sleeping bags, jackets, and boots.</li>
-            <li><strong>Carry water purification tablets:</strong> Avoid buying expensive bottled water at altitude.</li>
-          </ul>
-
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">What's Included in a Typical Package?</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Kathmandu to Lukla Flight Cost</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            A standard EBC trek package from a reputable local operator includes: airport pickup and drop-off, Kathmandu-Lukla-Kathmandu flights, all necessary trekking permits, teahouse accommodation during the trek, three meals per day (breakfast, lunch, dinner), an experienced English-speaking guide, porters (1 porter per 2 trekkers), first aid kit, and 24/7 emergency support.
+            The 30-minute flight to Lukla — gateway to the Khumbu — costs <strong>$150–$180 USD one-way</strong> per person on Tara Air, Summit Air, or Sita Air, totalling roughly <strong>$300–$360 round trip</strong>. During peak seasons (mid-March to May and October to November), commercial flights typically depart from <strong>Ramechhap (Manthali) airport</strong> instead of Kathmandu, which means a 4–5 hour pre-dawn drive (around $25 per seat in a shared jeep). A shared <strong>helicopter charter</strong> is the fastest alternative at roughly <strong>$500 USD per seat one-way</strong>, increasingly popular as a return option from Lukla or Gorak Shep. Baggage limits are 10 kg checked plus 5 kg hand luggage. Book at least 6–8 weeks ahead for peak dates — Lukla seats sell out, and weather delays of 1–2 days are common.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Hidden Costs to Watch For</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Guide and Porter Fees</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Be aware of costs that aren't always included in package prices: hot showers ($2–$5 per use), WiFi at teahouses ($3–$5 per hour), charging devices ($3–$5), snacks and drinks, souvenirs, and tips for guides and porters. Budget an extra $150–$300 for these expenses.
+            A government-licensed trekking <strong>guide</strong> costs <strong>$25–$35 per day</strong> in 2026, and a <strong>porter</strong> (carrying up to 25 kg) costs <strong>$20–$25 per day</strong> — often shared between two trekkers, which works out to $10–$13 each. A combined guide-porter (a strong guide who also carries a daypack) runs around <strong>$30 per day</strong>. These daily rates already include your guide's food, lodging, insurance, and domestic flight to Lukla, so there are no add-ons mid-trek. As of <strong>April 2023</strong>, the Nepal government requires every foreign trekker in protected areas to hire a licensed guide. Booking your guide directly in Nepal — rather than paying an international agency to find one for you — keeps wages fair, supports local families, and saves you 30–50% on the same trip.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Is EBC Trek Worth the Cost?</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Teahouse Accommodation and Food Costs</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Teahouses are family-run lodges along the trail. Twin-share rooms cost <strong>$5–$10 per night</strong> at lower altitudes (Phakding, Namche Bazaar) and rise to <strong>$10–$20 per night</strong> in higher villages like Lobuche and Gorak Shep, where supplies must be carried up by porter or yak. For meals, expect <strong>$6–$10 for dal bhat</strong> (the unlimited-refill local staple), $5–$8 for momos, and $4–$8 for breakfast. Plan <strong>$30–$40 per day</strong> for food at higher elevations, where prices roughly double. Bottled water is $2–$5 — bring purification tablets or a SteriPEN to save $30+ across the trek. Total accommodation plus food for a 12-day EBC trek typically lands at <strong>$400–$600 USD</strong>.
+          </p>
+
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Budget EBC Trek Cost vs Luxury</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Your travel style determines almost everything. Here's a realistic 2026 comparison for the same 12–14 day route:
+          </p>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full border-collapse border border-border text-sm">
+              <thead>
+                <tr className="bg-secondary">
+                  <th className="border border-border px-4 py-3 text-left font-semibold text-foreground">Tier</th>
+                  <th className="border border-border px-4 py-3 text-left font-semibold text-foreground">Total Cost</th>
+                  <th className="border border-border px-4 py-3 text-left font-semibold text-foreground">What You Get</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr><td className="border border-border px-4 py-2 font-medium text-foreground">Budget</td><td className="border border-border px-4 py-2">$800–$1,200</td><td className="border border-border px-4 py-2">Group teahouse trek booked locally, shared porter, basic gear rental, dal bhat meals.</td></tr>
+                <tr><td className="border border-border px-4 py-2 font-medium text-foreground">Standard</td><td className="border border-border px-4 py-2">$1,500–$2,000</td><td className="border border-border px-4 py-2">Private guide and porter, mid-range teahouses, insurance, varied meals, all permits.</td></tr>
+                <tr><td className="border border-border px-4 py-2 font-medium text-foreground">Luxury</td><td className="border border-border px-4 py-2">$2,500–$4,000+</td><td className="border border-border px-4 py-2">Yeti Mountain Home / Everest Summit Lodges, helicopter return from Gorak Shep, premium gear, à la carte menus.</td></tr>
+              </tbody>
+            </table>
+          </div>
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            Absolutely. Standing at the base of the world's highest mountain is a once-in-a-lifetime experience. The trek passes through stunning Sherpa villages, ancient monasteries, and some of the most dramatic mountain scenery on Earth. With proper planning and a trusted local guide, it's an investment in memories that will last forever.
+            Most independent trekkers land in the standard tier — comfortable, safe, and well-supported, without overpaying for marble bathrooms at 5,000m.
+          </p>
+
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Hidden Costs Nobody Tells You About</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            These line items rarely appear in package quotes but absolutely will hit your wallet on trek. <strong>Hot showers</strong> cost $3–$8 (gas-heated above Namche), <strong>Wi-Fi</strong> via an Everest Link card runs $20–$30 for the whole trek, <strong>device charging</strong> is $2–$5 per hour, bakery items in Namche cost $3–$8, and a Snickers bar at Gorak Shep is $4–$7. <strong>Tipping</strong> is customary: $10–$15 per day for your guide and $7–$10 per day for your porter. Add a <strong>Nepal tourist visa</strong> ($30 for 15 days or $50 for 30 days on arrival) and <strong>travel insurance with helicopter rescue cover</strong> ($80–$150). Realistic extra budget on top of your trek package: <strong>$200–$400</strong>.
+          </p>
+
+          <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Why Booking Direct Saves You 30-50%</h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            International agencies aren't running your trek — they're reselling it. They contract a Kathmandu-based local operator (often the same ones travellers find on their own) and mark the price up <strong>30–50%</strong> to cover overseas marketing, sales commissions, and corporate overhead. Booking directly with a licensed Nepali guide means the same itinerary, same teahouses, and same porter team — at <strong>$1,200 instead of $1,800</strong>. 100% of your payment stays in Nepal's local economy, you communicate directly with your guide on WhatsApp, dates are flexible, and there are no group surcharges for solo or pair travellers. That's the entire model behind Go Nepal Adventure: transparent pricing, real wages, no middlemen.
           </p>
 
           <h2 className="font-display text-2xl font-bold text-foreground mb-4 mt-10">Related Resources</h2>
