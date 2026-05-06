@@ -42,10 +42,49 @@ const REGION_SEO_FALLBACK: Record<
   },
 };
 
+const REGION_LONG_CONTENT: Record<
+  string,
+  { about: string; bestTime: string; permits: string }
+> = {
+  everest: {
+    about:
+      "The Everest region, also known as the Khumbu, is Nepal's most iconic trekking destination. Home to eight of the world's fourteen 8,000m peaks, this dramatic landscape draws adventurers from every corner of the globe. The classic Everest Base Camp trek takes you through Sherpa villages, past ancient monasteries, and across glacial moraines to the foot of the world's highest mountain at 5,364m.",
+    bestTime:
+      "The best seasons are spring (March to May) and autumn (September to November). Spring offers blooming rhododendrons and stable weather, while autumn delivers crystal-clear mountain views after the monsoon. Winter treks are possible but cold, and the monsoon season (June-August) brings heavy rainfall and poor visibility.",
+    permits:
+      "All trekkers need a Sagarmatha National Park Entry Permit (NPR 3,000) and a TIMS card (NPR 2,000 for individual trekkers). These are obtained in Kathmandu or Lukla. Your guide will handle all permit arrangements included in your trek price.",
+  },
+  langtang: {
+    about:
+      "The Langtang region is Nepal's closest trekking area to Kathmandu, often called 'the valley of glaciers.' Tucked against the Tibetan border, it offers dramatic Himalayan scenery, traditional Tamang villages, and rich Buddhist culture without the crowds of Everest or Annapurna. Highlights include Kyanjin Gompa monastery, the panoramic viewpoint of Tserko Ri (5,000m), and the rebuilt villages along the Langtang Valley.",
+    bestTime:
+      "Spring (March to May) and autumn (September to November) are the prime seasons. Spring brings blooming rhododendron forests and warmer days, while autumn offers the clearest mountain views and crisp, dry weather. Winter (December-February) is quiet and cold with possible snow on higher passes, and the monsoon (June-August) makes trails muddy and leech-prone.",
+    permits:
+      "Trekkers need a Langtang National Park Entry Permit (NPR 3,000) and a TIMS card (NPR 2,000 for individual trekkers). Both are issued in Kathmandu. Since 2023, all foreign trekkers must hire a licensed guide — your guide will arrange all permits as part of your package.",
+  },
+  manaslu: {
+    about:
+      "The Manaslu region offers one of Nepal's most rewarding off-the-beaten-path treks, circling the world's 8th highest peak (8,163m). Designated a restricted area, the Manaslu Circuit crosses the dramatic 5,160m Larkya La pass and takes you through remote Nubri and Tsum villages where Tibetan-influenced culture is still untouched. Far quieter than Annapurna or Everest, it rewards trekkers with raw, authentic Himalayan adventure.",
+    bestTime:
+      "Autumn (September to November) is the most popular season, offering stable weather and the clearest views of Manaslu and surrounding peaks. Spring (March to May) is excellent too with warmer temperatures and rhododendron blooms. Winter is risky as Larkya La pass often closes due to snow, and the monsoon (June-August) brings landslides on the Budhi Gandaki gorge sections.",
+    permits:
+      "Manaslu requires three permits: a Restricted Area Permit (USD 100/week in autumn, USD 75/week other seasons), the Manaslu Conservation Area Permit (NPR 3,000), and the Annapurna Conservation Area Permit (NPR 3,000) for the exit through Dharapani. A licensed guide and a minimum group of two trekkers are mandatory by law.",
+  },
+  kanchenjunga: {
+    about:
+      "The Kanchenjunga region in far eastern Nepal is one of the most remote and pristine trekking areas in the Himalayas. Home to the world's third highest mountain (8,586m), the trek visits both the North Base Camp at Pangpema (5,143m) and the South Base Camp at Oktang. Few trekkers make it here, so you'll experience untouched Limbu and Rai villages, dense rhododendron forests, and sweeping Himalayan panoramas in true solitude.",
+    bestTime:
+      "Autumn (September to late November) and spring (April to May) are the only practical seasons. Autumn offers dry trails and exceptional visibility, while spring brings spectacular rhododendron blooms across the lower trails. Winter is too harsh at base camp altitudes, and the monsoon makes the long approach trail through the lowlands nearly impassable.",
+    permits:
+      "Kanchenjunga is a restricted area requiring a Restricted Area Permit (USD 20 per week for the first 4 weeks) and a Kanchenjunga Conservation Area Permit (NPR 3,000). A licensed guide and minimum two trekkers are mandatory. All permit arrangements are handled by your trekking agency before departure from Kathmandu.",
+  },
+};
+
 const RegionPage = () => {
   const { slug } = useParams<{ slug: string }>();
 
   const fallback = slug ? REGION_SEO_FALLBACK[slug] : undefined;
+  const longContent = slug ? REGION_LONG_CONTENT[slug] : undefined;
 
   const { data: region, isLoading: regionLoading } = useQuery({
     queryKey: ["region", slug],
@@ -160,6 +199,34 @@ const RegionPage = () => {
             )}
           </div>
         </section>
+
+        {/* Long-form static SEO content */}
+        {longContent && (
+          <section className="py-16 bg-secondary/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto space-y-10">
+                <div>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    About Trekking in the {displayName}
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">{longContent.about}</p>
+                </div>
+                <div>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    Best Time to Trek in the {displayName}
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">{longContent.bestTime}</p>
+                </div>
+                <div>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    Permits Required for {displayName} Treks
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">{longContent.permits}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Trek Cards */}
         <section className="py-16">
