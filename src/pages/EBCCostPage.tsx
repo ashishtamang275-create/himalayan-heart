@@ -13,13 +13,33 @@ const EBCCostPage = () => {
     mainEntity: [
       {
         "@type": "Question",
+        name: "How much does Everest Base Camp trek cost from Kathmandu in 2026?",
+        acceptedAnswer: { "@type": "Answer", text: "The total cost from Kathmandu including Ramechhap drive ($25), Lukla flights ($350 return), 12-day trek with local guide ($800-$1,500) is approximately $1,175-$2,200 per person when booking directly with a licensed Nepali guide." }
+      },
+      {
+        "@type": "Question",
         name: "How much does Everest Base Camp trek cost in 2026?",
         acceptedAnswer: { "@type": "Answer", text: "The total cost ranges from $1,200 to $3,500+ depending on whether you trek independently or with a guided group. Budget trekkers spend around $1,200–$1,500, mid-range is $1,800–$2,500, and luxury options run $3,000+." }
       },
       {
         "@type": "Question",
+        name: "Is TIMS permit required for Everest Base Camp trek in 2026?",
+        acceptedAnswer: { "@type": "Answer", text: "No. The TIMS card was replaced inside the Khumbu region by the Khumbu Pasang Lhamu Rural Municipality Permit in 2018. You need the Sagarmatha National Park Entry Permit (NPR 3,000) and the Khumbu municipality permit (NPR 2,000). Total permit cost is approximately $42-60 USD." }
+      },
+      {
+        "@type": "Question",
         name: "What is included in an EBC trek package?",
         acceptedAnswer: { "@type": "Answer", text: "A typical package includes airport transfers, permits (TIMS and Sagarmatha National Park), accommodation in teahouses, meals on trek, an experienced guide, porters, and emergency support." }
+      },
+      {
+        "@type": "Question",
+        name: "What is the cheapest way to do Everest Base Camp?",
+        acceptedAnswer: { "@type": "Answer", text: "The cheapest way is to book directly with a licensed local Nepali guide (avoiding agency markup of 30-50%), trek in shoulder season (March or November), share a porter with another trekker, rent gear in Kathmandu's Thamel district, and carry water purification tablets. Budget trekkers can do EBC for $800-$1,000 total." }
+      },
+      {
+        "@type": "Question",
+        name: "How much does a guide cost for Everest Base Camp?",
+        acceptedAnswer: { "@type": "Answer", text: "A government-licensed trekking guide costs $25-$35 per day in 2026, inclusive of their food, accommodation and insurance. For a 12-14 day EBC trek, guide fees total $300-$490. A porter costs $20-$25 per day and can be shared between two trekkers." }
       },
       {
         "@type": "Question",
